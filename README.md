@@ -1,24 +1,31 @@
-# README
+# IIS SMART Health Card Issuer
+This is a sample SMART Health Card issuer for an IIS.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Setup
+```
+bundle install
+yarn install
+```
 
-Things you may want to cover:
+## Run
+```
+bundle exec rails s
+```
+Then visit [http://localhost:3000](http://localhost:3000)
 
-* Ruby version
 
-* System dependencies
+## License
 
-* Configuration
+Copyright 2020 The MITRE Corporation
 
-* Database creation
+Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
+```
+http://www.apache.org/licenses/LICENSE-2.0
+```
+Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
 
-* Database initialization
+## Code of Conduct
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Everyone interacting in the HealthCards project's codebases, issue trackers,
+chat rooms and mailing lists is expected to follow the [code of
+conduct](https://github.com/dvci/iis-shc-issuer/blob/main/CODE_OF_CONDUCT.md).
