@@ -6,12 +6,12 @@ const colors = {
   // black: '#222',
   // red: '#d95d77',
   // blue: '#5d89a1',
-  blueGreen:'#3c9189',
+  blueGreen:'#2da39d',
   // blueLighter: '#9ad2f0',
   // gray: '#4a4a4a',
-  // grayMedium: '#bbbdc0',
+  grayMedium: '#c2c2c2',
   // grayBlue: '#cbd5df',
-  grayLight: '#e9e9e9',
+  grayLight: '#eeeeee',
   // grayLighter: '#eaeef2',
   grayDark: '#323841',
   // grayVeryDark: '#3a3a3a',
@@ -35,6 +35,58 @@ const lightTheme = createTheme({
   typography: {
     h2: {
       fontFamily: ['Roboto', 'sans-serif'].join(','),
+    },
+  },
+  overrides: {
+    MuiButton: {
+      root: {
+        borderRadius: '1px',
+        height: '56px',
+      },
+      label: {
+        textTransform: 'uppercase',
+        fontSize: '24px',
+        fontWeight: 'bold',
+      },
+      contained: {
+        '&$disabled': {
+          color: '#9d9d9d',
+          backgroundColor: paletteBase.common.grayMedium,
+        },
+      },
+    },
+    MuiInputBase: {
+      root: {
+        borderRadius: '1px',
+        backgroundColor: paletteBase.common.grayLight,
+      },
+    },
+    MuiFilledInput: {
+      root: {
+        borderRadius: '1px',
+        borderTopLeftRadius: '1px',
+        borderTopRightRadius: '1px',
+      },
+    },
+    MuiInputLabel: {
+      root: {
+        textTransform: 'uppercase',
+        fontWeight: 'bold',
+        marginBottom: '3px',
+      },
+      formControl: {
+        position: 'relative',
+      },
+      filled: {
+        '&$shrink': {
+          transform: 'none',
+        },
+      },
+    },
+    MuiTextField: {
+      root: {
+        marginBottom: '20px',
+      },
     },
   },
 });

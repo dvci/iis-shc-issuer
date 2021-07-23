@@ -8,10 +8,10 @@ const HeroBar = () => {
     <div className={styles.heroBar}>
       <Container maxWidth="md">
         <Box display="flex" alignItems="center" flexDirection="column" pt={5} pb={4}>
-          <Typography variant="h3" paragraph={true}>
+          <Typography variant="h3" component="h2" paragraph={true}>
             Let's find your digital vaccination record.
           </Typography>
-          <Typography variant="h6" align="center">
+          <Typography variant="h5" component="h3" align="center">
             Your&nbsp;
             <Link href="#" color="secondary" className={styles.link}>
               SMART Health Card
