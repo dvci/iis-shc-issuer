@@ -14,12 +14,16 @@ const App = props => (
     <CssBaseline />
     <Header />
     <HeroBar />
-    <Box display="flex" flexDirection="row" justifyContent="center" style={{backgroundColor: '#ffffff'}}>
-      <Box mt={11} mr={4}>
+    <Box
+      display="flex"
+      flexDirection="row"
+      justifyContent="center"
+    >
+      <Box mt={11} mr={4} maxWidth="530px">
         <Form />
       </Box>
-      <Box mt={3} ml={4}>
-        <img src={illustration} alt="Woman receiving a vaccine" style={{width: '700px', height: '450px'}}/>
+      <Box mt={2} ml={6}>
+        <img src={illustration} alt="Woman receiving a vaccine" style={{width: '750px'}}/>
       </Box>
     </Box>
 

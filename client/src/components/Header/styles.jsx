@@ -7,7 +7,6 @@ export default makeStyles(theme => ({
     padding: '0.25em 0.25em',
     display: 'flex',
     alignItems: 'center',
-    backgroundColor: theme.palette.common.white,
   },
   logo: {
     objectFit: 'contain',

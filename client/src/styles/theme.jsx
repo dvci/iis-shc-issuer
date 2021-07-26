@@ -3,22 +3,11 @@ import { createTheme } from '@material-ui/core/styles';
 // https://material-ui.com/customization/palette/#adding-new-colors
 const colors = {
   white: '#fff',
-  // black: '#222',
-  // red: '#d95d77',
-  // blue: '#5d89a1',
   blueGreen:'#2da39d',
   blueGreenDark:'#227c78',
-  // blueLighter: '#9ad2f0',
-  // gray: '#4a4a4a',
   grayMedium: '#c2c2c2',
-  // grayBlue: '#cbd5df',
   grayLight: '#eeeeee',
-  // grayLighter: '#eaeef2',
   grayDark: '#323841',
-  // grayVeryDark: '#3a3a3a',
-  // green: '#2fa874',
-  // orange: '#F88B30',
-  // blueGray: '#e6ebf2',
 };
 
 const paletteBase = {
@@ -27,6 +16,9 @@ const paletteBase = {
   },
   secondary: {
     main: colors.blueGreen,
+  },
+  background: {
+    default: colors.white,
   },
   common: colors,
 };
