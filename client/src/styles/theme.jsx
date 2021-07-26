@@ -2,11 +2,12 @@ import { createTheme } from '@material-ui/core/styles';
 
 // https://material-ui.com/customization/palette/#adding-new-colors
 const colors = {
-  // white: '#fff',
+  white: '#fff',
   // black: '#222',
   // red: '#d95d77',
   // blue: '#5d89a1',
   blueGreen:'#2da39d',
+  blueGreenDark:'#227c78',
   // blueLighter: '#9ad2f0',
   // gray: '#4a4a4a',
   grayMedium: '#c2c2c2',
@@ -49,10 +50,15 @@ const lightTheme = createTheme({
         fontWeight: 'bold',
       },
       contained: {
+        color: paletteBase.common.white,
+        backgroundColor: paletteBase.common.blueGreen,
         '&$disabled': {
           color: '#9d9d9d',
           backgroundColor: paletteBase.common.grayMedium,
         },
+        '&:hover': {
+          backgroundColor: paletteBase.common.blueGreenDark,
+        }
       },
     },
     MuiInputBase: {

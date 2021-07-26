@@ -5,8 +5,14 @@ import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/picker
 import DateFnsUtils from '@date-io/date-fns';
 
 const Form = () => {
-  const [selectedDate, handleDateChange] = useState(null);
   const styles = useStyles();
+  const [firstName, setFirstName] = useState(null);
+  const [lastName, setLastName] = useState(null);
+  const [selectedDate, handleDateChange] = useState(null);
+
+  const handleFirstNameChange = event => setFirstName(event.target.value);
+  const handleLastNameChange = event => setLastName(event.target.value);
+  const enableButton = firstName && lastName && selectedDate;
 
   return (
     <form>
@@ -17,6 +23,7 @@ const Form = () => {
         label="First Name"
         InputLabelProps={{shrink: true}}
         InputProps={{disableUnderline: true}}
+        onChange={handleFirstNameChange}
       />
       <TextField
         required
@@ -25,6 +32,7 @@ const Form = () => {
         label="Last Name"
         InputLabelProps={{shrink: true}}
         InputProps={{disableUnderline: true}}
+        onChange={handleLastNameChange}
       />
       <MuiPickersUtilsProvider utils={DateFnsUtils}>
         <KeyboardDatePicker
@@ -49,7 +57,7 @@ const Form = () => {
           * required fields
         </Typography>
         <Button
-          disabled
+          disabled={!enableButton}
           disableElevation
           fullWidth
           size="large"
