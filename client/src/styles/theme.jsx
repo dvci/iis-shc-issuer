@@ -66,6 +66,17 @@ const lightTheme = createTheme({
         borderRadius: '1px',
         borderTopLeftRadius: '1px',
         borderTopRightRadius: '1px',
+        backgroundColor: paletteBase.common.grayLight,
+      },
+      input: {
+        padding: '18px 12px 17px',
+      },
+    },
+    MuiInput: {
+      formControl: {
+        "label + &": {
+          marginTop: '0',
+        },
       },
     },
     MuiInputLabel: {
@@ -76,12 +87,16 @@ const lightTheme = createTheme({
       },
       formControl: {
         position: 'relative',
+        transform: 'none',
       },
       filled: {
         '&$shrink': {
           transform: 'none',
         },
       },
+      shrink: {
+        transform: 'none',
+      }
     },
     MuiTextField: {
       root: {

@@ -6,4 +6,15 @@ export default makeStyles(theme => ({
     marginBottom: '0.3em',
     marginRight: '1em',
   },
+  datePicker: {
+    height: '56px',
+    paddingLeft: '12px',
+    marginTop: '0',
+    backgroundColor: theme.palette.common.grayLight,
+  },
+  datePickerInput: {
+    '&::placeholder': {
+      color: '#979797',
+    },
+  }
 }));
