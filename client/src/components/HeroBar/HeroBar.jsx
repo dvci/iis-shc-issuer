@@ -13,7 +13,13 @@ const HeroBar = () => {
           </Typography>
           <Typography variant="h5" component="h3" align="center">
             Your&nbsp;
-            <Link href="#" color="secondary" className={styles.link}>
+            <Link
+              href="https://smarthealth.cards/"
+              color="secondary"
+              className={styles.link}
+              target="_blank"
+              rel="noopener"
+            >
               SMART Health Card
             </Link>
             &nbsp;contains your verified vaccination record
