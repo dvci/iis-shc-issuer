@@ -24,7 +24,12 @@ const App = props => (
       </Box>
       <Box mt={2} ml={6} display="flex" flexDirection="column" alignItems="center">
         <img src={illustration} alt="Woman receiving a vaccine" style={{maxWidth: '750px'}}/>
-        <Link href="https://www.vecteezy.com/free-vector/epidemic-prevention" color="secondary">
+        <Link
+          href="https://www.vecteezy.com/free-vector/epidemic-prevention"
+          color="secondary"
+          target="_blank"
+          rel="noopener"
+        >
           Epidemic Prevention Vectors by Vecteezy
         </Link>
       </Box>
