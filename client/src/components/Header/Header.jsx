@@ -12,7 +12,7 @@ const Header = () => {
           <img src={logo} alt="Placeholder Mitre logo" style={{width: '100px'}}/>
           <Box ml={2}>
             <Typography variant="h6" component="h1">
-              ISS SMART Health Card Issuer
+              IIS SMART Health Card Issuer
             </Typography>
           </Box>
         </Box>
