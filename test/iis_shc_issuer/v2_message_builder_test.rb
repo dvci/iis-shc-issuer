@@ -5,7 +5,7 @@ require 'iis_shc_issuer/v2_message_builder'
 require 'vcr'
 
 VCR.configure do |config|
-  config.cassette_library_dir = 'test/vcr_cassettes/iis_shc_issuer/v2_message_builder'
+  config.cassette_library_dir = 'test/vcr_cassettes/iis_shc_issuer'
   config.hook_into :webmock
 end
 

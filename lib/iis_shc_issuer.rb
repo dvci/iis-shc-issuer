@@ -3,7 +3,7 @@
 require 'iis_shc_issuer/qbp_client'
 require 'iis_shc_issuer/errors'
 
-module IisShcIssuer
+module IISSHCIssuer
   class Error < StandardError; end
   # Your code goes here...
 end

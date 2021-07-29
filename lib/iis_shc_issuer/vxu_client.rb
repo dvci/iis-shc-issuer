@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module IisShcIssuer
+module IISSHCIssuer
   # Send a VXU message to the IIS Sandbox service to upload a patient
   module VXUClient
     module_function

@@ -5,7 +5,7 @@ require 'iis_shc_issuer/qbp_client'
 require 'vcr'
 
 VCR.configure do |config|
-  config.cassette_library_dir = 'test/vcr_cassettes/iis_shc_issuer/qbp_client_test'
+  config.cassette_library_dir = 'test/vcr_cassettes/iis_shc_issuer'
   config.hook_into :webmock
 end
 
@@ -14,7 +14,7 @@ class QBPClientTest < ActiveSupport::TestCase
 
   test 'query() method successfully returns an HL7 V2 Message' do
     VCR.use_cassette('query_returns_v2') do
-      v2_response_body = IisShcIssuer::QBPClient.query({})
+      v2_response_body = IISSHCIssuer::QBPClient.query({})
       assert_instance_of(HL7::Message, v2_response_body)
     end
   end
@@ -22,14 +22,14 @@ class QBPClientTest < ActiveSupport::TestCase
   test 'raises error if inputted sandbox credentials are incorrectly formatted' do
     user_sandbox_credentials = { username: 'test_user', password: 'test_password', facilityID: 'test_facilityID' }
     missing_credential = user_sandbox_credentials.except(:password)
-    assert_raises IisShcIssuer::InvalidSandboxCredentialsError do
-      IisShcIssuer::QBPClient.query({}, missing_credential)
+    assert_raises IISSHCIssuer::InvalidSandboxCredentialsError do
+      IISSHCIssuer::QBPClient.query({}, missing_credential)
     end
 
     non_string_credential = user_sandbox_credentials
     non_string_credential[:password] = 1
-    assert_raises IisShcIssuer::InvalidSandboxCredentialsError do
-      IisShcIssuer::QBPClient.query({}, non_string_credential)
+    assert_raises IISSHCIssuer::InvalidSandboxCredentialsError do
+      IISSHCIssuer::QBPClient.query({}, non_string_credential)
     end
   end
 
@@ -42,7 +42,7 @@ class QBPClientTest < ActiveSupport::TestCase
                             endpoint: "#{Rails.application.config.iisSandboxHost}/iis-sandbox/soap",
                             pretty_print_xml: true)
       assert_nothing_raised do
-        IisShcIssuer::QBPClient.check_client_connectivity(client) if client.operations.include?(:connectivity_test)
+        IISSHCIssuer::QBPClient.check_client_connectivity(client) if client.operations.include?(:connectivity_test)
       end
     end
   end
@@ -52,8 +52,8 @@ class QBPClientTest < ActiveSupport::TestCase
   test 'SOAP FAULT: SecurityFault - bad credentials' do
     VCR.use_cassette('soap_fault_bad_credentials') do
       user_sandbox_credentials = { username: 'mitre', password: 'bad_password', facilityID: 'MITRE Healthcare' }
-      assert_raises IisShcIssuer::SOAPError do
-        IisShcIssuer::QBPClient.query({}, user_sandbox_credentials)
+      assert_raises IISSHCIssuer::SOAPError do
+        IISSHCIssuer::QBPClient.query({}, user_sandbox_credentials)
       end
     end
   end
@@ -63,8 +63,8 @@ class QBPClientTest < ActiveSupport::TestCase
     # Currently, this throws the same exception as the above "Security Fault"
     VCR.use_cassette('soap_fault_generic_error') do
       user_sandbox_credentials = { username: 'NPE', password: 'NPE', facilityID: 'MITRE Healthcare' }
-      assert_raises IisShcIssuer::SOAPError do
-        IisShcIssuer::QBPClient.query({}, user_sandbox_credentials)
+      assert_raises IISSHCIssuer::SOAPError do
+        IISSHCIssuer::QBPClient.query({}, user_sandbox_credentials)
       end
     end
   end

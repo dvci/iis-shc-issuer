@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module IisShcIssuer
+module IISSHCIssuer
   # Translate an HL7 V2 Message into a FHIR Bundle
   module V2ToFHIR
     module_function

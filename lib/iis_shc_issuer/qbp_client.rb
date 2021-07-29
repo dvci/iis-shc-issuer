@@ -5,7 +5,7 @@ require 'ruby-hl7'
 require 'faraday'
 require_relative 'qpd'
 
-module IisShcIssuer
+module IISSHCIssuer
   # Send, receive, and translate HL7 V2 messages from the QBP client of the IIS sandbox
   module QBPClient
     extend self
@@ -17,16 +17,16 @@ module IisShcIssuer
               sandbox_credentials = { username: Rails.application.config.username,
                                       password: Rails.application.config.password,
                                       facilityID: Rails.application.config.facilityID })
-      raise IisShcIssuer::InvalidSandboxCredentialsError unless valid_credentials?(sandbox_credentials)
+      raise IISSHCIssuer::InvalidSandboxCredentialsError unless valid_credentials?(sandbox_credentials)
 
       service_def = 'lib/assets/service.wsdl'
       client = Savon.client(wsdl: service_def,
                             endpoint: "#{Rails.application.config.iisSandboxHost}/iis-sandbox/soap",
                             pretty_print_xml: true)
       # Check if client is configured properly
-      raise IisShcIssuer::OperationNotSupportedError unless client.operations.include?(:submit_single_message)
+      raise IISSHCIssuer::OperationNotSupportedError unless client.operations.include?(:submit_single_message)
 
-      msg_input = IisShcIssuer::V2MessageBuilder.build_hl7_message(patient_info)
+      msg_input = IISSHCIssuer::V2MessageBuilder.build_hl7_message(patient_info)
 
       begin
         response = client.call(:submit_single_message) do
@@ -34,7 +34,7 @@ module IisShcIssuer
         end
       rescue Savon::Error => e
         fault_code = e.to_s
-        raise IisShcIssuer::SOAPError, fault_code
+        raise IISSHCIssuer::SOAPError, fault_code
       end
 
       raw_response_message = response.body[:submit_single_message_response][:return]
@@ -51,10 +51,10 @@ module IisShcIssuer
         end
       rescue Savon::Error => e
         fault_code = e.to_s
-        raise IisShcIssuer::SOAPError, fault_code
+        raise IISSHCIssuer::SOAPError, fault_code
       end
       conncectivity_response = response.body[:connectivity_test_response][:return]
-      throw IisShcIssuer::BadClientConnectionError unless conncectivity_response == 'End-point is ready. Echoing: ?'
+      throw IISSHCIssuer::BadClientConnectionError unless conncectivity_response == 'End-point is ready. Echoing: ?'
     end
 
     private

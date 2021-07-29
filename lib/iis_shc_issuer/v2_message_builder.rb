@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module IisShcIssuer
+module IISSHCIssuer
   # Build HL7 V2 message from a patient hash
   module V2MessageBuilder
     module_function

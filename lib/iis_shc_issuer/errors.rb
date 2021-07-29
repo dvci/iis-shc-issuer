@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-module IisShcIssuer
-  class IisShcIssuerError < StandardError; end
+module IISSHCIssuer
+  class IISSHCIssuerError < StandardError; end
 
-  class QBPClientError < IisShcIssuerError; end
+  class QBPClientError < IISSHCIssuerError; end
 
   # Errors Related to QBP Client for IIS-Sandbox
 

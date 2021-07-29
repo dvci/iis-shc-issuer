@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module IisShcIssuer
+module IISSHCIssuer
   # Handle Profile-specific Errors returned by the IIS Sandbox
   module ProfileErrors
     extend self
@@ -32,7 +32,7 @@ module IisShcIssuer
       else
         # TODO: Come up with request that can produce an unrecognized response profile
         # (this may require a flavor in the IIS Sandbox)
-        raise IisShcIssuer::OperationNotSupportedError
+        raise IISSHCIssuer::OperationNotSupportedError
       end
 
       response_status
