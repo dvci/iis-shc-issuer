@@ -49,7 +49,6 @@ export default makeStyles((theme) => ({
     width: "191px",
   },
   title: {
-    fontFamily: "Open Sans",
     fontSize: "40px",
     fontWeight: "300",
     left: "0",
@@ -77,7 +76,6 @@ export default makeStyles((theme) => ({
   },
   //.place
   nameLabel: {
-    fontFamily: "Open Sans",
     letterSpacing: "0",
     lineHeight: "16px",
     minHeight: "19px",
@@ -85,7 +83,6 @@ export default makeStyles((theme) => ({
   },
   //.anypersonjohn-b
   name: {
-    fontFamily: "Open Sans",
     fontWeight: "700",
     letterSpacing: "0",
     lineHeight: "24px",
@@ -104,7 +101,6 @@ export default makeStyles((theme) => ({
   },
   //.date-of-birth
   dateOfBirthLabel: {
-    fontFamily: "Open Sans",
     letterSpacing: "0",
     lineHeight: "16px",
     minHeight: "19px",
@@ -112,7 +108,6 @@ export default makeStyles((theme) => ({
   },
   //.text-1
   dateOfBirth: {
-    fontFamily: "Open Sans",
     fontWeight: "700",
     letterSpacing: "0",
     lineHeight: "24px",
@@ -166,7 +161,6 @@ export default makeStyles((theme) => ({
   //.covid-19-vaccination
   covid19Vaccination: {
     color: "var(--mako)",
-    fontFamily: "Open Sans",
     fontSize: "var(--font-size-l2)",
     fontWeight: "600",
     letterSpacing: "0",
@@ -192,7 +186,6 @@ export default makeStyles((theme) => ({
   //.iss-smart-health-car
   issSmartHealthCar: {
     alignSelf: "flex-end",
-    fontFamily: "Open Sans",
     letterSpacing: "0",
     lineHeight: "16px",
     marginLeft: "56px",
@@ -223,7 +216,6 @@ export default makeStyles((theme) => ({
   //.dose
   dose: {
     color: theme.palette.common.blueGreenDark,
-    fontFamily: "Open Sans",
     fontWeight: "800",
     letterSpacing: "0",
     lineHeight: "16px",
@@ -249,7 +241,6 @@ export default makeStyles((theme) => ({
   },
   //.vaccine
   vaccineLabel: {
-    fontFamily: "Open Sans",
     fontStyle: "italic",
     fontWeight: "300",
     letterSpacing: "0",
@@ -260,7 +251,6 @@ export default makeStyles((theme) => ({
   },
   //.pfizer-lot-348712
   vaccine: {
-    fontFamily: "Open Sans",
     fontWeight: "700",
     letterSpacing: "0",
     lineHeight: "16px",
@@ -279,7 +269,6 @@ export default makeStyles((theme) => ({
   },
   //.place-1
   dateLabel: {
-    fontFamily: "Open Sans",
     fontStyle: "italic",
     fontWeight: "300",
     letterSpacing: "0",
@@ -289,7 +278,6 @@ export default makeStyles((theme) => ({
     whiteSpace: "nowrap",
   },
   date: {
-    fontFamily: "Open Sans",
     fontWeight: "700",
     letterSpacing: "0",
     lineHeight: "16px",
@@ -307,7 +295,6 @@ export default makeStyles((theme) => ({
   },
   //.vaccinator
   vaccinatorLabel: {
-    fontFamily: "Open Sans",
     fontStyle: "italic",
     fontWeight: "300",
     letterSpacing: "0",
@@ -318,7 +305,6 @@ export default makeStyles((theme) => ({
   },
   //.walmart-13770-w-bel
   vaccinator: {
-    fontFamily: "Open Sans",
     letterSpacing: "0",
     lineHeight: "16px",
     marginLeft: "8px",

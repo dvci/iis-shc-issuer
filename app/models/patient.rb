@@ -1,9 +1,6 @@
 class Patient
-  include ActiveModel::Model
-  include ActiveModel::Serializers::JSON
-
   def initialize(fhir_patient)
-    @fhir_patient=fhir_patient
+    @fhir_patient = fhir_patient
     @full_name = full_name
     @given = given
     @family = family
@@ -11,19 +8,18 @@ class Patient
   end
 
   def attributes
-    {'full_name' => @full_name,
+    { 'full_name' => @full_name,
       'given' => @given,
       'family' => @family,
-      'birth_date' => @birth_date
-    }
+      'birth_date' => @birth_date }
   end
 
   def full_name
     [family, given].join('/') if given || family
   end
 
-  def given    
-    first_name.given.join(" ") || first_name.text
+  def given
+    first_name.given.join(' ') || first_name.text
   end
 
   delegate :family, to: :first_name
@@ -35,7 +31,7 @@ class Patient
   private
 
   def first_name
-    @fhir_patient.name << FHIR::HumanName.new if @fhir_patient.name.empty? 
+    @fhir_patient.name << FHIR::HumanName.new if @fhir_patient.name.empty?
     @fhir_patient.name[0]
   end
 

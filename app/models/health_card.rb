@@ -1,9 +1,8 @@
 class HealthCard
-  include ActiveModel::Model
-  attr_accessor :patient, :immunizations, :qrCodes
+  attr_accessor :patient, :immunizations, :qr_codes
 
   def initialize
     @immunizations = []
-    @qrCodes = []
+    @qr_codes = []
   end
 end

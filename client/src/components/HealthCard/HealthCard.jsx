@@ -24,7 +24,7 @@ function HealthCard(props) {
       birth_date: "",
     },
     immunizations: [],
-    qrCodes: [],
+    qr_codes: [],
   });
   const [showDateOfBirth, setShowDateOfBirth] = useState(false);
   const [dateOfBirthDisplay, setDateOfBirthDisplay] = useState("**/**/****");
@@ -52,7 +52,7 @@ function HealthCard(props) {
         setHealthCard(responseJson);
       
         Promise.all(
-          responseJson.qrCodes.map(async (item, i) => {
+          responseJson.qr_codes.map(async (item, i) => {
             return await generateQR(item, i);
           })
         ).then(qrs => {

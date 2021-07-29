@@ -1,9 +1,6 @@
 class Immunization
-  include ActiveModel::Model
-  include ActiveModel::Serializers::JSON
-
   def initialize(fhir_immunization)
-    @fhir_immunization=fhir_immunization
+    @fhir_immunization = fhir_immunization
     @occurrence = occurrence
     @vaccine = vaccine
     @lot_number = lot_number
@@ -30,7 +27,7 @@ class Immunization
   def vaccine
     @fhir_immunization.vaccineCode ||= FHIR::CodeableConcept.new
     coding = @fhir_immunization.vaccineCode.coding.try(:first)
-    coding.nil? ? '' : 'CVX ' + coding.code
+    coding.nil? ? '' : "CVX #{coding.code}"
   end
 
   def vaccinator
