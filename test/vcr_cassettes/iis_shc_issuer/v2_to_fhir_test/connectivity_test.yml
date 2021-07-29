@@ -31,11 +31,11 @@ http_interactions:
       Content-Length:
       - '275'
       Date:
-      - Thu, 29 Jul 2021 18:16:30 GMT
+      - Thu, 29 Jul 2021 19:29:12 GMT
     body:
       encoding: UTF-8
       string: "<?xml version='1.0' encoding='UTF-8'?>\n<Envelope xmlns=\"http://www.w3.org/2003/05/soap-envelope\">\n
         \ <Body>\n    <connectivityTestResponse xmlns=\"urn:cdc:iisb:2011\">\n      <return>End-point
         is ready. Echoing: ?</return>   \n    </connectivityTestResponse>\n  </Body>\n</Envelope>\n"
-  recorded_at: Thu, 29 Jul 2021 18:16:30 GMT
+  recorded_at: Thu, 29 Jul 2021 19:29:12 GMT
 recorded_with: VCR 6.0.0
