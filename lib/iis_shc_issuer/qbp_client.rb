@@ -41,16 +41,6 @@ module IisShcIssuer
       HL7::Message.new(response_segments)
     end
 
-    # Translate relevant info from V2 Response message into a FHIR Bundle
-    # @param v2_response [HL7::Message] V2 message returned from the IIS Sandbox
-    # @return [String] FHIR Bundle representation of the V2 message
-    def translate_to_fhir(v2_response)
-      fhir_response = Faraday.post("#{Rails.application.config.v2ToFhirHost}/api/v0.1.0/convert/text",
-                                   v2_response.to_hl7,
-                                   'Content-Type' => 'text/plain')
-      fhir_response.body
-    end
-
     def build_hl7_message(patient_info) # rubocop:disable Metrics/MethodLength, Metrics/AbcSize
       # Disabling method length Rubocop warnings due to probable future refactor and moving of repos
       raw_input = File.open('lib/assets/qbp.hl7').readlines

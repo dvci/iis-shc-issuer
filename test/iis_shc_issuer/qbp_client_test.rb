@@ -41,19 +41,6 @@ class QBPClientTest < ActiveSupport::TestCase
     end
   end
 
-  test 'translate_to_fhir() method successfully returns a stringified JSON object' do
-    VCR.use_cassette('translator_returns_json_string') do
-      v2_response_body = IisShcIssuer::QBPClient.query({})
-      fhir_response_body = IisShcIssuer::QBPClient.translate_to_fhir(v2_response_body)
-      parsed_fhir_response = begin
-        JSON.parse(fhir_response_body)
-      rescue StandardError
-        nil
-      end
-      assert_not_nil(parsed_fhir_response)
-    end
-  end
-
   test 'raises error if inputted sandbox credentials are incorrectly formatted' do
     user_sandbox_credentials = { username: 'test_user', password: 'test_password', facilityID: 'test_facilityID' }
     missing_credential = user_sandbox_credentials.except(:password)
@@ -157,28 +144,6 @@ class QBPClientTest < ActiveSupport::TestCase
       assert_equal('Z31^CDCPHINVS', profile)
       status = IisShcIssuer::QBPClient.get_response_status(response)
       assert_equal(:TM, status)
-    end
-  end
-
-  # V2 to FHIR Translation Tests
-
-  test 'Valid HL7 V2 Complete Immunization History Response will return a FHIR Bundle from the HL7 to V2 Translator' do
-    VCR.use_cassette('translator_returns_fhir_bundle') do
-      response = File.open('test/fixtures/files/RSP_valid.hl7').readlines
-      v2_response = HL7::Message.new(response)
-      fhir_response = IisShcIssuer::QBPClient.translate_to_fhir(v2_response)
-      fhir_response_hash = JSON.parse(fhir_response)
-      assert_equal('Bundle', fhir_response_hash['resourceType'])
-    end
-  end
-
-  test 'Non-Patient HL7 V2 Response will return an error message from the HL7 to V2 Translator' do
-    VCR.use_cassette('translator_returns_error') do
-      response = File.open('test/fixtures/files/RSP_error.hl7').readlines
-      v2_response = HL7::Message.new(response)
-      fhir_response = IisShcIssuer::QBPClient.translate_to_fhir(v2_response)
-      fhir_response_hash = JSON.parse(fhir_response)
-      assert_not_nil(fhir_response_hash['errors'])
     end
   end
 
