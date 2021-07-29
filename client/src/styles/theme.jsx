@@ -8,6 +8,7 @@ const colors = {
   grayMedium: '#c2c2c2',
   grayLight: '#eeeeee',
   grayDark: '#323841',
+  blueGreenLight: '#f2f9f8',
 };
 
 const paletteBase = {
