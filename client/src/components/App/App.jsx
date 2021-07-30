@@ -19,7 +19,7 @@ const App = props => (
       <HeroBar />
 
       <Switch>
-        <Route path="/">
+        <Route exact path="/">
           <Box
             display="flex"
             flexDirection="row"
@@ -42,7 +42,7 @@ const App = props => (
           </Box>
         </Route>
 
-        <Route path="/data-found">
+        <Route exact path="/data-found">
           <Link href="/">Back</Link>
         
           <Box
@@ -54,7 +54,7 @@ const App = props => (
           </Box>
         </Route>
 
-    </Switch>
+      </Switch>
     </Router>
   </ThemeProvider>
 );
