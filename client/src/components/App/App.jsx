@@ -2,8 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import { Link as RouterLink } from 'react-router-dom';
-import { Box, Button, Link } from '@material-ui/core';
+import { Box, Button, Link, Typography } from '@material-ui/core';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Header from '../Header/Header';
 import HeroBar from '../HeroBar/HeroBar';
@@ -11,6 +10,8 @@ import ThemeProvider from '../ThemeProvider';
 import Form from '../Form/Form';
 import illustration from '../../../images/vaccine-illustration.jpg';
 import BackButton from '../BackButton/BackButton';
+import DownloadButton from '../DownloadButton/DownloadButton';
+import FactList from '../FactList/FactList';
 
 const App = props => (
   <ThemeProvider>
@@ -50,21 +51,40 @@ const App = props => (
             display="flex"
             flexDirection="row"
             justifyContent="center"
-            mt={11}
-            mb={11}
+            mt={20}
+            mb={20}
           >
             SMART HEALTH CARD WILL GO HERE
           </Box>
           <Box display="flex" flexDirection="row" justifyContent="center">
-            <Box mr={2}>
-              <Button disableElevation variant="contained">
-                Download SMART&reg; Health Card
-              </Button>
-            </Box>
-            <Box ml={2}>
-              <Button disableElevation variant="contained">
-                Download Printable PDF
-              </Button>
+            <DownloadButton>
+              Download SMART&reg; Health Card
+            </DownloadButton>
+            <DownloadButton>
+              Download Printable PDF
+            </DownloadButton>
+          </Box>
+          <Box display="flex" flexDirection="row" justifyContent="center" mt={2}>
+            <FactList />
+          </Box>
+          <Box display="flex" flexDirection="row" justifyContent="center" mt={2} mb={2}>
+            <Box display="flex" flexDirection="column">
+              <Typography variant="body2">
+                <p>
+                  This vaccination record is powered by SMART&reg; and works with any app or service
+                  where SMART&reg; Health Cards are accepted. For more information, please visit
+                  <Link to="https://smarthealth.cards/">https://smarthealth.cards</Link>
+                </p>
+                <p>
+                  The IAL number on this document describes the way that your identity information
+                  was collected at the clinic. You can find more information about IAL encoding 
+                  here: <Link to="#">VCI LINK HERE</Link>
+                </p>
+                <p>
+                  Your record can be verified or imported into the app of your choice by scanning
+                  the QR code at the top of the page.
+                </p>
+              </Typography>
             </Box>
           </Box>
           
@@ -76,3 +96,4 @@ const App = props => (
 );
 
 export default App;
+

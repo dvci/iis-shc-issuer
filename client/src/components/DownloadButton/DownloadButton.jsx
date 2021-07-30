@@ -1,76 +1,60 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import useStyles from './styles';
-import { Box, Button, TextField, Typography } from '@material-ui/core';
-import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
-import DateFnsUtils from '@date-io/date-fns';
+import React from 'react';
+import { Box, Button, Typography } from '@material-ui/core';
 
-const Form = () => {
-  const styles = useStyles();
-  const [firstName, setFirstName] = useState(null);
-  const [lastName, setLastName] = useState(null);
-  const [selectedDate, handleDateChange] = useState(null);
-
-  const handleFirstNameChange = event => setFirstName(event.target.value);
-  const handleLastNameChange = event => setLastName(event.target.value);
-  const enableButton = firstName && lastName && selectedDate;
-
+const DownloadButton = (props) => {
   return (
-    <form>
-      <TextField
-        required
-        fullWidth
-        variant="filled"
-        label="First Name"
-        InputLabelProps={{shrink: true}}
-        InputProps={{disableUnderline: true}}
-        onChange={handleFirstNameChange}
-      />
-      <TextField
-        required
-        fullWidth
-        variant="filled"
-        label="Last Name"
-        InputLabelProps={{shrink: true}}
-        InputProps={{disableUnderline: true}}
-        onChange={handleLastNameChange}
-      />
-      <MuiPickersUtilsProvider utils={DateFnsUtils}>
-        <KeyboardDatePicker
-          required
-          fullWidth
-          variant="inline"
-          label="Date of Birth"
-          placeholder="mm/dd/yyyy"
-          emptyLabel="mm/dd/yyyy"
-          format="MM/dd/yyyy"
-          inputProps={{className: styles.datePickerInput}}
-          InputProps={{
-            disableUnderline: true,
-            className: styles.datePicker
-          }}
-          value={selectedDate}
-          onChange={handleDateChange}
-        />
-      </MuiPickersUtilsProvider>
-      <Box width="530px" display="flex" flexDirection="column" mt={2}>
-        <Typography variant="caption" className={styles.buttonCaption}>
-          * required fields
-        </Typography>
+    <div>
+      <Box display="flex" flexDirection="column" justifyContent="center" mx={2}>
         <Button
-          disabled={!enableButton}
-          disableElevation
-          fullWidth
-          size="large"
+          color="secondary"
           variant="contained"
-          component={ Link }
-          to="/data-found"
+          disableElevation
+          style={{width: "400px"}}
         >
-          SEARCH
+          <Typography variant="h5">
+            {props.children}
+          </Typography>
         </Button>
       </Box>
-    </form>
+    </div>
   );
 };
 
-export default Form;
+/* solution for free-case buttons, but no color :(
+import {
+  makeStyles,
+  createMuiTheme,
+  MuiThemeProvider
+} from "@material-ui/core/styles";
+
+const DownloadButton = (props) => {
+
+  const theme = createMuiTheme({
+    typography: {
+      button: {
+        backgroundColor: "#2da39d",
+        textColor: "white",
+        width: "400px",
+        textTransform: "none"
+      }
+    }
+  });
+
+  return (
+    <div>
+      <Box display="flex" flexDirection="column" justifyContent="center" mx={2}>
+        <MuiThemeProvider theme={theme}>
+          <Button
+            variant="contained"
+            disableElevation
+          >
+            {props.children}
+          </Button>
+        </MuiThemeProvider>
+      </Box>
+    </div>
+  );
+};
+*/
+
+export default DownloadButton;
