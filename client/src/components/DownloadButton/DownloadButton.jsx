@@ -11,7 +11,7 @@ const DownloadButton = (props) => {
           disableElevation
           style={{width: "400px"}}
         >
-          <Typography variant="h5">
+          <Typography variant="h6">
             {props.children}
           </Typography>
         </Button>

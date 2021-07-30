@@ -64,21 +64,21 @@ const App = props => (
               Download Printable PDF
             </DownloadButton>
           </Box>
-          <Box display="flex" flexDirection="row" justifyContent="center" mt={2}>
+          <Box display="flex" flexDirection="row" justifyContent="center" mt={2} mx={5}>
             <FactList />
           </Box>
-          <Box display="flex" flexDirection="row" justifyContent="center" mt={2} mb={2}>
+          <Box display="flex" flexDirection="row" justifyContent="center" mt={2} mb={2} mx={5}>
             <Box display="flex" flexDirection="column">
               <Typography variant="body2">
                 <p>
                   This vaccination record is powered by SMART&reg; and works with any app or service
-                  where SMART&reg; Health Cards are accepted. For more information, please visit
-                  <Link to="https://smarthealth.cards/">https://smarthealth.cards</Link>
+                  where SMART&reg; Health Cards are accepted. For more information, please visit 
+                  <Link color="secondary" to="https://smarthealth.cards/">https://smarthealth.cards</Link>
                 </p>
                 <p>
                   The IAL number on this document describes the way that your identity information
                   was collected at the clinic. You can find more information about IAL encoding 
-                  here: <Link to="#">VCI LINK HERE</Link>
+                  here: <Link color="secondary" to="https://vci.org/ig/vaccination-and-testing">https://vci.org/ig/vaccination-and-testing</Link>
                 </p>
                 <p>
                   Your record can be verified or imported into the app of your choice by scanning
