@@ -2,13 +2,15 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import { Box, Link } from '@material-ui/core';
+import { Link as RouterLink } from 'react-router-dom';
+import { Box, Button, Link } from '@material-ui/core';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Header from '../Header/Header';
 import HeroBar from '../HeroBar/HeroBar';
 import ThemeProvider from '../ThemeProvider';
 import Form from '../Form/Form';
 import illustration from '../../../images/vaccine-illustration.jpg';
+import BackButton from '../BackButton/BackButton';
 
 const App = props => (
   <ThemeProvider>
@@ -43,15 +45,29 @@ const App = props => (
         </Route>
 
         <Route exact path="/data-found">
-          <Link href="/">Back</Link>
-        
+          <BackButton />
           <Box
             display="flex"
             flexDirection="row"
             justifyContent="center"
+            mt={11}
+            mb={11}
           >
             SMART HEALTH CARD WILL GO HERE
           </Box>
+          <Box display="flex" flexDirection="row" justifyContent="center">
+            <Box mr={2}>
+              <Button disableElevation variant="contained">
+                Download SMART&reg; Health Card
+              </Button>
+            </Box>
+            <Box ml={2}>
+              <Button disableElevation variant="contained">
+                Download Printable PDF
+              </Button>
+            </Box>
+          </Box>
+          
         </Route>
 
       </Switch>

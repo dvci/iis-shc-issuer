@@ -11,17 +11,17 @@ const HeroBar = () => {
         <Box display="flex" alignItems="center" flexDirection="column" pt={5} pb={4}>
           <Typography variant="h3" component="h2" paragraph={true}>
             <Switch>
-              <Route path="/">
+              <Route exact path="/">
                 Let's find your digital vaccination record.
               </Route>
-              <Route path="/data-found">
+              <Route exact path="/data-found">
                 We found your record!
               </Route>
             </Switch>
           </Typography>
           <Typography variant="h5" component="h3" align="center">
             <Switch>
-              <Route path="/">
+              <Route exact path="/">
                 Your&nbsp;
                 <Link
                   href="https://smarthealth.cards/"
@@ -36,10 +36,10 @@ const HeroBar = () => {
                 that you can share with others if you choose in a safe and
                 privacy-preserving way.
               </Route>
-              <Route path="/data-found">
+              <Route exact path="/data-found">
                 You can import your COVID-19 vaccination record into any app that accepts
-                SMART Health by downloading your SMART Health Card or by scannding the QR
-                code below.
+                SMART&reg; Health by downloading your SMART&reg; Health Card or by
+                scanning the QR code below.
               </Route>
             </Switch>
           </Typography>
