@@ -22,6 +22,7 @@ class HealthCardController < ApplicationController
     immunization_entries.map do |immunization_entry|
       health_card.immunizations.push(Immunization.new(immunization_entry.resource))
     end
+    health_card.immunizations.sort_by!{ |i| Date.strptime(i.occurrence, '%m/%d/%Y') }
 
     @private_key ||= private_key
     @issuer ||= HealthCards::Issuer.new(key: @private_key, url: 'https://spec.smarthealth.cards/examples/issuer')
