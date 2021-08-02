@@ -3,7 +3,6 @@ import { makeStyles, Theme } from "@material-ui/core/styles";
 export default makeStyles((theme) => ({
   healthCard: {
     color: theme.palette.primary.main,
-    width: "849px"
   },
   card: {
     alignItems: "flex-start",
@@ -68,8 +67,6 @@ export default makeStyles((theme) => ({
   //.flex-col
   flexCol: {
     alignItems: "flex-start",
-    display: "flex",
-    flexDirection: "column",
     minHeight: "55px",
     width: "212px",
   },
@@ -92,8 +89,6 @@ export default makeStyles((theme) => ({
   //.flex-col-1
   flexCol1: {
     alignItems: "flex-start",
-    display: "flex",
-    flexDirection: "column",
     marginLeft: "115px",
     minHeight: "55px",
     width: "106px",
@@ -140,8 +135,6 @@ export default makeStyles((theme) => ({
   //.flex-col-2
   flexCol2: {
     alignItems: "flex-start",
-    display: "flex",
-    flexDirection: "column",
     marginTop: "10px",
     minHeight: "230px",
     position: "relative",
@@ -200,7 +193,6 @@ export default makeStyles((theme) => ({
     display: "flex",
     flexDirection: "column",
     marginLeft: "3px",
-    marginTop: "18px",
     minHeight: "79px",
     width: "425px",
   },
@@ -229,88 +221,31 @@ export default makeStyles((theme) => ({
     marginLeft: "7px",
     width: "352px",
   },
-  //.flex-row-2
-  flexRow2: {
+  gridRow: {
     alignItems: "flex-start",
     display: "flex",
-    height: "19px",
-    marginLeft: "19px",
+    flexWrap: "nowrap",
+    minHeight: "19px",
     marginTop: "1px",
     minWidth: "182px",
   },
-  //.vaccine
-  vaccineLabel: {
+  gridLabel: {
     fontStyle: "italic",
     fontWeight: "300",
     letterSpacing: "0",
     lineHeight: "16px",
     minHeight: "19px",
-    minWidth: "47px",
+    minWidth: "80px",
+    textAlign: "right",
     whiteSpace: "nowrap",
   },
-  //.pfizer-lot-348712
-  vaccine: {
+  gridItem: {
     letterSpacing: "0",
     lineHeight: "16px",
     marginLeft: "8px",
     minHeight: "19px",
-    whiteSpace: "nowrap",
-  },
-  //.flex-row-3
-  flexRow3: {
-    alignItems: "flex-start",
-    display: "flex",
-    height: "19px",
-    marginLeft: "36px",
-    marginTop: "1px",
-    minWidth: "116px",
-  },
-  //.place-1
-  dateLabel: {
-    fontStyle: "italic",
-    fontWeight: "300",
-    letterSpacing: "0",
-    lineHeight: "16px",
-    minHeight: "19px",
-    minWidth: "30px",
-    whiteSpace: "nowrap",
   },
   date: {
     fontWeight: "700",
-    letterSpacing: "0",
-    lineHeight: "16px",
-    marginLeft: "8px",
-    minHeight: "19px",
-    whiteSpace: "nowrap",
-  },
-  //.flex-row-4
-  flexRow4: {
-    alignItems: "flex-start",
-    display: "flex",
-    height: "19px",
-    marginTop: "1px",
-    minWidth: "357px",
-  },
-  //.vaccinator
-  vaccinatorLabel: {
-    fontStyle: "italic",
-    fontWeight: "300",
-    letterSpacing: "0",
-    lineHeight: "16px",
-    minHeight: "19px",
-    minWidth: "66px",
-    whiteSpace: "nowrap",
-  },
-  //.walmart-13770-w-bel
-  vaccinator: {
-    letterSpacing: "0",
-    lineHeight: "16px",
-    marginLeft: "8px",
-    minHeight: "19px",
-    whiteSpace: "nowrap",
-  },
-  //.group-8.group-8-1
-  group8Group81: {
-    marginTop: "31px",
   },
 }));

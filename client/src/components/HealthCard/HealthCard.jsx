@@ -4,6 +4,7 @@ import {
   Box,
   Card,
   CardContent,
+  Grid,
   Typography,
   Divider,
   IconButton,
@@ -13,15 +14,17 @@ import {
 import VisibilityIcon from "@material-ui/icons/Visibility";
 import logo from "../../../images/mitre-logo.svg";
 
-var QRCode = require('qrcode')
+var QRCode = require("qrcode");
 
 function HealthCard(props) {
   const styles = useStyles();
-  const { fhirBundle = {}, 
+  const {
+    fhirBundle = {},
     issuer = {
       title: "IIS SMART Health Card Issuer",
-      logo: logo
-    } } = props;
+      logo: logo,
+    },
+  } = props;
 
   const [healthCard, setHealthCard] = useState({
     patient: {
@@ -38,11 +41,15 @@ function HealthCard(props) {
   useEffect(() => {
     const generateQR = async (text, index) => {
       try {
-        return await QRCode.toDataURL(text, {type: 'svg', errorCorrectionLevel: 'low', version: 22 });
+        return await QRCode.toDataURL(text, {
+          type: "svg",
+          errorCorrectionLevel: "low",
+          version: 22,
+        });
       } catch (err) {
-        console.error(err)
+        console.error(err);
       }
-    }
+    };
 
     fetch("health_card", {
       method: "POST",
@@ -55,14 +62,14 @@ function HealthCard(props) {
       .then((response) => response.json())
       .then((responseJson) => {
         setHealthCard(responseJson);
-      
+
         Promise.all(
           responseJson.qr_codes.map(async (item, i) => {
             return await generateQR(item, i);
           })
-        ).then(qrs => {
+        ).then((qrs) => {
           setQrCodesRendered(qrs);
-        })        
+        });
       })
       .catch(console.log());
   }, []);
@@ -77,10 +84,10 @@ function HealthCard(props) {
   };
 
   return (
-    <div className={styles.healthCard}>
+    <Box display="flex" className={styles.healthCard}>
       <Card className={styles.card}>
         <CardContent className={styles.cardContent}>
-          <div className={styles.flexRow}>
+          <Box display="flex" flexDirection="row" className={styles.flexRow}>
             <div className={styles.group4}>
               <div className={styles.overlapGroup}>
                 <img
@@ -89,25 +96,27 @@ function HealthCard(props) {
                   alt="Issuer logo"
                 />
                 <Typography className={styles.title} component="h1">
-                {issuer.title}
+                  {issuer.title}
                 </Typography>
               </div>
             </div>
             <div className={styles.group9}>
-              <div className={styles.flexCol}>
+              <Box display="flex" flexDirection="column"
+                className={styles.flexCol}
+              >
                 <Typography className={styles.nameLabel}>NAME</Typography>
                 <Typography className={styles.name}>
                   {healthCard.patient.full_name}
                 </Typography>
-              </div>
-              <div className={styles.flexCol1}>
+              </Box>
+              <Box display="flex" flexDirection="column" className={styles.flexCol1}>
                 <Typography className={styles.dateOfBirthLabel}>
                   DATE OF BIRTH
                 </Typography>
                 <Typography className={styles.dateOfBirth}>
                   {dateOfBirthDisplay}
                 </Typography>
-              </div>
+              </Box>
               <IconButton
                 className={styles.eyeOutline}
                 aria-label="toggle datofbirth visibility"
@@ -116,10 +125,14 @@ function HealthCard(props) {
                 <VisibilityIcon />
               </IconButton>
             </div>
-          </div>
+          </Box>
           <Divider className={styles.line} variant="middle" />
-          <div className={styles.flexRow1}>
-            <div className={styles.flexCol2}>
+          <Box display="flex" flexDirection="row" className={styles.flexRow1}>
+            <Box
+              display="flex"
+              flexDirection="column"
+              className={styles.flexCol2}
+            >
               <div className={styles.group12}>
                 <Typography className={styles.covid19Vaccination}>
                   COVID-19 VACCINATION RECORD
@@ -134,21 +147,21 @@ function HealthCard(props) {
                   </div>
                 ))}
               </List>
-            </div>
+            </Box>
             <div>
               {qrCodesRendered.map((qrCode, index) => (
                 <div className={styles.group5} key={index}>
-                <img className={styles.qrCode} src={qrCode} />
-              </div>
+                  <img className={styles.qrCode} src={qrCode} />
+                </div>
               ))}
               <Typography className={styles.issSmartHealthCar} paragraph={true}>
-              SMART&reg; Health Card
+                SMART&reg; Health Card
               </Typography>
             </div>
-          </div>
+          </Box>
         </CardContent>
       </Card>
-    </div>
+    </Box>
   );
 }
 
@@ -157,28 +170,47 @@ function HealthCardVaccination(props) {
   const { vaccine, lot_number, occurrence, vaccinator, index } = props;
 
   return (
-    <div className={styles.group8}>
-      <div className={styles.group7}>
+    <Box flexDirection="column" className={styles.group8}>
+      <Box display="flex" className={styles.group7}>
         <Typography className={styles.dose}>DOSE {index + 1}</Typography>
         <Divider className={styles.line2} variant="middle" />
-      </div>
-      <div className={styles.flexRow2}>
-        <Typography className={styles.vaccineLabel}>Vaccine</Typography>
-        <Typography className={styles.vaccine}>
-          <Box component="span" fontWeight='700'>{vaccine}</Box>{!!(lot_number) ? ' Lot #' + lot_number: ''}
-        </Typography>
-      </div>
-      <div className={styles.flexRow3}>
-        <Typography className={styles.dateLabel}>Date</Typography>
-        <Typography className={styles.date}>{occurrence}</Typography>
-      </div>
-      <div className={styles.flexRow4}>
-        <Typography className={styles.vaccinatorLabel}>Vaccinator</Typography>
-        <Typography className={styles.vaccinator} paragraph={true}>
-          {vaccinator}
-        </Typography>
-      </div>
-    </div>
+      </Box>
+      <Grid container>
+        <Grid container direction="row" className={styles.gridRow}>
+          <Grid item className={styles.gridLabel}>
+            <Typography>Vaccine</Typography>
+          </Grid>
+          <Grid item className={styles.gridItem}>
+            <Typography>
+              <Box component="span" fontWeight="700">
+                {vaccine}
+              </Box>
+              {!!lot_number ? " Lot #" + lot_number : ""}
+            </Typography>
+          </Grid>
+        </Grid>
+        <Grid container direction="row" className={styles.gridRow}>
+          <Grid item className={styles.gridLabel}>
+            <Typography>Date</Typography>
+          </Grid>
+          <Grid item className={styles.gridItem}>
+            <Typography className={styles.date}>{occurrence}</Typography>
+          </Grid>
+        </Grid>
+        <Grid container direction="row" className={styles.gridRow}>
+          <Grid item className={styles.gridLabel}>
+            <Typography>
+              Vaccinator
+            </Typography>
+          </Grid>
+          <Grid item className={styles.gridItem}>
+            <Typography paragraph={true}>
+              {vaccinator}
+            </Typography>
+          </Grid>
+        </Grid>
+      </Grid>
+    </Box>
   );
 }
 
