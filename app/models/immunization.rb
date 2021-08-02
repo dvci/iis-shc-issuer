@@ -27,7 +27,7 @@ class Immunization
   def vaccine
     @fhir_immunization.vaccineCode ||= FHIR::CodeableConcept.new
     coding = @fhir_immunization.vaccineCode.coding.try(:first)
-    coding.nil? ? '' : "CVX #{coding.code}"
+    coding.nil? ? '' : lookup_vaccine_display(coding.code)
   end
 
   def vaccinator
@@ -40,5 +40,16 @@ class Immunization
 
   def from_fhir_time(time_string)
     Date.parse(time_string).strftime('%m/%d/%Y') if time_string.present?
+  end
+
+  def lookup_vaccine_display(cvx)
+    @@tradenames ||= Immunization.load_tradenames
+    displayName = @@tradenames.at_xpath("//productnames/prodInfo[Value[3]=concat('#{cvx}', ' ')]/Value[1]/text()")
+    displayName.nil? ? "CVX #{cvx}"  : displayName.to_s
+  end
+
+  def self.load_tradenames
+    f = File.open(File.join(Rails.root, 'app', 'assets', 'iisstandards_tradename.xml'))
+    @@tradenames = Nokogiri::XML(f)
   end
 end

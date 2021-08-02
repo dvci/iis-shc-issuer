@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import useStyles from "./styles";
 import {
+  Box,
   Card,
   CardContent,
   Typography,
@@ -164,7 +165,7 @@ function HealthCardVaccination(props) {
       <div className={styles.flexRow2}>
         <Typography className={styles.vaccineLabel}>Vaccine</Typography>
         <Typography className={styles.vaccine}>
-          {vaccine}{!!(lot_number) ? ' Lot #' + lot_number: ''}
+          <Box component="span" fontWeight='700'>{vaccine}</Box>{!!(lot_number) ? ' Lot #' + lot_number: ''}
         </Typography>
       </div>
       <div className={styles.flexRow3}>

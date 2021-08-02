@@ -49,7 +49,6 @@ export default makeStyles((theme) => ({
     width: "191px",
   },
   title: {
-    fontSize: "40px",
     fontWeight: "300",
     left: "0",
     letterSpacing: "-0.93px",
@@ -251,7 +250,6 @@ export default makeStyles((theme) => ({
   },
   //.pfizer-lot-348712
   vaccine: {
-    fontWeight: "700",
     letterSpacing: "0",
     lineHeight: "16px",
     marginLeft: "8px",
