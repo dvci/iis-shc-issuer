@@ -16,7 +16,11 @@ var QRCode = require('qrcode')
 
 function HealthCard(props) {
   const styles = useStyles();
-  const { fhirBundle } = props;
+  const { fhirBundle = {}, 
+    issuer = {
+      title: "IIS SMART Health Card Issuer",
+      logo: logo
+    } } = props;
 
   const [healthCard, setHealthCard] = useState({
     patient: {
@@ -80,11 +84,11 @@ function HealthCard(props) {
               <div className={styles.overlapGroup}>
                 <img
                   className={styles.bitmap}
-                  src={logo}
-                  alt="Placeholder Mitre logo"
+                  src={issuer.logo}
+                  alt="Issuer logo"
                 />
                 <Typography className={styles.title} component="h1">
-                  HeathCard
+                {issuer.title}
                 </Typography>
               </div>
             </div>
@@ -137,7 +141,7 @@ function HealthCard(props) {
               </div>
               ))}
               <Typography className={styles.issSmartHealthCar} paragraph={true}>
-              IIS SMART Health Card Issuer
+              SMART&reg; Health Card
               </Typography>
             </div>
           </div>
