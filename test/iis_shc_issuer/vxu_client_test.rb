@@ -10,9 +10,13 @@ VCR.configure do |config|
 end
 
 class VXUClientTest < ActiveSupport::TestCase
-  # # WARNING: Running tests with this test uncommented could change sandbox data and cause other tests to fail
-  # # Temporary Test to upload a patient
-  # test 'Uploading a patient' do
-  #   IISSHCIssuer::QBPClient.upload_patient() #Enter VXU Upload fixture path parameter here
-  # end
+  # WARNING: Running tests with this test uncommented could change sandbox data and cause other tests to fail
+  # Temporary Test to upload a patient
+  test 'Patient can be uploaded to IIS Sandbox via VXU message' do
+    VCR.use_cassette('patient_is_uploaded') do
+      # Enter VXU Upload fixture path parameter here
+      v2_response_body = IISSHCIssuer::VXUClient.upload_patient()
+      assert_instance_of(HL7::Message, v2_response_body)
+    end
+  end
 end

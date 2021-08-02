@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
+require 'savon'
+require 'ruby-hl7'
+
 module IISSHCIssuer
   # Send a VXU message to the IIS Sandbox service to upload a patient
   module VXUClient
