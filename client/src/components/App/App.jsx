@@ -72,8 +72,8 @@ const App = props => (
               <Typography variant="body2">
                 <p>
                   This vaccination record is powered by SMART&reg; and works with any app or service
-                  where SMART&reg; Health Cards are accepted. For more information, please visit 
-                  <Link color="secondary" to="https://smarthealth.cards/">https://smarthealth.cards</Link>
+                  where SMART&reg; Health Cards are accepted. For more information, please visit:
+                  &nbsp;<Link color="secondary" to="https://smarthealth.cards/">https://smarthealth.cards</Link>
                 </p>
                 <p>
                   The IAL number on this document describes the way that your identity information

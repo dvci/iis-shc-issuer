@@ -9,19 +9,19 @@ const FactList = () => {
       <List>
         <ListItem>
           <ListItemIcon>
-            <CheckCircleOutline color="secondary"/>
+            <CheckCircleOutline color="secondary" fontSize="large"/>
           </ListItemIcon>
           <ListItemText primary="Holds important vaccination or lab report data." />
         </ListItem>
         <ListItem>
           <ListItemIcon>
-            <CheckCircleOutline color="secondary"/>
+            <CheckCircleOutline color="secondary" fontSize="large"/>
           </ListItemIcon>
           <ListItemText primary="Can be scanned to verify that the information has not been tampered with." />
         </ListItem>
         <ListItem>
           <ListItemIcon>
-            <ErrorOutlineOutlined color="error"/>
+            <ErrorOutlineOutlined color="error" fontSize="large"/>
           </ListItemIcon>
           <ListItemText primary="Don't forget - scanning this QR code will share all of the information on your Vaccine Card, so make sure to only share with those you trust." />
         </ListItem>
