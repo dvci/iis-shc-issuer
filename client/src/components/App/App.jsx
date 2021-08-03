@@ -64,21 +64,33 @@ const App = props => (
               Download Printable PDF
             </DownloadButton>
           </Box>
-          <Box display="flex" flexDirection="row" justifyContent="center" mt={2} mx={5}>
+          <Box display="flex" flexDirection="row" justifyContent="center" maxWidth="700px">
             <FactList />
           </Box>
-          <Box display="flex" flexDirection="row" justifyContent="center" mt={2} mb={2} mx={5}>
+          <Box display="flex" flexDirection="row" justifyContent="center" maxWidth="750px">
             <Box display="flex" flexDirection="column">
               <Typography variant="body2">
                 <p>
                   This vaccination record is powered by SMART&reg; and works with any app or service
                   where SMART&reg; Health Cards are accepted. For more information, please visit:
-                  &nbsp;<Link color="secondary" to="https://smarthealth.cards/">https://smarthealth.cards</Link>
+                  &nbsp;<Link 
+                          color="secondary"
+                          href="https://smarthealth.cards/"
+                          rel="noopener"
+                        >
+                            https://smarthealth.cards
+                        </Link>.
                 </p>
                 <p>
                   The IAL number on this document describes the way that your identity information
                   was collected at the clinic. You can find more information about IAL encoding 
-                  here: <Link color="secondary" to="https://vci.org/ig/vaccination-and-testing">https://vci.org/ig/vaccination-and-testing</Link>.
+                  here: <Link 
+                          color="secondary"
+                          href="https://vci.org/ig/vaccination-and-testing"
+                          rel="noopener"
+                        >
+                            https://vci.org/ig/vaccination-and-testing
+                        </Link>.
                 </p>
                 <p>
                   Your record can be verified or imported into the app of your choice by scanning
