@@ -22,6 +22,7 @@ class HealthCardController < ApplicationController
     immunization_entries.map do |immunization_entry|
       health_card.immunizations.push(Immunization.new(immunization_entry.resource))
     end
+    health_card.immunizations.select!{ |i| lookup_vaccine_group(i.vaccine_code) == 'COVID-19' }
     health_card.immunizations.sort_by!{ |i| Date.strptime(i.occurrence, '%m/%d/%Y') }
 
     @private_key ||= private_key
@@ -43,5 +44,16 @@ class HealthCardController < ApplicationController
     jwks = URI.open('https://raw.githubusercontent.com/smart-on-fhir/health-cards/main/generate-examples/src/config/issuer.jwks.private.json').read
     keyset = HealthCards::KeySet.from_jwks(jwks)
     keyset.keys[0]
+  end
+
+  def lookup_vaccine_group(cvx)
+    @@vaccine_groups ||= HealthCardController.load_vaccine_groups
+    vg = @@vaccine_groups.at_xpath("//VGCodes/CVXVGInfo[Value[2]=concat('#{cvx}', ' ')]/Value[4]/text()")
+    vg.nil? ? ""  : vg.to_s
+  end
+
+  def self.load_vaccine_groups
+    f = File.open(File.join(Rails.root, 'app', 'assets', 'iisstandards_vax2vg.xml'))
+    @@vaccine_groups = Nokogiri::XML(f)
   end
 end

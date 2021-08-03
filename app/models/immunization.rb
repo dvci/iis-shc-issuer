@@ -36,6 +36,12 @@ class Immunization
     performer.nil? ? '' : (performer.actor.try(:display) || '')
   end
 
+  def vaccine_code
+    @fhir_immunization.vaccineCode ||= FHIR::CodeableConcept.new
+    coding = @fhir_immunization.vaccineCode.coding.try(:first)
+    coding.nil? ? '' : coding.code
+  end
+
   private
 
   def from_fhir_time(time_string)
