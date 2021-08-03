@@ -3,13 +3,11 @@
 module IISSHCIssuer
   # Build HL7 V2 message from a patient hash
   module V2MessageBuilder
-    module_function
+    extend self
 
     # Build a QBP V2 Message based upon patient parameters
     def build_hl7_message(patient_info) # rubocop:disable Metrics/MethodLength, Metrics/AbcSize
-      # Disabling method length Rubocop warnings due to probable future refactor and moving of repos
-      raw_input = File.open('lib/assets/qbp.hl7').readlines
-      msg_input = HL7::Message.new(raw_input)
+      msg_input = upload_qbp_template('lib/assets/qbp.hl7')
 
       # Build MSH Segment
       uid = rand(10_000_000_000).to_s
@@ -68,6 +66,13 @@ module IISSHCIssuer
       end
 
       msg_input
+    end
+
+    private
+
+    def upload_qbp_template(filepath)
+      raw_input = File.open(filepath).readlines
+      HL7::Message.new(raw_input)
     end
   end
 end
