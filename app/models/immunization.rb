@@ -1,4 +1,17 @@
 class Immunization
+  class << self
+    @tradenames = nil
+
+    def tradenames
+      @tradenames ||= load_tradenames
+    end
+
+    def load_tradenames
+      f = File.open(Rails.root.join('app', 'assets', 'iisstandards_tradename.xml'))
+      @tradenames = Nokogiri::XML(f)
+    end
+  end
+
   def initialize(fhir_immunization)
     @fhir_immunization = fhir_immunization
     @occurrence = occurrence
@@ -49,13 +62,9 @@ class Immunization
   end
 
   def lookup_vaccine_display(cvx)
-    @@tradenames ||= Immunization.load_tradenames
-    displayName = @@tradenames.at_xpath("//productnames/prodInfo[Value[3]=concat('#{cvx}', ' ')]/Value[1]/text()")
-    displayName.nil? ? "CVX #{cvx}"  : displayName.to_s
-  end
-
-  def self.load_tradenames
-    f = File.open(File.join(Rails.root, 'app', 'assets', 'iisstandards_tradename.xml'))
-    @@tradenames = Nokogiri::XML(f)
+    display_name = Immunization.tradenames.at_xpath(
+      "//productnames/prodInfo[Value[3]=concat('#{cvx}', ' ')]/Value[1]/text()"
+    )
+    display_name.nil? ? "CVX #{cvx}" : display_name.to_s
   end
 end

@@ -2,6 +2,19 @@ require 'health_cards'
 require 'open-uri'
 
 class HealthCardController < ApplicationController
+  class << self
+    @vaccine_groups = nil
+
+    def vaccine_groups
+      @vaccine_groups ||= load_vaccine_groups
+    end
+
+    def load_vaccine_groups
+      f = File.open(Rails.root.join('app', 'assets', 'iisstandards_vax2vg.xml'))
+      @vaccine_groups = Nokogiri::XML(f)
+    end
+  end
+
   @private_key = nil
   @issuer = nil
 
@@ -22,13 +35,10 @@ class HealthCardController < ApplicationController
     immunization_entries.map do |immunization_entry|
       health_card.immunizations.push(Immunization.new(immunization_entry.resource))
     end
-    health_card.immunizations.select!{ |i| lookup_vaccine_group(i.vaccine_code) == 'COVID-19' }
-    health_card.immunizations.sort_by!{ |i| Date.strptime(i.occurrence, '%m/%d/%Y') }
+    health_card.immunizations.select! { |i| lookup_vaccine_group(i.vaccine_code) == 'COVID-19' }
+    health_card.immunizations.sort_by! { |i| Date.strptime(i.occurrence, '%m/%d/%Y') }
 
-    @private_key ||= private_key
-    @issuer ||= HealthCards::Issuer.new(key: @private_key, url: 'https://spec.smarthealth.cards/examples/issuer')
-    jws = @issuer.issue_jws(fhir_params, type: HealthCards::COVIDHealthCard)
-
+    jws = issue_jws(fhir_params)
     qr_codes = HealthCards::Exporter.qr_codes(jws)
     qr_codes.chunks.map.with_index do |chunk, _idx|
       health_card.qr_codes.push chunk.qrcode.data
@@ -46,14 +56,16 @@ class HealthCardController < ApplicationController
     keyset.keys[0]
   end
 
-  def lookup_vaccine_group(cvx)
-    @@vaccine_groups ||= HealthCardController.load_vaccine_groups
-    vg = @@vaccine_groups.at_xpath("//VGCodes/CVXVGInfo[Value[2]=concat('#{cvx}', ' ')]/Value[4]/text()")
-    vg.nil? ? ""  : vg.to_s
+  def issue_jws(fhir_params)
+    @private_key ||= private_key
+    @issuer ||= HealthCards::Issuer.new(key: @private_key, url: 'https://spec.smarthealth.cards/examples/issuer')
+    @issuer.issue_jws(fhir_params, type: HealthCards::COVIDHealthCard)
   end
 
-  def self.load_vaccine_groups
-    f = File.open(File.join(Rails.root, 'app', 'assets', 'iisstandards_vax2vg.xml'))
-    @@vaccine_groups = Nokogiri::XML(f)
+  def lookup_vaccine_group(cvx)
+    vg = HealthCardController.vaccine_groups.at_xpath(
+      "//VGCodes/CVXVGInfo[Value[2]=concat('#{cvx}', ' ')]/Value[4]/text()"
+    )
+    vg.nil? ? '' : vg.to_s
   end
 end
