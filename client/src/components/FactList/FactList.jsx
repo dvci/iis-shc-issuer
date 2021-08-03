@@ -23,7 +23,7 @@ const FactList = () => {
           <ListItemIcon>
             <ErrorOutlineOutlined color="error" fontSize="large"/>
           </ListItemIcon>
-          <ListItemText primary="Don't forget - scanning this QR code will share all of the information on your Vaccine Card, so make sure to only share with those you trust." />
+          <ListItemText primary={<div><b>Don't forget</b> - scanning this QR code will share all of the information on your Vaccine Card, so make sure to only share with those you trust.</div>}/>
         </ListItem>
       </List>
     </div>
