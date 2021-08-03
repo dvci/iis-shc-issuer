@@ -65,6 +65,15 @@ class Immunization
     display_name = Immunization.tradenames.at_xpath(
       "//productnames/prodInfo[Value[3]=concat('#{cvx}', ' ')]/Value[1]/text()"
     )
-    display_name.nil? ? "CVX #{cvx}" : display_name.to_s
+    if display_name.is_a? Nokogiri::XML::Text
+      #use CDC product name if single match
+      display_name.to_s
+    else
+      #else use short description
+      display_name = Immunization.tradenames.at_xpath(
+        "(//productnames/prodInfo[Value[3]=concat('#{cvx}', ' ')]/Value[2]/text())[1]"
+      )
+      display_name.nil? ? "CVX #{cvx}" : display_name.to_s
+    end
   end
 end
