@@ -9,7 +9,7 @@ const DownloadButton = (props) => {
           color="secondary"
           variant="contained"
           disableElevation
-          style={{width: "400px"}}
+          styles={{width: '400px'}}
         >
           <Typography variant="h6">
             {props.children}
