@@ -78,7 +78,7 @@ const App = props => (
                 <p>
                   The IAL number on this document describes the way that your identity information
                   was collected at the clinic. You can find more information about IAL encoding 
-                  here: <Link color="secondary" to="https://vci.org/ig/vaccination-and-testing">https://vci.org/ig/vaccination-and-testing</Link>
+                  here: <Link color="secondary" to="https://vci.org/ig/vaccination-and-testing">https://vci.org/ig/vaccination-and-testing</Link>.
                 </p>
                 <p>
                   Your record can be verified or imported into the app of your choice by scanning
@@ -96,4 +96,3 @@ const App = props => (
 );
 
 export default App;
-
