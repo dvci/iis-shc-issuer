@@ -1,10 +1,10 @@
 import React from 'react';
-import { List, ListItem, ListItemIcon, ListItemText } from '@material-ui/core';
+import { Box, List, ListItem, ListItemIcon, ListItemText } from '@material-ui/core';
 import { CheckCircleOutline, ErrorOutlineOutlined } from '@material-ui/icons';
 
 const FactList = () => {
   return (
-    <div>
+    <Box display="flex" flexDirection="column" maxWidth="700px">
       <h3>What is a SMART&reg; Health Card?</h3>
       <List>
         <ListItem>
@@ -26,7 +26,7 @@ const FactList = () => {
           <ListItemText primary={<div><b>Don't forget</b> - scanning this QR code will share all of the information on your Vaccine Card, so make sure to only share with those you trust.</div>}/>
         </ListItem>
       </List>
-    </div>
+    </Box>
   );
 }
 

@@ -19,3 +19,5 @@ const DownloadButton = (props) => {
     </div>
   );
 };
+
+export default DownloadButton;

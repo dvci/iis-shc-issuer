@@ -64,11 +64,11 @@ const App = props => (
               Download Printable PDF
             </DownloadButton>
           </Box>
-          <Box display="flex" flexDirection="row" justifyContent="center" maxWidth="700px">
+          <Box display="flex" flexDirection="row" justifyContent="center" my={3}>
             <FactList />
           </Box>
-          <Box display="flex" flexDirection="row" justifyContent="center" maxWidth="750px">
-            <Box display="flex" flexDirection="column">
+          <Box display="flex" flexDirection="row" justifyContent="center">
+            <Box display="flex" flexDirection="column" maxWidth="750px">
               <Typography variant="body2">
                 <p>
                   This vaccination record is powered by SMART&reg; and works with any app or service
