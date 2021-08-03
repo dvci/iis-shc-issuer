@@ -1,0 +1,61 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: http://vci.mitre.org:8081/iis-sandbox/soap
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0" encoding="UTF-8"?><env:Envelope xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tns="urn:cdc:iisb:2011" xmlns:env="http://schemas.xmlsoap.org/soap/envelope/"><env:Body><tns:submitSingleMessage><tns:username>mitre</tns:username><tns:password>mitre</tns:password><tns:facilityID>MITRE Healthcare</tns:facilityID><tns:hl7Message>MSH|^~\&amp;|||||20210729210505+0000||VXU^V04^VXU_V04|D23W303.1pO|P|2.5.1|||ER|AL|||||Z22^CDCPHINVS|
+
+        PID|1||D23W303^^^AIRA-TEST^MR||LoganAIRA^AlisaAIRA^Jaylynn^^^^L|RowanAIRA^RoseanneAIRA^^^^^M|20170726|F||2028-9^Asian^CDCREC|1294 Dastricum Cir^^Sault Sainte Marie^MI^49784^USA^P||^PRN^PH^^^906^8511445|||||||||2186-5^not Hispanic or Latino^CDCREC|
+
+        PD1|||||||||||02^Reminder/Recall - any method^HL70215|||||A|20210729|20210729|
+
+        NK1|1|RowanAIRA^RoseanneAIRA^^^^^L|MTH^Mother^HL70063|1294 Dastricum Cir^^Sault Sainte Marie^MI^49784^USA^P|^PRN^PH^^^906^8511445|
+
+        ORC|RE||D23W303.3^AIRA|||||||I-23432^Burden^Donna^A^^^^^NIST-AA-1^^^^PRN||57422^RADON^NICHOLAS^^^^^^NIST-AA-1^L^^^PRN|
+
+        RXA|0|1|20210729||94^MMRV^CVX|0.5|mL^milliliters^UCUM||00^Administered^NIP001||||||S4121RG||MSD^Merck and Co^MVX|||CP|A|
+
+        RXR|C38299^^NCIT|RA^^HL70163|
+
+        OBX|1|CE|64994-7^Vaccine funding program eligibility category^LN|1|V02^VFC eligible - Medicaid/Medicaid Managed Care^HL70064||||||F|||20210729|||VXC40^Eligibility captured at the immunization level^CDCPHINVS|
+
+        OBX|2|CE|30956-7^Vaccine Type^LN|2|94^MMRV^CVX||||||F|
+
+        OBX|3|TS|29768-9^Date vaccine information statement published^LN|2|20100521||||||F|
+
+        OBX|4|TS|29769-7^Date vaccine information statement presented^LN|2|20210729||||||F|</tns:hl7Message></tns:submitSingleMessage></env:Body></env:Envelope>
+    headers:
+      Soapaction:
+      - '"urn:cdc:iisb:2011:submitSingleMessage"'
+      Content-Type:
+      - text/xml;charset=UTF-8
+      Content-Length:
+      - '1742'
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: ''
+    headers:
+      Content-Type:
+      - application/soap+xml;action="urn:cdc:iisb:2011:connectivityTest";charset=UTF-8
+      Content-Length:
+      - '415'
+      Date:
+      - Tue, 03 Aug 2021 11:26:59 GMT
+    body:
+      encoding: UTF-8
+      string: "<?xml version='1.0' encoding='UTF-8'?>\n<Envelope xmlns=\"http://www.w3.org/2003/05/soap-envelope\">\n
+        \ <Header />\n   <Body>\n      <submitSingleMessageResponse xmlns=\"urn:cdc:iisb:2011\">\n
+        \       <return><![CDATA[MSH|^~\\&||IIS Sandbox v0.4.6|||20210803112659+0000||ACK^V04^ACK|16279900197771708|P|2.5.1|||NE|NE|||||Z23^CDCPHINVS\rMSA|AA|D23W303.1pO\r]]></return>\n
+        \     </submitSingleMessageResponse>\n  </Body>\n</Envelope>\n"
+  recorded_at: Tue, 03 Aug 2021 11:26:59 GMT
+recorded_with: VCR 6.0.0
