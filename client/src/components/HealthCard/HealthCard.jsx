@@ -85,10 +85,10 @@ function HealthCard(props) {
 
   return (
     <Box display="flex" className={styles.healthCard}>
-      <Card className={styles.card}>
+      <Card display="flex" className={styles.card}>
         <CardContent className={styles.cardContent}>
-          <Box display="flex" flexDirection="row" className={styles.flexRow}>
-            <div className={styles.group4}>
+          <Box display="flex" flexDirection="row" alignItems="center" className={styles.flexRow}>
+            <Box display="flex" alignItems="flex-start" justifyContent="center" className={styles.group4}>
               <div className={styles.overlapGroup}>
                 <img
                   className={styles.bitmap}
@@ -99,9 +99,9 @@ function HealthCard(props) {
                   {issuer.title}
                 </Typography>
               </div>
-            </div>
-            <div className={styles.group9}>
-              <Box display="flex" flexDirection="column"
+            </Box>
+            <Box display="flex" alignItems="flex-end" className={styles.group9}>
+              <Box display="flex" flexDirection="column" alignItems="flex-start"
                 className={styles.flexCol}
               >
                 <Typography className={styles.nameLabel}>NAME</Typography>
@@ -109,7 +109,7 @@ function HealthCard(props) {
                   {healthCard.patient.full_name}
                 </Typography>
               </Box>
-              <Box display="flex" flexDirection="column" className={styles.flexCol1}>
+              <Box display="flex" flexDirection="column" alignItems="flex-start" className={styles.flexCol1}>
                 <Typography className={styles.dateOfBirthLabel}>
                   DATE OF BIRTH
                 </Typography>
@@ -124,20 +124,22 @@ function HealthCard(props) {
               >
                 <VisibilityIcon />
               </IconButton>
-            </div>
+            </Box>
           </Box>
           <Divider className={styles.line} variant="middle" />
-          <Box display="flex" flexDirection="row" className={styles.flexRow1}>
+          <Box display="flex" flexDirection="row" alignItems="flex-start" alignSelf="center"
+              className={styles.flexRow1}>
             <Box
               display="flex"
-              flexDirection="column"
+              flexDirection="column"     
+              alignItems="flex-start"
               className={styles.flexCol2}
             >
-              <div className={styles.group12}>
+              <Box display="flex" alignItems="flex-start" className={styles.group12}>
                 <Typography className={styles.covid19Vaccination}>
                   COVID-19 VACCINATION RECORD
                 </Typography>
-              </div>
+              </Box>
               <List>
                 {healthCard.immunizations.map((item, index) => (
                   <div key={index}>
@@ -150,9 +152,10 @@ function HealthCard(props) {
             </Box>
             <div>
               {qrCodesRendered.map((qrCode, index) => (
-                <div className={styles.group5} key={index}>
+                <Box display="flex" alignItems="center" justifyContent="flex-end"
+                    className={styles.group5} key={index}>
                   <img className={styles.qrCode} src={qrCode} />
-                </div>
+                </Box>
               ))}
               <Typography className={styles.issSmartHealthCar} paragraph={true}>
                 SMART&reg; Health Card
@@ -170,13 +173,13 @@ function HealthCardVaccination(props) {
   const { vaccine, lot_number, occurrence, vaccinator, index } = props;
 
   return (
-    <Box flexDirection="column" className={styles.group8}>
-      <Box display="flex" className={styles.group7}>
+    <Box display="flex" flexDirection="column" alignItems="flex-start" className={styles.group8}>
+      <Box display="flex" alignItems="center" alignSelf="flex-end" className={styles.group7}>
         <Typography className={styles.dose}>DOSE {index + 1}</Typography>
         <Divider className={styles.line2} variant="middle" />
       </Box>
       <Grid container>
-        <Grid container direction="row" className={styles.gridRow}>
+        <Grid container direction="row" alignItems="flex-start" className={styles.gridRow}>
           <Grid item className={styles.gridLabel}>
             <Typography>Vaccine</Typography>
           </Grid>

@@ -5,14 +5,11 @@ export default makeStyles((theme) => ({
     color: theme.palette.primary.main,
   },
   card: {
-    alignItems: "flex-start",
     backgroundColor: theme.palette.common.blueGreenLight,
     border: "5px solid",
     borderColor: "white",
     borderRadius: "18px",
     boxShadow: "0px 4px 8px #00000080",
-    display: "flex",
-    flexDirection: "column",
     minHeight: "480px",
     padding: "28px 34.5px;",
   },
@@ -23,16 +20,11 @@ export default makeStyles((theme) => ({
     }
   },
   flexRow: {
-    alignItems: "center",
-    display: "flex",
     marginLeft: "5.5px",
     marginTop: "5px",
     minWidth: "752px",
   },
   group4: {
-    alignItems: "flex-start",
-    display: "flex",
-    justifyContent: "center",
     minWidth: "191px",
   },
   overlapGroup: {
@@ -57,8 +49,6 @@ export default makeStyles((theme) => ({
   },
   //.group-9
   group9: {
-    alignItems: "flex-end",
-    display: "flex",
     height: "55px",
     marginBottom: "9.0px",
     marginLeft: "96px",
@@ -66,7 +56,6 @@ export default makeStyles((theme) => ({
   },
   //.flex-col
   flexCol: {
-    alignItems: "flex-start",
     minHeight: "55px",
     width: "212px",
   },
@@ -88,7 +77,6 @@ export default makeStyles((theme) => ({
   },
   //.flex-col-1
   flexCol1: {
-    alignItems: "flex-start",
     marginLeft: "115px",
     minHeight: "55px",
     width: "106px",
@@ -125,16 +113,12 @@ export default makeStyles((theme) => ({
   },
   //.flex-row-1
   flexRow1: {
-    alignItems: "flex-start",
-    alignSelf: "center",
-    display: "flex",
     marginRight: "2.0px",
     marginTop: "23px",
     minWidth: "765px",
   },
   //.flex-col-2
   flexCol2: {
-    alignItems: "flex-start",
     marginTop: "10px",
     minHeight: "230px",
     position: "relative",
@@ -142,10 +126,8 @@ export default makeStyles((theme) => ({
   },
   //.group-12
   group12: {
-    alignItems: "flex-start",
     backgroundColor: "white",
     borderRadius: "11.5px",
-    display: "flex",
     height: "23px",
     minWidth: "428px",
     padding: "1px 101px",
@@ -161,11 +143,8 @@ export default makeStyles((theme) => ({
   },
   //.group-5
   group5: {
-    alignItems: "center",
     backgroundColor: "white",
-    display: "flex",
     height: "275px",
-    justifyContent: "flex-end",
     marginLeft: "56px",
     minWidth: "281px",
     padding: "0 18px",
@@ -189,18 +168,12 @@ export default makeStyles((theme) => ({
   },
   //.group-8
   group8: {
-    alignItems: "flex-start",
-    display: "flex",
-    flexDirection: "column",
     marginLeft: "3px",
     minHeight: "79px",
     width: "425px",
   },
   //.group-7
   group7: {
-    alignItems: "center",
-    alignSelf: "flex-end",
-    display: "flex",
     height: "19px",
     minWidth: "411px",
   },
@@ -223,7 +196,6 @@ export default makeStyles((theme) => ({
   },
   gridRow: {
     alignItems: "flex-start",
-    display: "flex",
     flexWrap: "nowrap",
     minHeight: "19px",
     marginTop: "1px",
