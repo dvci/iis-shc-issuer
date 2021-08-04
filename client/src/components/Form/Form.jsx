@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import useStyles from './styles';
 import { Box, Button, TextField, Typography } from '@material-ui/core';
 import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
@@ -7,6 +7,7 @@ import DateFnsUtils from '@date-io/date-fns';
 
 const Form = () => {
   const styles = useStyles();
+  const history = useHistory();
   const [firstName, setFirstName] = useState(null);
   const [lastName, setLastName] = useState(null);
   const [selectedDate, handleDateChange] = useState(null);
@@ -15,8 +16,30 @@ const Form = () => {
   const handleLastNameChange = event => setLastName(event.target.value);
   const enableButton = firstName && lastName && selectedDate;
 
+  const dateFns = new DateFnsUtils();
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    fetch("search?" + new URLSearchParams({
+        given_name: firstName,
+        family_name: lastName,
+        patient_dob: dateFns.format(selectedDate, 'yyyyMMdd'),
+      }), {
+      method: "GET",
+      headers: {
+        Accept: "application/json"
+      },
+      credentials: "include"
+    })
+      .then((response) => response.json())
+      .then((responseJson) => {
+        history.push("/data-found");
+      })
+      .catch(console.log());
+  }
+
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
       <TextField
         required
         fullWidth
@@ -58,13 +81,12 @@ const Form = () => {
           * required fields
         </Typography>
         <Button
+          type="submit"
           disabled={!enableButton}
           disableElevation
           fullWidth
           size="large"
           variant="contained"
-          component={ Link }
-          to="/data-found"
         >
           SEARCH
         </Button>

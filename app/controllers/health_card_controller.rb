@@ -25,7 +25,9 @@ class HealthCardController < ApplicationController
   def create
     # respond_to do |format|
     #  format.fhir_json do
-    fhir_params = FHIR.from_contents(request.raw_post)
+    fhir_params = FHIR.from_contents(session[:fhir_bundle])
+    vaccine_group = params[:vaccine_group]
+    vaccine_group ||= 'COVID-19'
 
     health_card = HealthCard.new
     patient_entry = fhir_params.entry.find { |e| e.resource.is_a?(FHIR::Patient) }
@@ -35,7 +37,7 @@ class HealthCardController < ApplicationController
     immunization_entries.map do |immunization_entry|
       health_card.immunizations.push(Immunization.new(immunization_entry.resource))
     end
-    health_card.immunizations.select! { |i| lookup_vaccine_group(i.vaccine_code) == 'COVID-19' }
+    health_card.immunizations.select! { |i| lookup_vaccine_group(i.vaccine_code) == vaccine_group }
     health_card.immunizations.sort_by! { |i| Date.strptime(i.occurrence, '%m/%d/%Y') }
 
     jws = issue_jws(fhir_params)
