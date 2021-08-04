@@ -69,13 +69,14 @@ const App = props => (
           </Box>
           <Box display="flex" flexDirection="row" justifyContent="center">
             <Box display="flex" flexDirection="column" maxWidth="750px">
-              <Typography variant="body2">
+              <Typography variant="body2" component={"span"}>
                 <p>
                   This vaccination record is powered by SMART&reg; and works with any app or service
                   where SMART&reg; Health Cards are accepted. For more information, please visit:
                   &nbsp;<Link 
                           color="secondary"
                           href="https://smarthealth.cards/"
+                          target="_blank"
                           rel="noopener"
                         >
                             https://smarthealth.cards
@@ -87,6 +88,7 @@ const App = props => (
                   here: <Link 
                           color="secondary"
                           href="https://vci.org/ig/vaccination-and-testing"
+                          target="_blank"
                           rel="noopener"
                         >
                             https://vci.org/ig/vaccination-and-testing
