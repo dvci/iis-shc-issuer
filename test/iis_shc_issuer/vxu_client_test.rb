@@ -10,8 +10,6 @@ VCR.configure do |config|
 end
 
 class VXUClientTest < ActiveSupport::TestCase
-  # WARNING: Running tests with this test uncommented could change sandbox data and cause other tests to fail
-  # Temporary Test to upload a patient
   test 'Patient can be uploaded to IIS Sandbox via VXU message' do
     VCR.use_cassette('patient_is_uploaded') do
       # Enter VXU Upload fixture path parameter here
