@@ -3,10 +3,10 @@
 require 'iis_shc_issuer'
 
 Rails.application.configure do
-  config.username = ENV['IIS_SANDBOX_USERNAME']
-  config.password = ENV['IIS_SANDBOX_PASSWORD']
-  config.facilityID = ENV['IIS_SANDBOX_FACILITYID']
+  config.iis_username = ENV['IIS_SANDBOX_USERNAME']
+  config.iis_password = ENV['IIS_SANDBOX_PASSWORD']
+  config.iis_facility_id = ENV['IIS_SANDBOX_FACILITY_ID']
 
-  config.iisSandboxHost = ENV['IIS_SANDBOX_HOST']
-  config.v2ToFhirHost = ENV['V2_TO_FHIR_HOST']
+  config.iis_sandbox_host = ENV['IIS_SANDBOX_HOST']
+  config.v2_to_fhir_host = ENV['V2_TO_FHIR_HOST']
 end

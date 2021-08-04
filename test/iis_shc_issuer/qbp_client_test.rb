@@ -39,7 +39,7 @@ class QBPClientTest < ActiveSupport::TestCase
     VCR.use_cassette('connectivity_test') do
       service_def = 'lib/assets/service.wsdl'
       client = Savon.client(wsdl: service_def,
-                            endpoint: "#{Rails.application.config.iisSandboxHost}/iis-sandbox/soap",
+                            endpoint: "#{Rails.application.config.iis_sandbox_host}/iis-sandbox/soap",
                             pretty_print_xml: true)
       assert_nothing_raised do
         IISSHCIssuer::QBPClient.check_client_connectivity(client) if client.operations.include?(:connectivity_test)

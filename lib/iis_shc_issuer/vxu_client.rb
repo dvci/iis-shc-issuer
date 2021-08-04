@@ -14,16 +14,16 @@ module IISSHCIssuer
       # Define client
       service_def = 'lib/assets/service.wsdl'
       client = Savon.client(wsdl: service_def,
-                            endpoint: "#{Rails.application.config.iisSandboxHost}/iis-sandbox/soap",
+                            endpoint: "#{Rails.application.config.iis_sandbox_host}/iis-sandbox/soap",
                             pretty_print_xml: true)
       # Upload Patient from fixture
       upload_raw_input = File.open(vxu_path).readlines
       upload_msg_input = HL7::Message.new(upload_raw_input)
       begin
         response = client.call(:submit_single_message) do
-          message({ username: Rails.application.config.username,
-                    password: Rails.application.config.password,
-                    facilityID: Rails.application.config.facilityID,
+          message({ username: Rails.application.config.iis_username,
+                    password: Rails.application.config.iis_password,
+                    facilityID: Rails.application.config.iis_facility_id,
                     hl7Message: upload_msg_input })
         end
       rescue Savon::Error => e

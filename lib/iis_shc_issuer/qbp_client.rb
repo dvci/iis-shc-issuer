@@ -14,14 +14,14 @@ module IISSHCIssuer
     # @param credentials [Hash] (optional) User Id, Password, and Facility Id for the IIS Sandbox login
     # @return [HL7::Message] The HL7 V2 Response message from the IIS-Sandbox
     def query(patient_info,
-              sandbox_credentials = { username: Rails.application.config.username,
-                                      password: Rails.application.config.password,
-                                      facilityID: Rails.application.config.facilityID })
+              sandbox_credentials = { username: Rails.application.config.iis_username,
+                                      password: Rails.application.config.iis_password,
+                                      facilityID: Rails.application.config.iis_facility_id })
       raise IISSHCIssuer::InvalidSandboxCredentialsError unless valid_credentials?(sandbox_credentials)
 
       service_def = 'lib/assets/service.wsdl'
       client = Savon.client(wsdl: service_def,
-                            endpoint: "#{Rails.application.config.iisSandboxHost}/iis-sandbox/soap",
+                            endpoint: "#{Rails.application.config.iis_sandbox_host}/iis-sandbox/soap",
                             pretty_print_xml: true)
       # Check if client is configured properly
       raise IISSHCIssuer::OperationNotSupportedError unless client.operations.include?(:submit_single_message)
