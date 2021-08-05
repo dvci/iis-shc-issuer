@@ -51,10 +51,22 @@ end
 group :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '>= 3.26'
+  gem 'codecov', require: false
   gem 'selenium-webdriver'
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'
+  gem 'simplecov'
+  gem 'webmock'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+gem 'rack-cors'
+gem 'dotenv-rails'
+
+# QBP client
+gem 'savon', '~> 2.0'
+gem 'ruby-hl7', '~> 1.2'
+gem 'faraday'
+gem 'vcr'
