@@ -38,7 +38,7 @@ const HeroBar = () => {
               </Route>
               <Route exact path="/data-found">
                 You can import your COVID-19 vaccination record into any app that accepts
-                SMART&reg; Health by downloading your SMART&reg; Health Card or by
+                SMART&reg; Health Cards by downloading your SMART&reg; Health Card or by
                 scanning the QR code below.
               </Route>
             </Switch>
