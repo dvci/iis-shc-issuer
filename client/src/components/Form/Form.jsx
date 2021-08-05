@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import useStyles from './styles';
 import { Box, Button, TextField, Typography } from '@material-ui/core';
 import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
@@ -62,6 +63,8 @@ const Form = () => {
           fullWidth
           size="large"
           variant="contained"
+          component={ Link }
+          to="/data-found"
         >
           SEARCH
         </Button>
