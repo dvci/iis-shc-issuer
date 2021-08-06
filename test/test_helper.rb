@@ -1,3 +1,19 @@
+# frozen_string_literal: true
+
+require 'simplecov'
+require 'webmock/minitest'
+
+SimpleCov.start do
+  enable_coverage :branch
+  add_filter '/test/'
+  add_filter '/config/'
+end
+
+if ENV['GITHUB_ACTIONS']
+  require 'codecov'
+  SimpleCov.formatter = SimpleCov::Formatter::Codecov
+end
+
 ENV['RAILS_ENV'] ||= 'test'
 require_relative '../config/environment'
 require 'rails/test_help'

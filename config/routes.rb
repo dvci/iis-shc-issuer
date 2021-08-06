@@ -3,4 +3,7 @@ Rails.application.routes.draw do
   root 'landing_page#index'
 
   post '/health_card', to: 'health_card#create', as: :issue_vc, format: :fhir_json
+  
+  # Keep at bottom:
+  get '/*path', to: "landing_page#index"
 end

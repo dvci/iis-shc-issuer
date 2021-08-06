@@ -38,7 +38,7 @@ const lightTheme = createTheme({
         height: '56px',
       },
       label: {
-        textTransform: 'uppercase',
+        textTransform: 'none',
         fontSize: '24px',
         fontWeight: 'bold',
       },
@@ -80,7 +80,7 @@ const lightTheme = createTheme({
     },
     MuiInputLabel: {
       root: {
-        textTransform: 'uppercase',
+        textTransform: 'none',
         fontWeight: 'bold',
         marginBottom: '3px',
       },
