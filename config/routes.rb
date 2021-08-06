@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   get '/', to: "landing_page#index"
   get '/search', to: 'patient#search'
-  get '/health_card', to: 'health_card#create', as: :issue_vc
+  post '/health_card', to: 'health_card#create', as: :issue_vc
 
     # Keep at bottom:
     get '/*path', to: "landing_page#index"
