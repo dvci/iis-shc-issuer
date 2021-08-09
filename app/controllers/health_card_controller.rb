@@ -2,26 +2,12 @@ require 'health_cards'
 require 'open-uri'
 
 class HealthCardController < ApplicationController
-  # class << self
-  #   @vaccine_groups = nil
-
-  #   def vaccine_groups
-  #     @vaccine_groups ||= load_vaccine_groups
-  #   end
-
-  #   def load_vaccine_groups
-  #     f = File.open(Rails.root.join('app', 'assets', 'iisstandards_vax2vg.xml'))
-  #     @vaccine_groups = Nokogiri::XML(f)
-  #   end
-  # end
 
   skip_before_action :verify_authenticity_token, only: [:create]
 
   def index; end
 
   def create
-    # respond_to do |format|
-    #  format.fhir_json do
     fhir_params = FHIR.from_contents(session[:fhir_bundle])
     vaccine_group = params[:vaccine_group] || 'COVID-19'
     
@@ -40,8 +26,6 @@ class HealthCardController < ApplicationController
     qr_codes = HealthCards::Exporter.qr_codes(jws)
     health_card.qr_codes = qr_codes.chunks.map { |chunk| chunk.qrcode.data }
     render json: health_card.to_json
-    # end
-    # end
   end
 
   private
@@ -58,10 +42,4 @@ class HealthCardController < ApplicationController
     @issuer.issue_jws(fhir_params, type: HealthCards::COVIDHealthCard)
   end
 
-  # def lookup_vaccine_group(cvx)
-  #   vg = HealthCardController.vaccine_groups.at_xpath(
-  #     "//VGCodes/CVXVGInfo[Value[2]=concat('#{cvx}', ' ')]/Value[4]/text()"
-  #   )
-  #   vg.nil? ? '' : vg.to_s
-  # end
 end
