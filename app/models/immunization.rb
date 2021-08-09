@@ -1,16 +1,9 @@
 class Immunization
-  class << self
-    @tradenames = nil
 
-    def tradenames
-      @tradenames ||= load_tradenames
-    end
+  load_xml = ->(filename) { Nokogiri::XML(File.open(Rails.root.join('app', 'assets', filename))) }
 
-    def load_tradenames
-      f = File.open(Rails.root.join('app', 'assets', 'iisstandards_tradename.xml'))
-      @tradenames = Nokogiri::XML(f)
-    end
-  end
+  GROUPS = load_xml.call('iisstandards_vax2vg.xml').freeze
+  TRADENAMES = load_xml.call('iisstandards_tradename.xml').freeze
 
   def initialize(fhir_immunization)
     @fhir_immunization = fhir_immunization
@@ -55,14 +48,23 @@ class Immunization
     coding.nil? ? '' : coding.code
   end
 
+  def group
+    vg = GROUPS.at_xpath(
+      "//VGCodes/CVXVGInfo[Value[2]=concat('#{vaccine_code}', ' ')]/Value[4]/text()"
+    )
+    @group ||= vg.nil? ? '' : vg.to_s
+  end
+
   private
+
+
 
   def from_fhir_time(time_string)
     Date.parse(time_string).strftime('%m/%d/%Y') if time_string.present?
   end
 
   def lookup_vaccine_display(cvx)
-    display_name = Immunization.tradenames.at_xpath(
+    display_name = TRADENAMES.at_xpath(
       "//productnames/prodInfo[Value[3]=concat('#{cvx}', ' ')]/Value[1]/text()"
     )
     if display_name.is_a? Nokogiri::XML::Text
@@ -70,7 +72,7 @@ class Immunization
       display_name.to_s
     else
       #else use short description
-      display_name = Immunization.tradenames.at_xpath(
+      display_name = TRADENAMES.at_xpath(
         "(//productnames/prodInfo[Value[3]=concat('#{cvx}', ' ')]/Value[2]/text())[1]"
       )
       display_name.nil? ? "CVX #{cvx}" : display_name.to_s

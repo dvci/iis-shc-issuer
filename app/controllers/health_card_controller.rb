@@ -2,21 +2,18 @@ require 'health_cards'
 require 'open-uri'
 
 class HealthCardController < ApplicationController
-  class << self
-    @vaccine_groups = nil
+  # class << self
+  #   @vaccine_groups = nil
 
-    def vaccine_groups
-      @vaccine_groups ||= load_vaccine_groups
-    end
+  #   def vaccine_groups
+  #     @vaccine_groups ||= load_vaccine_groups
+  #   end
 
-    def load_vaccine_groups
-      f = File.open(Rails.root.join('app', 'assets', 'iisstandards_vax2vg.xml'))
-      @vaccine_groups = Nokogiri::XML(f)
-    end
-  end
-
-  @private_key = nil
-  @issuer = nil
+  #   def load_vaccine_groups
+  #     f = File.open(Rails.root.join('app', 'assets', 'iisstandards_vax2vg.xml'))
+  #     @vaccine_groups = Nokogiri::XML(f)
+  #   end
+  # end
 
   skip_before_action :verify_authenticity_token, only: [:create]
 
@@ -26,9 +23,8 @@ class HealthCardController < ApplicationController
     # respond_to do |format|
     #  format.fhir_json do
     fhir_params = FHIR.from_contents(session[:fhir_bundle])
-    vaccine_group = params[:vaccine_group]
-    vaccine_group ||= 'COVID-19'
-
+    vaccine_group = params[:vaccine_group] || 'COVID-19'
+    
     health_card = HealthCard.new
     patient_entry = fhir_params.entry.find { |e| e.resource.is_a?(FHIR::Patient) }
     health_card.patient = Patient.new(patient_entry.resource)
@@ -37,14 +33,12 @@ class HealthCardController < ApplicationController
     immunization_entries.map do |immunization_entry|
       health_card.immunizations.push(Immunization.new(immunization_entry.resource))
     end
-    health_card.immunizations.select! { |i| lookup_vaccine_group(i.vaccine_code) == vaccine_group }
+    health_card.immunizations.select! { |i| i.group == vaccine_group }
     health_card.immunizations.sort_by! { |i| Date.strptime(i.occurrence, '%m/%d/%Y') }
 
     jws = issue_jws(fhir_params)
     qr_codes = HealthCards::Exporter.qr_codes(jws)
-    qr_codes.chunks.map.with_index do |chunk, _idx|
-      health_card.qr_codes.push chunk.qrcode.data
-    end
+    health_card.qr_codes = qr_codes.chunks.map { |chunk| chunk.qrcode.data }
     render json: health_card.to_json
     # end
     # end
@@ -64,10 +58,10 @@ class HealthCardController < ApplicationController
     @issuer.issue_jws(fhir_params, type: HealthCards::COVIDHealthCard)
   end
 
-  def lookup_vaccine_group(cvx)
-    vg = HealthCardController.vaccine_groups.at_xpath(
-      "//VGCodes/CVXVGInfo[Value[2]=concat('#{cvx}', ' ')]/Value[4]/text()"
-    )
-    vg.nil? ? '' : vg.to_s
-  end
+  # def lookup_vaccine_group(cvx)
+  #   vg = HealthCardController.vaccine_groups.at_xpath(
+  #     "//VGCodes/CVXVGInfo[Value[2]=concat('#{cvx}', ' ')]/Value[4]/text()"
+  #   )
+  #   vg.nil? ? '' : vg.to_s
+  # end
 end
