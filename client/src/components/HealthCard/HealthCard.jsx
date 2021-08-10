@@ -19,7 +19,6 @@ var QRCode = require("qrcode");
 function HealthCard(props) {
   const styles = useStyles();
   const {
-    fhirBundle = {},
     issuer = {
       title: "IIS SMART Health Card Issuer",
       logo: logo,
@@ -52,12 +51,11 @@ function HealthCard(props) {
     };
 
     fetch("health_card", {
-      method: "POST",
+      method: "GET",
       headers: {
-        Accept: "application/json",
-        "Content-Type": "application/fhir+json",
+        Accept: "application/json"
       },
-      body: JSON.stringify(props.fhirBundle),
+      credentials: "include"
     })
       .then((response) => response.json())
       .then((responseJson) => {

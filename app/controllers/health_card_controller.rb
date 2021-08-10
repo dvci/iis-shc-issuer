@@ -19,7 +19,7 @@ class HealthCardController < ApplicationController
     immunization_entries.map do |immunization_entry|
       health_card.immunizations.push(Immunization.new(immunization_entry.resource))
     end
-    health_card.immunizations.select! { |i| i.group == vaccine_group }
+    health_card.immunizations.select! { |i| i.vaccine_group == vaccine_group }
     health_card.immunizations.sort_by! { |i| Date.strptime(i.occurrence, '%m/%d/%Y') }
 
     jws = issue_jws(fhir_params)

@@ -7,23 +7,15 @@ class Immunization
 
   def initialize(fhir_immunization)
     @fhir_immunization = fhir_immunization
+    @fhir_immunization.vaccineCode ||= FHIR::CodeableConcept.new
     @occurrence = occurrence
     @vaccine = vaccine
     @lot_number = lot_number
     @vaccinator = vaccinator
   end
 
-  def attributes
-    {
-      'occurrence' => @occurrence,
-      'vaccine' => @vaccine,
-      'lot_number' => @lot_number,
-      'vaccinator' => @vaccinator
-    }
-  end
-
   def occurrence
-    from_fhir_time(@fhir_immunization.occurrenceDateTime)
+    FhirHelper.from_fhir_time(@fhir_immunization.occurrenceDateTime)
   end
 
   def lot_number
@@ -31,24 +23,21 @@ class Immunization
   end
 
   def vaccine
-    @fhir_immunization.vaccineCode ||= FHIR::CodeableConcept.new
     coding = @fhir_immunization.vaccineCode.coding.try(:first)
     coding.nil? ? '' : lookup_vaccine_display(coding.code)
   end
 
   def vaccinator
-    @fhir_immunization.vaccineCode ||= FHIR::CodeableConcept.new
     performer = @fhir_immunization.performer.try(:first)
     performer.nil? ? '' : (performer.actor.try(:display) || '')
   end
 
   def vaccine_code
-    @fhir_immunization.vaccineCode ||= FHIR::CodeableConcept.new
     coding = @fhir_immunization.vaccineCode.coding.try(:first)
     coding.nil? ? '' : coding.code
   end
 
-  def group
+  def vaccine_group
     vg = GROUPS.at_xpath(
       "//VGCodes/CVXVGInfo[Value[2]=concat('#{vaccine_code}', ' ')]/Value[4]/text()"
     )
@@ -56,12 +45,6 @@ class Immunization
   end
 
   private
-
-
-
-  def from_fhir_time(time_string)
-    Date.parse(time_string).strftime('%m/%d/%Y') if time_string.present?
-  end
 
   def lookup_vaccine_display(cvx)
     display_name = TRADENAMES.at_xpath(

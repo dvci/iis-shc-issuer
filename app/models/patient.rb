@@ -7,13 +7,6 @@ class Patient
     @birth_date = birth_date
   end
 
-  def attributes
-    { 'full_name' => @full_name,
-      'given' => @given,
-      'family' => @family,
-      'birth_date' => @birth_date }
-  end
-
   def full_name
     [family, given].join('/') if given || family
   end
@@ -25,7 +18,7 @@ class Patient
   delegate :family, to: :first_name
 
   def birth_date
-    from_fhir_time(@fhir_patient.birthDate)
+    FhirHelper.from_fhir_time(@fhir_patient.birthDate)
   end
 
   private
@@ -33,9 +26,5 @@ class Patient
   def first_name
     @fhir_patient.name << FHIR::HumanName.new if @fhir_patient.name.empty?
     @fhir_patient.name[0]
-  end
-
-  def from_fhir_time(time_string)
-    Date.parse(time_string).strftime('%m/%d/%Y') if time_string.present?
   end
 end
