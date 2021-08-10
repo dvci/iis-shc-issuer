@@ -1,5 +1,4 @@
 class Immunization
-
   load_xml = ->(filename) { Nokogiri::XML(File.open(Rails.root.join('app', 'assets', filename))) }
 
   GROUPS = load_xml.call('iisstandards_vax2vg.xml').freeze
@@ -41,7 +40,7 @@ class Immunization
     vg = GROUPS.at_xpath(
       "//VGCodes/CVXVGInfo[Value[2]=concat('#{vaccine_code}', ' ')]/Value[4]/text()"
     )
-    @group ||= vg.nil? ? '' : vg.to_s
+    @vaccine_group ||= vg.nil? ? '' : vg.to_s
   end
 
   private
@@ -51,10 +50,10 @@ class Immunization
       "//productnames/prodInfo[Value[3]=concat('#{cvx}', ' ')]/Value[1]/text()"
     )
     if display_name.is_a? Nokogiri::XML::Text
-      #use CDC product name if single match
+      # use CDC product name if single match
       display_name.to_s
     else
-      #else use short description
+      # else use short description
       display_name = TRADENAMES.at_xpath(
         "(//productnames/prodInfo[Value[3]=concat('#{cvx}', ' ')]/Value[2]/text())[1]"
       )
