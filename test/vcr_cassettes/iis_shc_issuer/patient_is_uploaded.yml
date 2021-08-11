@@ -48,14 +48,14 @@ http_interactions:
       Content-Type:
       - application/soap+xml;action="urn:cdc:iisb:2011:connectivityTest";charset=UTF-8
       Content-Length:
-      - '415'
+      - '413'
       Date:
-      - Tue, 03 Aug 2021 11:26:59 GMT
+      - Wed, 11 Aug 2021 16:40:56 GMT
     body:
       encoding: UTF-8
       string: "<?xml version='1.0' encoding='UTF-8'?>\n<Envelope xmlns=\"http://www.w3.org/2003/05/soap-envelope\">\n
         \ <Header />\n   <Body>\n      <submitSingleMessageResponse xmlns=\"urn:cdc:iisb:2011\">\n
-        \       <return><![CDATA[MSH|^~\\&||IIS Sandbox v0.4.6|||20210803112659+0000||ACK^V04^ACK|16279900197771708|P|2.5.1|||NE|NE|||||Z23^CDCPHINVS\rMSA|AA|D23W303.1pO\r]]></return>\n
+        \       <return><![CDATA[MSH|^~\\&||IIS Sandbox v0.4.6|||20210811044056+0000||ACK^V04^ACK|162870005693229|P|2.5.1|||NE|NE|||||Z23^CDCPHINVS\rMSA|AA|D23W303.1pO\r]]></return>\n
         \     </submitSingleMessageResponse>\n  </Body>\n</Envelope>\n"
-  recorded_at: Tue, 03 Aug 2021 11:26:59 GMT
+  recorded_at: Wed, 11 Aug 2021 16:40:56 GMT
 recorded_with: VCR 6.0.0
