@@ -1,0 +1,6 @@
+[submodule "IIS-Sandbox"]
+	path = IIS-Sandbox
+	url = https://github.com/dvci/IIS-Sandbox.git
+[submodule "hl7v2-fhir-vaccine-credential-converter"]
+	path = hl7v2-fhir-vaccine-credential-converter
+	url = https://github.com/dvci/hl7v2-fhir-vaccine-credential-converter.git

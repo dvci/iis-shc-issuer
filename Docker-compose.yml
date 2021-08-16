@@ -12,9 +12,7 @@ services:
       - iis-sandbox
       - v2-to-fhir
   iis-sandbox:
-    image: iis-sandbox-
-    volumes:
-      - iis_patient_data:/
+    build: ./IIS-Sandbox
     ports:
       - "8081:8080"
     environment:
@@ -23,7 +21,7 @@ services:
       IIS_SANDBOX_FACILITY_ID: MITRE Healthcare
       IIS_SANDBOX_HOST: http://localhost:8081
   v2-to-fhir: 
-    image: 
+    build: ./hl7v2-fhir-vaccine-credential-converter
     environment:
       V2_TO_FHIR_HOST: http://localhost:3000
     ports:
