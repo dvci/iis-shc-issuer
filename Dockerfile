@@ -15,7 +15,7 @@ RUN apt-get update && apt-get install -y yarn
 # Run yarn install to install JavaScript dependencies.
 RUN yarn install --check-files
 
-EXPOSE 4000
+EXPOSE 5000
 
 # Configure the main process to run when running the image
 CMD bundle exec rails s

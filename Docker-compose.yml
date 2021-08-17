@@ -2,9 +2,9 @@ version: '2'
 services: 
   app:
     build: .
-    command: bundle exec rails s -p 4000 -b '0.0.0.0'
-    volumes:
-      - ".:/code"
+    ports:
+      - "5000:5000"
+    command: bundle exec rails s -p 5000
     depends_on:
       - iis-sandbox
       - v2-to-fhir
@@ -13,8 +13,6 @@ services:
       - v2-to-fhir
   iis-sandbox:
     build: ./IIS-Sandbox
-    ports:
-      - "8081:8080"
     environment:
       IIS_SANDBOX_USERNAME: mitre
       IIS_SANDBOX_PASSWORD: mitre
