@@ -8,10 +8,17 @@ yarn install
 ```
 
 ## Run
+
+#### Development Mode
 ```
 bundle exec rails s
 ```
-Then visit [http://localhost:3000](http://localhost:3000)
+#### Docker
+```
+docker-compose up -d
+```
+
+Then visit [http://localhost:5000](http://localhost:5000)
 
 
 ## License
