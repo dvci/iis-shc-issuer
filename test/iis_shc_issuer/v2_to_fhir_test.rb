@@ -32,13 +32,13 @@ class V2ToFHIRTest < ActiveSupport::TestCase
     end
   end
 
-  test 'Non-Patient HL7 V2 Response will return an error message from the HL7 to V2 Translator' do
+  test 'A Non-Patient HL7 V2 Message will throw a V2ParsingError from the HL7 to V2 Translator' do
     VCR.use_cassette('translator_returns_error', match_requests_on: [:method]) do
       response = File.open('test/fixtures/files/RSP_error.hl7').readlines
       v2_response = HL7::Message.new(response)
-      fhir_response = IISSHCIssuer::V2ToFHIR.translate_to_fhir(v2_response)
-      fhir_response_hash = JSON.parse(fhir_response)
-      assert_not_nil(fhir_response_hash['errors'])
+      assert_raises IISSHCIssuer::V2ParsingError do
+        IISSHCIssuer::V2ToFHIR.translate_to_fhir(v2_response)
+      end
     end
   end
 end

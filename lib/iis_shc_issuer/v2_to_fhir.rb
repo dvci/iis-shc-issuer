@@ -12,7 +12,10 @@ module IISSHCIssuer
       fhir_response = Faraday.post("#{Rails.application.config.v2_to_fhir_host}/convert/text",
                                    v2_response.to_hl7,
                                    'Content-Type' => 'text/plain')
-      fhir_response.body
+      response_body = fhir_response.body
+      raise IISSHCIssuer::V2ParsingError, JSON.parse(response_body)['errors'] if JSON.parse(response_body)['errors']
+
+      response_body
     end
   end
 end
