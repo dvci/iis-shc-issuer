@@ -14,7 +14,9 @@ yarn install
 bundle exec rails s
 ```
 #### Docker
+Clones submodules needed for dependant services. Creates Docker images for Issuer and services and starts them in containers.
 ```
+echo IIS-Sandbox.git hl7v2-fhir-vaccine-credential-converter.git | xargs -n1 | xargs -I{} git clone --recursive https://github.com/dvci/{}
 docker-compose up -d
 ```
 
