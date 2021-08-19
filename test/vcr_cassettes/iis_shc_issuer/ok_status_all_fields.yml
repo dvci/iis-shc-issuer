@@ -6,9 +6,9 @@ http_interactions:
     body:
       encoding: UTF-8
       string: |-
-        <?xml version="1.0" encoding="UTF-8"?><env:Envelope xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tns="urn:cdc:iisb:2011" xmlns:env="http://schemas.xmlsoap.org/soap/envelope/"><env:Body><tns:submitSingleMessage><tns:username>mitre</tns:username><tns:password>mitre</tns:password><tns:facilityID>MITRE Healthcare</tns:facilityID><tns:hl7Message>MSH|^~\&amp;|||||20210811164056||QBP^Q11^QBP_Q11|2341924409|P|2.5.1|||ER|AL|||||Z34^CDCPHINVS|
+        <?xml version="1.0" encoding="UTF-8"?><env:Envelope xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tns="urn:cdc:iisb:2011" xmlns:env="http://schemas.xmlsoap.org/soap/envelope/"><env:Body><tns:submitSingleMessage><tns:username>mitre</tns:username><tns:password>mitre</tns:password><tns:facilityID>MITRE Healthcare</tns:facilityID><tns:hl7Message>MSH|^~\&amp;|||||20210729205918||QBP^Q11^QBP_Q11|1038533321|P|2.5.1|||ER|AL|||||Z34^CDCPHINVS|
 
-        QPD|Z34^Request Immunization History^CDCPHINVS|2341924409|^J19X5^^^AIRA-TEST^MR|WeilAIRA^BethesdaAIRA^Delvene^^^^|WeilAIRA^BethesdaAIRA^^^^^M|20170610|F|1113 Wollands Kroon Ave^^Hamburg^MI^48139^USA^P|^PRN^PH^^^810^2499010|||||
+        QPD|Z34^Request Immunization History^CDCPHINVS|1038533321|^J19X5^^^AIRA-TEST^MR|WeilAIRA^BethesdaAIRA^Delvene^^^^|WeilAIRA^BethesdaAIRA^^^^^M|20170610|F|1113 Wollands Kroon Ave^^Hamburg^MI^48139^USA^P|^PRN^PH^^^810^2499010|||||
 
         RCP|I||</tns:hl7Message></tns:submitSingleMessage></env:Body></env:Envelope>
     headers:
@@ -32,15 +32,15 @@ http_interactions:
       Content-Type:
       - application/soap+xml;action="urn:cdc:iisb:2011:connectivityTest";charset=UTF-8
       Content-Length:
-      - '2387'
+      - '1656'
       Date:
-      - Wed, 11 Aug 2021 16:40:56 GMT
+      - Thu, 29 Jul 2021 20:59:18 GMT
     body:
       encoding: UTF-8
       string: "<?xml version='1.0' encoding='UTF-8'?>\n<Envelope xmlns=\"http://www.w3.org/2003/05/soap-envelope\">\n
         \ <Header />\n   <Body>\n      <submitSingleMessageResponse xmlns=\"urn:cdc:iisb:2011\">\n
-        \       <return><![CDATA[MSH|^~\\&||IIS Sandbox v0.4.6|||20210811044056+0000||RSP^K11^RSP_K11|162870005675226|P|2.5.1|||NE|NE|||||Z32^CDCPHINVS\rMSA|AA|2341924409\rQAK|2341924409|OK|Z34^Request
-        a Complete Immunization History^CDCPHINVS\rQPD|Z34^Request Immunization History^CDCPHINVS|2341924409|^J19X5^^^AIRA-TEST^MR|WeilAIRA^BethesdaAIRA^Delvene^^^^|WeilAIRA^BethesdaAIRA^^^^^M|20170610|F|1113
+        \       <return><![CDATA[MSH|^~\\&||IIS Sandbox v0.4.6|||20210729085918+0000||RSP^K11^RSP_K11|16275923585481704|P|2.5.1|||NE|NE|||||Z32^CDCPHINVS\rMSA|AA|1038533321\rQAK|1038533321|OK|Z34^Request
+        a Complete Immunization History^CDCPHINVS\rQPD|Z34^Request Immunization History^CDCPHINVS|1038533321|^J19X5^^^AIRA-TEST^MR|WeilAIRA^BethesdaAIRA^Delvene^^^^|WeilAIRA^BethesdaAIRA^^^^^M|20170610|F|1113
         Wollands Kroon Ave^^Hamburg^MI^48139^USA^P|^PRN^PH^^^810^2499010|||||\rPID|1||GKAXZ2C5R7TE^^^IIS^SR~J19X5^^^AIRA-TEST^MR||WeilAIRA^BethesdaAIRA^Delvene^^^^L|ClearfieldAIRA^^^^^^M|20170610|F|||1113
         Wollands Kroon Ave^^Hamburg^MI^48139^USA^P||^PRN^PH^^^810^2499010||||||||||||\rNK1|1|RichardsonAIRA^TarraAIRA^^^^^L|MTH^Mother^HL70063\rORC|RE|1^IIS|O60A4.3^MITRE
         Healthcare\rRXA|0|1|20210616||94^MMRV^CVX|0.5|mL^milliliters^UCUM||00^New
@@ -49,15 +49,7 @@ http_interactions:
         eligible - Medicaid/Medicaid Managed Care^HL70064||||||F|||20210616|||VXC40^Eligibility
         captured at the immunization level^CDCPHINVS\rOBX|2|CE|30956-7^Vaccine Type^LN|1|94^MMRV^CVX||||||F||||||\rOBX|3|TS|29768-9^Date
         vaccine information statement published^LN|1|20100521||||||F||||||\rOBX|4|TS|29769-7^Date
-        vaccine information statement presented^LN|1|20210616||||||F||||||\rORC|RE|19^IIS|BC43C517.1^MITRE
-        Healthcare\rRXA|0|1|20210803||208^COVID-19, mRNA, LNP-S, PF, 30 mcg/0.3 mL
-        dose^CVX|0.5|mL^milliliters^UCUM||01^Historical information - source unspecified^NIP001|||||||||||CP|A\rRXR|C38288^Oral^NCIT|\rOBX|5|CE|64994-7^Vaccine
-        funding program eligibility category^LN|2|V05^VFC eligible - Federally Qualified
-        Health Center Patient (under-insured)^HL70064||||||F|||20210803|||VXC40^Eligibility
-        captured at the immunization level^CDCPHINVS\rOBX|6|CE|30956-7^vaccine type^LN|2|88^Influenza,
-        unspecified formulation^CVX||||||F||||||\rOBX|7|TS|29768-9^Date vaccine information
-        statement published^LN|2|20120702||||||F||||||\rOBX|8|TS|29769-7^Date vaccine
-        information statement presented^LN|2|20210803||||||F||||||\r]]></return>\n
+        vaccine information statement presented^LN|1|20210616||||||F||||||\r]]></return>\n
         \     </submitSingleMessageResponse>\n  </Body>\n</Envelope>\n"
-  recorded_at: Wed, 11 Aug 2021 16:40:57 GMT
+  recorded_at: Thu, 29 Jul 2021 20:59:18 GMT
 recorded_with: VCR 6.0.0
