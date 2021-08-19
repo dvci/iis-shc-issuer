@@ -1,13 +1,8 @@
 # frozen_string_literal: true
 
 require 'test_helper'
+require 'vcr_setup'
 require 'iis_shc_issuer/qbp_client'
-require 'vcr'
-
-VCR.configure do |config|
-  config.cassette_library_dir = 'test/vcr_cassettes/iis_shc_issuer'
-  config.hook_into :webmock
-end
 
 class QBPClientTest < ActiveSupport::TestCase
   # General Functionality Tests
