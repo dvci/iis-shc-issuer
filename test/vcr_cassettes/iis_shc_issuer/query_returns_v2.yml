@@ -6,9 +6,9 @@ http_interactions:
     body:
       encoding: UTF-8
       string: |-
-        <?xml version="1.0" encoding="UTF-8"?><env:Envelope xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tns="urn:cdc:iisb:2011" xmlns:env="http://schemas.xmlsoap.org/soap/envelope/"><env:Body><tns:submitSingleMessage><tns:username>mitre</tns:username><tns:password>mitre</tns:password><tns:facilityID>MITRE Healthcare</tns:facilityID><tns:hl7Message>MSH|^~\&amp;|||||20210811164056||QBP^Q11^QBP_Q11|7250119401|P|2.5.1|||ER|AL|||||Z34^CDCPHINVS|
+        <?xml version="1.0" encoding="UTF-8"?><env:Envelope xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tns="urn:cdc:iisb:2011" xmlns:env="http://schemas.xmlsoap.org/soap/envelope/"><env:Body><tns:submitSingleMessage><tns:username>mitre</tns:username><tns:password>mitre</tns:password><tns:facilityID>MITRE Healthcare</tns:facilityID><tns:hl7Message>MSH|^~\&amp;|||||20210729205918||QBP^Q11^QBP_Q11|6940836536|P|2.5.1|||ER|AL|||||Z34^CDCPHINVS|
 
-        QPD|Z34^Request Immunization History^CDCPHINVS|7250119401||^^^^^^|^^^^^^|||^^^^^USA^|^PRN^PH^^^^|||||
+        QPD|Z34^Request Immunization History^CDCPHINVS|6940836536||^^^^^^|^^^^^^|||^^^^^USA^|^PRN^PH^^^^|||||
 
         RCP|I||</tns:hl7Message></tns:submitSingleMessage></env:Body></env:Envelope>
     headers:
@@ -32,16 +32,16 @@ http_interactions:
       Content-Type:
       - application/soap+xml;action="urn:cdc:iisb:2011:connectivityTest";charset=UTF-8
       Content-Length:
-      - '665'
+      - '667'
       Date:
-      - Wed, 11 Aug 2021 16:40:56 GMT
+      - Thu, 29 Jul 2021 20:59:18 GMT
     body:
       encoding: UTF-8
       string: "<?xml version='1.0' encoding='UTF-8'?>\n<Envelope xmlns=\"http://www.w3.org/2003/05/soap-envelope\">\n
         \ <Header />\n   <Body>\n      <submitSingleMessageResponse xmlns=\"urn:cdc:iisb:2011\">\n
-        \       <return><![CDATA[MSH|^~\\&||IIS Sandbox v0.4.6|||20210811044056+0000||RSP^K11^RSP_K11|162870005671023|P|2.5.1|||NE|NE|||||Z33^CDCPHINVS\rMSA|AE|7250119401\rERR||QPD^1^4|101^Required
-        field missing^HL70357|E||||Last name is missing|\rQAK|7250119401|AE|Z34^Request
-        a Complete Immunization History^CDCPHINVS\rQPD|Z34^Request Immunization History^CDCPHINVS|7250119401||^^^^^^|^^^^^^|||^^^^^USA^|^PRN^PH^^^^|||||\r]]></return>\n
+        \       <return><![CDATA[MSH|^~\\&||IIS Sandbox v0.4.6|||20210729085918+0000||RSP^K11^RSP_K11|16275923585141701|P|2.5.1|||NE|NE|||||Z33^CDCPHINVS\rMSA|AE|6940836536\rERR||QPD^1^4|101^Required
+        field missing^HL70357|E||||Last name is missing|\rQAK|6940836536|AE|Z34^Request
+        a Complete Immunization History^CDCPHINVS\rQPD|Z34^Request Immunization History^CDCPHINVS|6940836536||^^^^^^|^^^^^^|||^^^^^USA^|^PRN^PH^^^^|||||\r]]></return>\n
         \     </submitSingleMessageResponse>\n  </Body>\n</Envelope>\n"
-  recorded_at: Wed, 11 Aug 2021 16:40:56 GMT
+  recorded_at: Thu, 29 Jul 2021 20:59:18 GMT
 recorded_with: VCR 6.0.0
