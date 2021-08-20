@@ -13,8 +13,7 @@ import {
 } from "@material-ui/core";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 import logo from "../../../images/mitre-logo.svg";
-
-var QRCode = require("qrcode");
+import QRCode from "qrcode";
 
 function HealthCard(props) {
   const styles = useStyles();
@@ -215,5 +214,4 @@ function HealthCardVaccination(props) {
   );
 }
 
-export { HealthCard };
 export default HealthCard;
