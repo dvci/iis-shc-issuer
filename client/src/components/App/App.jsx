@@ -12,6 +12,7 @@ import illustration from '../../../images/vaccine-illustration.jpg';
 import BackButton from '../BackButton/BackButton';
 import DownloadButton from '../DownloadButton/DownloadButton';
 import FactList from '../FactList/FactList';
+import HealthCard from '../HealthCard/HealthCard';
 
 const App = props => (
   <ThemeProvider>
@@ -54,7 +55,7 @@ const App = props => (
             mt={20}
             mb={20}
           >
-            SMART HEALTH CARD WILL GO HERE
+            <HealthCard />
           </Box>
           <Box display="flex" flexDirection="row" justifyContent="center">
             <DownloadButton>

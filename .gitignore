@@ -45,3 +45,4 @@ config/keys
 /vendor/*
 
 .idea
+.vscode
