@@ -13,7 +13,9 @@ module IISSHCIssuer
                                    v2_response.to_hl7,
                                    'Content-Type' => 'text/plain')
       response_body = fhir_response.body
-      raise IISSHCIssuer::V2ParsingError, JSON.parse(response_body)['errors'] if JSON.parse(response_body)['errors']
+      unless fhir_response.status.between?(200, 299)
+        raise IISSHCIssuer::V2ParsingError, JSON.parse(response_body)['errors']
+      end
 
       response_body
     end
