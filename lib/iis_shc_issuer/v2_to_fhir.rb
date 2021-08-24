@@ -14,7 +14,11 @@ module IISSHCIssuer
                                    'Content-Type' => 'text/plain')
       response_body = fhir_response.body
       unless fhir_response.status.between?(200, 299)
-        raise IISSHCIssuer::V2ParsingError, JSON.parse(response_body)['errors']
+        begin
+          raise IISSHCIssuer::V2ParsingError, JSON.parse(response_body)['errors']
+        rescue JSON::ParserError
+          raise IISSHCIssuer::V2ParsingError
+        end
       end
 
       response_body
