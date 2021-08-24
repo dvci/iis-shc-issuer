@@ -6,11 +6,6 @@ class Immunization
 
   def initialize(fhir_immunization)
     @fhir_immunization = fhir_immunization
-    @fhir_immunization.vaccineCode ||= FHIR::CodeableConcept.new
-    @occurrence = occurrence
-    @vaccine = vaccine
-    @lot_number = lot_number
-    @vaccinator = vaccinator
   end
 
   def occurrence
@@ -22,17 +17,17 @@ class Immunization
   end
 
   def vaccine
-    coding = @fhir_immunization.vaccineCode.coding.try(:first)
+    coding = @fhir_immunization.vaccineCode&.coding&.first
     coding.nil? ? '' : lookup_vaccine_display(coding.code)
   end
 
   def vaccinator
-    performer = @fhir_immunization.performer.try(:first)
-    performer.nil? ? '' : (performer.actor.try(:display) || '')
+    performer = @fhir_immunization.performer&.first
+    performer.nil? ? '' : (performer.actor&.display || '')
   end
 
   def vaccine_code
-    coding = @fhir_immunization.vaccineCode.coding.try(:first)
+    coding = @fhir_immunization.vaccineCode&.coding&.first
     coding.nil? ? '' : coding.code
   end
 

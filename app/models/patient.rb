@@ -1,10 +1,6 @@
 class Patient
   def initialize(fhir_patient)
     @fhir_patient = fhir_patient
-    @full_name = full_name
-    @given = given
-    @family = family
-    @birth_date = birth_date
   end
 
   def full_name
