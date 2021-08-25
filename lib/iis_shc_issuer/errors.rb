@@ -5,6 +5,8 @@ module IISSHCIssuer
 
   class QBPClientError < IISSHCIssuerError; end
 
+  class V2ToFhirError < IISSHCIssuerError; end
+
   # Errors Related to QBP Client for IIS-Sandbox
 
   # Exception thrown when an invalid payload is provided
@@ -43,6 +45,23 @@ module IISSHCIssuer
   class UnrecognizedResponseProfileError < QBPClientError
     def initialize(msg = 'Response Profile returned from the sandbox is not recognized')
       super(msg)
+    end
+  end
+
+  # Errors related to the V2 to FHIR Translator
+
+  # Exception thrown when the Faraday call to the v2_to_fhir translator returns an error message
+  class V2ParsingError < V2ToFhirError
+    def initialize(msg = nil)
+      if msg
+        error_string = 'The following error message(s) were returned from the v2_to_fhir translator:'
+        msg.each do |error|
+          error_string += "\n#{error['message']}"
+        end
+        super(error_string)
+      else
+        super('Unable to parse the incoming HL7 V2 Message')
+      end
     end
   end
 end
