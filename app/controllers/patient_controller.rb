@@ -9,7 +9,6 @@ class PatientController < ApplicationController
     v2_response = IISSHCIssuer::QBPClient.query(patient_info)
     fhir_bundle = IISSHCIssuer::V2ToFHIR.translate_to_fhir(v2_response)
     session[:fhir_bundle] = fhir_bundle
-    byebug
     render json: fhir_bundle
   end
 end
