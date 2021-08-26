@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root 'landing_page#index'
 
   get '/', to: "landing_page#index"
-  get '/search', to: 'patient#search'
+  get '/search', to: 'patient#search', as: :search
   get '/health_card', to: 'health_card#create', as: :issue_vc
 
     # Keep at bottom:
