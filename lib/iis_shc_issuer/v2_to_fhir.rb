@@ -9,6 +9,15 @@ module IISSHCIssuer
     # @param v2_response [HL7::Message] V2 message returned from the IIS Sandbox
     # @return [String] FHIR Bundle representation of the V2 message
     def translate_to_fhir(v2_response)
+      qak = v2_response.find { |seg| seg[0] == 'QAK' }
+      code = qak[2]
+      case code
+      when 'NF'
+        raise IISSHCIssuer::V2PatientNotFoundError
+      when 'TM'
+        raise IISSHCIssuer::V2MultiplePatientsFoundError
+      end
+
       fhir_response = Faraday.post("#{Rails.application.config.v2_to_fhir_host}/convert/text",
                                    v2_response.to_hl7,
                                    'Content-Type' => 'text/plain')
