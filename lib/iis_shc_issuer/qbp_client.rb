@@ -10,7 +10,7 @@ module IISSHCIssuer
   module QBPClient
     extend self
     # Query a patient's Immunization history from the IIS Sandbox
-    # @param patient_info [Hash] Patient demographic info sent from the IIS Consumer Portal
+    # @param patient_info [PatientQuery] Patient demographic info sent from the IIS Consumer Portal
     # @param credentials [Hash] (optional) User Id, Password, and Facility Id for the IIS Sandbox login
     # @return [HL7::Message] The HL7 V2 Response message from the IIS-Sandbox
     def query(patient_info,
@@ -26,7 +26,7 @@ module IISSHCIssuer
       # Check if client is configured properly
       raise IISSHCIssuer::OperationNotSupportedError unless client.operations.include?(:submit_single_message)
 
-      msg_input = IISSHCIssuer::V2MessageBuilder.build_hl7_message(patient_info)
+      msg_input = IISSHCIssuer::V2MessageBuilder.build_hl7_message(patient_info.to_hash)
 
       begin
         response = client.call(:submit_single_message) do
