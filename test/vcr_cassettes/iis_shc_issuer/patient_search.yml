@@ -1,0 +1,99 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: http://vci.mitre.org:8081/iis-sandbox/soap
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0" encoding="UTF-8"?><env:Envelope xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tns="urn:cdc:iisb:2011" xmlns:env="http://schemas.xmlsoap.org/soap/envelope/"><env:Body><tns:submitSingleMessage><tns:username>mitre</tns:username><tns:password>mitre</tns:password><tns:facilityID>MITRE Healthcare</tns:facilityID><tns:hl7Message>MSH|^~\&amp;|||||20210826183750||QBP^Q11^QBP_Q11|6468541559|P|2.5.1|||ER|AL|||||Z34^CDCPHINVS|
+
+        QPD|Z34^Request Immunization History^CDCPHINVS|6468541559||RogersAIRA^VallisAIRA^^^^^|^^^^^^|20160715||^^^^^USA^|^PRN^PH^^^^|||||
+
+        RCP|I||</tns:hl7Message></tns:submitSingleMessage></env:Body></env:Envelope>
+    headers:
+      Soapaction:
+      - '"urn:cdc:iisb:2011:submitSingleMessage"'
+      Content-Type:
+      - text/xml;charset=UTF-8
+      Content-Length:
+      - '706'
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: ''
+    headers:
+      Content-Type:
+      - application/soap+xml;action="urn:cdc:iisb:2011:connectivityTest";charset=UTF-8
+      Content-Length:
+      - '1373'
+      Date:
+      - Thu, 26 Aug 2021 18:37:53 GMT
+    body:
+      encoding: UTF-8
+      string: "<?xml version='1.0' encoding='UTF-8'?>\n<Envelope xmlns=\"http://www.w3.org/2003/05/soap-envelope\">\n
+        \ <Header />\n   <Body>\n      <submitSingleMessageResponse xmlns=\"urn:cdc:iisb:2011\">\n
+        \       <return><![CDATA[MSH|^~\\&||IIS Sandbox v0.4.6|||20210826063750+0000||RSP^K11^RSP_K11|1630003070756109|P|2.5.1|||NE|NE|||||Z32^CDCPHINVS\rMSA|AA|6468541559\rQAK|6468541559|OK|Z34^Request
+        a Complete Immunization History^CDCPHINVS\rQPD|Z34^Request Immunization History^CDCPHINVS|6468541559||RogersAIRA^VallisAIRA^^^^^|^^^^^^|20160715||^^^^^USA^|^PRN^PH^^^^|||||\rPID|1||UAMA8RU8VXVA^^^IIS^SR~H31H7^^^NIST
+        MPI^MR||RogersAIRA^VallisAIRA^Greger^^^^L|BellAIRA^^^^^^M|20160715|M|||1371
+        Kongeradeel Ave^^Quincy^MI^49082^USA^P||^PRN^PH^^^517^5138248||||||||||||\rNK1|1|RogersAIRA^BellAIRA^^^^^L|MTH^Mother^HL70063\rORC|RE|6^IIS|BH31H7.2^MITRE
+        Healthcare\rRXA|0|1|20210727||207^COVID-19, mRNA, LNP-S, PF, 100 mcg/0.5 mL
+        dose^CVX|0.5|mL^milliliters^UCUM||01^Historical information - source unspecified^NIP001||||||A9999-28|||||CP|A\rRXR|C38276^Intravenous^NCIT|RG^Right
+        Gluteous Medius^HL70163\rORC|RE|5^IIS|BH31H7.1^MITRE Healthcare\rRXA|0|1|20210824||207^COVID-19,
+        mRNA, LNP-S, PF, 100 mcg/0.5 mL dose^CVX|0.5|mL^milliliters^UCUM||01^Historical
+        information - source unspecified^NIP001||||||A9999-27|||||CP|A\rRXR|C38288^Oral^NCIT|\r]]></return>\n
+        \     </submitSingleMessageResponse>\n  </Body>\n</Envelope>\n"
+  recorded_at: Thu, 26 Aug 2021 18:37:53 GMT
+- request:
+    method: post
+    uri: http://vci.mitre.org:3000/api/v0.2.0/convert/text
+    body:
+      encoding: UTF-8
+      string: "MSH|^~\\&||IIS Sandbox v0.4.6|||20210826063750+0000||RSP^K11^RSP_K11|1630003070756109|P|2.5.1|||NE|NE|||||Z32^CDCPHINVS\rMSA|AA|6468541559\rQAK|6468541559|OK|Z34^Request
+        a Complete Immunization History^CDCPHINVS\rQPD|Z34^Request Immunization History^CDCPHINVS|6468541559||RogersAIRA^VallisAIRA^^^^^|^^^^^^|20160715||^^^^^USA^|^PRN^PH^^^^|||||\rPID|1||UAMA8RU8VXVA^^^IIS^SR~H31H7^^^NIST
+        MPI^MR||RogersAIRA^VallisAIRA^Greger^^^^L|BellAIRA^^^^^^M|20160715|M|||1371
+        Kongeradeel Ave^^Quincy^MI^49082^USA^P||^PRN^PH^^^517^5138248||||||||||||\rNK1|1|RogersAIRA^BellAIRA^^^^^L|MTH^Mother^HL70063\rORC|RE|6^IIS|BH31H7.2^MITRE
+        Healthcare\rRXA|0|1|20210727||207^COVID-19, mRNA, LNP-S, PF, 100 mcg/0.5 mL
+        dose^CVX|0.5|mL^milliliters^UCUM||01^Historical information - source unspecified^NIP001||||||A9999-28|||||CP|A\rRXR|C38276^Intravenous^NCIT|RG^Right
+        Gluteous Medius^HL70163\rORC|RE|5^IIS|BH31H7.1^MITRE Healthcare\rRXA|0|1|20210824||207^COVID-19,
+        mRNA, LNP-S, PF, 100 mcg/0.5 mL dose^CVX|0.5|mL^milliliters^UCUM||01^Historical
+        information - source unspecified^NIP001||||||A9999-27|||||CP|A\rRXR|C38288^Oral^NCIT|"
+    headers:
+      User-Agent:
+      - Faraday v1.5.1
+      Content-Type:
+      - text/plain
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Powered-By:
+      - Express
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '730'
+      Etag:
+      - W/"2da-9QaI5P7LKNeFPCfNNbQIow92Ga4"
+      Date:
+      - Thu, 26 Aug 2021 18:37:53 GMT
+      Connection:
+      - keep-alive
+      Keep-Alive:
+      - timeout=5
+    body:
+      encoding: UTF-8
+      string: '{"resourceType":"Bundle","type":"collection","entry":[{"fullUrl":"resource:0","resource":{"resourceType":"Patient","name":[{"family":"RogersAIRA","given":["VallisAIRA","Greger"]}],"birthDate":"20160715"}},{"fullUrl":"resource:1","resource":{"resourceType":"Immunization","status":"completed","patient":{"reference":"resource:0"},"occurrenceDateTime":"20210727","vaccineCode":{"coding":[{"system":"http://hl7.org/fhir/sid/cvx","code":"207"}]},"lotNumber":"A9999-28"}},{"fullUrl":"resource:2","resource":{"resourceType":"Immunization","status":"completed","patient":{"reference":"resource:0"},"occurrenceDateTime":"20210824","vaccineCode":{"coding":[{"system":"http://hl7.org/fhir/sid/cvx","code":"207"}]},"lotNumber":"A9999-27"}}]}'
+  recorded_at: Thu, 26 Aug 2021 18:37:53 GMT
+recorded_with: VCR 6.0.0

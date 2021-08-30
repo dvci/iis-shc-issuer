@@ -22,7 +22,7 @@ class V2ToFHIRTest < ActiveSupport::TestCase
 
   # V2 to FHIR Translation Tests
 
-  test 'Valid HL7 V2 Complete Immunization History Response will return a FHIR Bundle from the HL7 to V2 Translator' do
+  test 'Valid HL7 V2 Complete Immunization History Response will return a FHIR Bundle' do
     VCR.use_cassette('translator_returns_fhir_bundle', match_requests_on: [:method]) do
       response = File.open('test/fixtures/files/RSP_valid.hl7').readlines
       v2_response = HL7::Message.new(response)
@@ -32,13 +32,19 @@ class V2ToFHIRTest < ActiveSupport::TestCase
     end
   end
 
-  test 'A Non-Patient HL7 V2 Message will throw a V2ParsingError from the HL7 to V2 Translator' do
-    VCR.use_cassette('translator_returns_error', match_requests_on: [:method]) do
-      response = File.open('test/fixtures/files/RSP_error.hl7').readlines
-      v2_response = HL7::Message.new(response)
-      assert_raises IISSHCIssuer::V2ParsingError do
-        IISSHCIssuer::V2ToFHIR.translate_to_fhir(v2_response)
-      end
+  test 'An HL7 V2 Message with multiple results will throw a V2MultiplePatientsFoundError' do
+    response = File.open('test/fixtures/files/TestCase-Z31_multimatch-Response.hl7').readlines
+    v2_response = HL7::Message.new(response)
+    assert_raises IISSHCIssuer::V2MultiplePatientsFoundError do
+      IISSHCIssuer::V2ToFHIR.translate_to_fhir(v2_response)
+    end
+  end
+
+  test 'A Non-Patient HL7 V2 Message will throw a V2PatientNotFoundError' do
+    response = File.open('test/fixtures/files/RSP_error.hl7').readlines
+    v2_response = HL7::Message.new(response)
+    assert_raises IISSHCIssuer::V2PatientNotFoundError do
+      IISSHCIssuer::V2ToFHIR.translate_to_fhir(v2_response)
     end
   end
 end
