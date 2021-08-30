@@ -3,16 +3,13 @@ require 'health_cards'
 class PatientController < ApplicationController
   skip_before_action :verify_authenticity_token, only: [:search]
 
-
-  REQUIRED_ATTRIBUTES = config_for(:search_form)
-
   def form
-    render json: SearchForm
+    render json: SearchParameters.to_json
   end
 
   def search
-    query = IISSHCIssuer::PatientQuery.new(search_params)
-    v2_response = IISSHCIssuer::QBPClient.query(query)
+    query = PatientQuery.new(search_params)
+    v2_response = IISSHCIssuer::QBPClient.query(query.to_query)
     fhir_bundle = IISSHCIssuer::V2ToFHIR.translate_to_fhir(v2_response)
     session[:fhir_bundle] = fhir_bundle
     render json: fhir_bundle
@@ -25,6 +22,7 @@ class PatientController < ApplicationController
   private
 
   def search_params
-    params.require(SearchParameters[:required]).permit(SearchParameters[:optional])
+    params.require(SearchParameters.required)
+    params.permit(SearchParameters.all)
   end
 end

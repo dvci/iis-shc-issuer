@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root 'landing_page#index'
 
   get '/', to: "landing_page#index"
+  get '/form', to: 'patient#form', as: :patient_form, format: :json
   get '/search', to: 'patient#search', as: :search
   get '/health_card', to: 'health_card#create', as: :issue_vc
 

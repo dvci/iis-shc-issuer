@@ -1,0 +1,44 @@
+default: &default
+  attributes:
+    - patient_name:
+      - given_name
+      - family_name
+    - patient_dob
+    - phone
+    - sex
+    - id
+    - address:
+      - street
+      - city
+      - state
+      - zip
+  required:
+    - patient_name
+    - family_name
+    - patient_dob
+    - phone
+development:
+  <<: *default
+  required:
+    - patient_name
+    - family_name
+    - patient_dob
+test:
+  <<: *default
+  required:
+    - patient_name
+    - family_name
+    - patient_dob
+production:
+  <<: *default
+  required:
+    - patient_name
+    - family_name
+    - patient_dob
+    - phone
+    - sex
+    - id
+    - street
+    - city
+    - state
+    - zip

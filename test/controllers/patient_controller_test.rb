@@ -8,12 +8,17 @@ class PatientControllerTest < ActionDispatch::IntegrationTest
     assert_response :not_found
   end
 
-  test 'search for patients with multipe matches' do
+  test 'search for patients with multiple matches' do
     params = { given_name: 'Latrice', family_name: 'MorrisAIRA', patient_dob: '20170817' }
     VCR.use_cassette('patient_search_multi') do
       get search_path, params: params
       assert_response :unprocessable_entity
     end
+  end
+
+  test 'list required and optional fields' do
+    get patient_form_path
+    assert_response :success
   end
 
   test 'search for patient' do

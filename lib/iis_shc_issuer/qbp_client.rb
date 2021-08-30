@@ -26,7 +26,7 @@ module IISSHCIssuer
       # Check if client is configured properly
       raise IISSHCIssuer::OperationNotSupportedError unless client.operations.include?(:submit_single_message)
 
-      msg_input = IISSHCIssuer::V2MessageBuilder.build_hl7_message(patient_info.to_hash)
+      msg_input = IISSHCIssuer::V2MessageBuilder.build_hl7_message(patient_info)
 
       begin
         response = client.call(:submit_single_message) do
