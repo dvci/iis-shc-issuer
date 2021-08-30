@@ -21,7 +21,6 @@ class PatientController < ApplicationController
   private
 
   def search_params
-    puts params.require(SearchParameters[:required])
     params.require(SearchParameters[:required]).permit(SearchParameters[:optional])
   end
 end
