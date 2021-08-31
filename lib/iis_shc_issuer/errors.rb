@@ -7,6 +7,14 @@ module IISSHCIssuer
 
   class V2ToFhirError < IISSHCIssuerError; end
 
+  # Standard Errors
+
+  class InvalidSearchError < StandardError
+    def initialize(msg)
+      super ("Query was contained missing or invalid parameters: #{msg}")
+    end
+  end
+
   # Errors Related to QBP Client for IIS-Sandbox
 
   # Exception thrown when an invalid payload is provided

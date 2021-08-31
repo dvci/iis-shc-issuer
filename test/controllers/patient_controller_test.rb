@@ -21,6 +21,12 @@ class PatientControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test 'search without required parameter' do
+    params = { given_name: 'VallisAIRA', family_name: 'RogersAIRA'}
+    get search_path, params: params
+    assert_response :unprocessable_entity
+  end
+
   test 'search for patient' do
     params = { given_name: 'VallisAIRA', family_name: 'RogersAIRA', patient_dob: '20160715' }
     VCR.use_cassette('patient_search') do
