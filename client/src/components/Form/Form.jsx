@@ -4,6 +4,8 @@ import useStyles from './styles';
 import { Box, Button, TextField, Typography } from '@material-ui/core';
 import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
+import Alert from '@mui/material/Alert';
+import Stack from '@mui/material/Stack';
 
 const Form = () => {
   const styles = useStyles();
@@ -11,6 +13,9 @@ const Form = () => {
   const [firstName, setFirstName] = useState(null);
   const [lastName, setLastName] = useState(null);
   const [selectedDate, handleDateChange] = useState(null);
+  const [phoneNumber, setPhoneNumber] = useState(null);
+  const [error, setError] = useState(null);
+
 
   const handleFirstNameChange = event => setFirstName(event.target.value);
   const handleLastNameChange = event => setLastName(event.target.value);
@@ -31,15 +36,31 @@ const Form = () => {
       },
       credentials: "include"
     })
-      .then((response) => response.json())
+      .then((response) => {
+        if (response.ok){
+          response.json()
+        }
+        else if (response.status == 404){
+          throw Error('Patient not found');
+        } 
+        else if (response.status == 422){
+          throw Error ('Multiple Matches. Please enter more information.');
+        }
+        else {
+          throw Error (response.status + "Failed Fetch ");
+        }
+        })
       .then((responseJson) => {
         history.push("/data-found");
       })
-      .catch(console.log());
+      .catch(err => {setError(err.message)});
   }
 
   return (
     <form onSubmit={handleSubmit}>
+      <Stack sx={{ width: '100%' }} spacing={2}>
+      <Alert severity="error"> {error && <div>{error}</div>} </Alert>
+      </Stack>
       <TextField
         required
         fullWidth
