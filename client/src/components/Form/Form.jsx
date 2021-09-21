@@ -4,7 +4,8 @@ import useStyles from './styles';
 import { Box, Button, TextField, Typography } from '@material-ui/core';
 import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
-import { Alert } from '@mui/material';
+import Alert from '@material-ui/lab/Alert';
+
 
 const Form = () => {
   const styles = useStyles();
