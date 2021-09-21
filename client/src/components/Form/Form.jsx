@@ -58,7 +58,7 @@ const Form = () => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <Alert severity="error"> {error && <div>{error}</div>} </Alert>
+      {error && ( <Alert severity="error"> <div> {error}</div> </Alert> )}
       <TextField
         required
         fullWidth
