@@ -4,8 +4,7 @@ import useStyles from './styles';
 import { Box, Button, TextField, Typography } from '@material-ui/core';
 import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
-import Alert from '@mui/material/Alert';
-import Stack from '@mui/material/Stack';
+import { Alert } from '@mui/material';
 
 const Form = () => {
   const styles = useStyles();
@@ -47,20 +46,19 @@ const Form = () => {
           throw Error ('Multiple Matches. Please enter more information.');
         }
         else {
-          throw Error (response.status + "Failed Fetch ");
+          throw Error (response.status + " Failed Fetch");
         }
         })
       .then((responseJson) => {
         history.push("/data-found");
+        setError(null);
       })
       .catch(err => {setError(err.message)});
   }
 
   return (
     <form onSubmit={handleSubmit}>
-      <Stack sx={{ width: '100%' }} spacing={2}>
       <Alert severity="error"> {error && <div>{error}</div>} </Alert>
-      </Stack>
       <TextField
         required
         fullWidth
