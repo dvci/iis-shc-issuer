@@ -43,7 +43,7 @@ const Form = () => {
           throw Error('Patient not found');
         } 
         else if (response.status == 422){
-          throw Error ('We found multiple records and need a little more information.');
+          throw Error ('Please enter more information.');
         }
         else {
           throw Error (response.status + " Failed Fetch");
