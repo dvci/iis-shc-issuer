@@ -13,7 +13,6 @@ const Form = () => {
   const [firstName, setFirstName] = useState(null);
   const [lastName, setLastName] = useState(null);
   const [selectedDate, handleDateChange] = useState(null);
-  const [phoneNumber, setPhoneNumber] = useState(null);
   const [error, setError] = useState(null);
 
 
@@ -44,7 +43,7 @@ const Form = () => {
           throw Error('Patient not found');
         } 
         else if (response.status == 422){
-          throw Error ('Multiple Matches. Please enter more information.');
+          throw Error ('We found multiple records and need a little more information.');
         }
         else {
           throw Error (response.status + " Failed Fetch");
