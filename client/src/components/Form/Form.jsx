@@ -11,20 +11,28 @@ const Form = () => {
   const [firstName, setFirstName] = useState(null);
   const [lastName, setLastName] = useState(null);
   const [selectedDate, handleDateChange] = useState(null);
+  const [address, setAddress] = useState(null);
+  const [motherName, setMotherName] = useState(null);
+  const [phoneNumber, setPhoneNumber] = useState(null);
+  const [sex, setSex] = useState(null);
+
 
   const handleFirstNameChange = event => setFirstName(event.target.value);
   const handleLastNameChange = event => setLastName(event.target.value);
+  const handleAddress = event => setAddress(event.target.value);
+  const handleMotherMaidenName = event => setMotherName(event.target.value);
+  const handlePhoneNUmber = event => setPhoneNumber(event.target.value);
+  const handleSex = event => setSex(event.target.value);
   const enableButton = firstName && lastName && selectedDate;
 
   const dateFns = new DateFnsUtils();
 
   function handleSubmit(event) {
     event.preventDefault();
-    fetch("search?" + new URLSearchParams({
-        given_name: firstName,
-        family_name: lastName,
-        patient_dob: dateFns.format(selectedDate, 'yyyyMMdd'),
-      }), {
+    const searchParams = { given_name: firstName, family_name: lastName,
+    patient_dob: dateFns.format(selectedDate, 'yyyyMMdd')};
+    if (address) searchParams.address = address;
+    fetch("search?" + new URLSearchParams(searchParams), {
       method: "GET",
       headers: {
         Accept: "application/json"
@@ -76,8 +84,41 @@ const Form = () => {
           onChange={handleDateChange}
         />
       </MuiPickersUtilsProvider>
+
+      <TextField
+        fullWidth
+        variant="filled"
+        label="Address"
+        InputLabelProps={{shrink: true}}
+        InputProps={{disableUnderline: true}}
+        onChange={handleAddress}
+        />
+        <TextField
+        fullWidth
+        variant="filled"
+        label="Mother's Maiden Name"
+        InputLabelProps={{shrink: true}}
+        InputProps={{disableUnderline: true}}
+        onChange={handleMotherMaidenName}
+        />
+        <TextField
+        fullWidth
+        variant="filled"
+        label="Phone Number"
+        InputLabelProps={{shrink: true}}
+        InputProps={{disableUnderline: true}}
+        onChange={handlePhoneNUmber}
+        />
+        <TextField
+        fullWidth
+        variant="filled"
+        label="Sex"
+        InputLabelProps={{shrink: true}}
+        InputProps={{disableUnderline: true}}
+        onChange={handleSex}
+        />
       <Box width="530px" display="flex" flexDirection="column" mt={2}>
-        <Typography variant="caption" className={styles.buttonCaption}>
+      <Typography variant="caption" className={styles.buttonCaption}>
           * required fields
         </Typography>
         <Button
