@@ -10,6 +10,8 @@ const DownloadButton = (props) => {
           variant="contained"
           disableElevation
           style={{width: "400px"}}
+          disabled={props.disabled}
+          onClick={props.onClick}
         >
           <Typography variant="h6">
             {props.children}
