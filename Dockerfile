@@ -28,7 +28,7 @@ RUN yarn install --check-files
 COPY . .
 
 # Compile for production build
-RUN yarn build
+RUN bundle exec rake assets:precompile
 
 # Configure the main process to run when running the image
 EXPOSE 5000
