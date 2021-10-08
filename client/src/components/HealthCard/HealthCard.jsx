@@ -59,7 +59,7 @@ const HealthCard = (props) => {
       .then((response) => response.json())
       .then((responseJson) => {
         setHealthCard(responseJson);
-        props.updateFileDownload(responseJson.shc);
+        props.setFileDownload(responseJson.shc);
 
         Promise.all(
           responseJson.qr_codes.map(async (item, i) => {

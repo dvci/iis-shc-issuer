@@ -8,10 +8,6 @@ import HealthCard from '../HealthCard/HealthCard';
 const ResultsDisplay = () => {
   const [fileDownload, setFileDownload] = useState(null);
 
-  const updateFileDownload = (shc) => {
-    setFileDownload(shc)
-  }
-
   const handleFileDownload = () => {
     var byteNumbers = new Uint8Array(fileDownload.length);
 		for (var i = 0; i < fileDownload.length; i++) {
@@ -41,7 +37,7 @@ const ResultsDisplay = () => {
         mt={20}
         mb={20}
       >
-        <HealthCard updateFileDownload={updateFileDownload} />
+        <HealthCard setFileDownload={setFileDownload} />
       </Box>
       <Box display="flex" flexDirection="row" justifyContent="center">
         <DownloadButton disabled={!fileDownload} onClick={handleFileDownload} >Download SMART&reg; Health Card</DownloadButton>
