@@ -12,11 +12,11 @@ services:
       - iis-sandbox
       - v2-to-fhir
     environment:
-      IIS_SANDBOX_USERNAME: mitre
-      IIS_SANDBOX_PASSWORD: mitre
-      IIS_SANDBOX_FACILITY_ID: MITRE Healthcare
-      IIS_SANDBOX_HOST: http://localhost:8081
-      V2_TO_FHIR_HOST: http://localhost:3000
+      - "IIS_SANDBOX_USERNAME=${IIS_SANDBOX_USERNAME}"
+      - "IIS_SANDBOX_PASSWORD=${IIS_SANDBOX_PASSWORD}"
+      - "IIS_SANDBOX_FACILITY_ID=${IIS_SANDBOX_FACILITY_ID}"
+      - "IIS_SANDBOX_HOST=${IIS_SANDBOX_HOST}"
+      - "V2_TO_FHIR_HOST=${V2_TO_FHIR_HOST}"
   iis-sandbox:
     build: ./IIS-Sandbox
     ports:
