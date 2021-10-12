@@ -15,7 +15,7 @@ class SearchForm
   end
 
   def to_query
-    as_json.compact
+    as_json.deep_symbolize_keys.compact
   end
 
   private
