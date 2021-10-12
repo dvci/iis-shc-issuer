@@ -50,6 +50,20 @@ module IISSHCIssuer
 
   # Errors related to the V2 to FHIR Translator
 
+  # Exception thrown when no patient is present in the V2 message
+  class V2PatientNotFoundError < V2ToFhirError
+    def initialize(msg = 'Unable to locate matching patient')
+      super(msg)
+    end
+  end
+
+  # Exception thrown when multiple patients are present in the V2 message
+  class V2MultiplePatientsFoundError < V2ToFhirError
+    def initialize(msg = 'Found more than one patient')
+      super(msg)
+    end
+  end
+
   # Exception thrown when the Faraday call to the v2_to_fhir translator returns an error message
   class V2ParsingError < V2ToFhirError
     def initialize(msg = nil)
