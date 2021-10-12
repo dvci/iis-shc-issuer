@@ -23,5 +23,5 @@ services:
       - "8081:8080"
   v2-to-fhir: 
     build: ./hl7v2-fhir-vaccine-credential-converter
-    ports:
-      - "3000:3000"
+    expose:
+      - "3000"
