@@ -15,8 +15,8 @@ const Form = () => {
   const [city, setCity] = useState(null);
   const [state, setState] = useState(null);
   const [zip, setZip] = useState(null);
-  const [motherName, setMotherName] = useState(null);
-  const [phoneNumber, setPhoneNumber] = useState(null);
+  const [mothers_maiden_name, setMotherName] = useState(null);
+  const [phone, setPhoneNumber] = useState(null);
   const [sex, setSex] = useState(null);
 
 
@@ -41,8 +41,8 @@ const Form = () => {
     if (city) searchParams.city = city; 
     if (state) searchParams.state = state;
     if (zip) searchParams.zip = zip;
-    if (motherName) searchParams.motherName = motherName;
-    if (phoneNumber) searchParams.phoneNumber = phoneNumber;
+    if (mothers_maiden_name) searchParams.mothers_maiden_name = mothers_maiden_name;
+    if (phone) searchParams.phone = phone;
     if (sex) searchParams.sex = sex;
 
     fetch("search?" + new URLSearchParams(searchParams), {
