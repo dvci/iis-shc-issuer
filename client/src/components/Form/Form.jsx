@@ -11,7 +11,10 @@ const Form = () => {
   const [firstName, setFirstName] = useState(null);
   const [lastName, setLastName] = useState(null);
   const [selectedDate, handleDateChange] = useState(null);
-  const [address, setAddress] = useState(null);
+  const [street, setStreet] = useState(null);
+  const [city, setCity] = useState(null);
+  const [state, setState] = useState(null);
+  const [zip, setZip] = useState(null);
   const [motherName, setMotherName] = useState(null);
   const [phoneNumber, setPhoneNumber] = useState(null);
   const [sex, setSex] = useState(null);
@@ -19,7 +22,10 @@ const Form = () => {
 
   const handleFirstNameChange = event => setFirstName(event.target.value);
   const handleLastNameChange = event => setLastName(event.target.value);
-  const handleAddress = event => setAddress(event.target.value);
+  const handleStreet = event => setStreet(event.target.value);
+  const handleCity = event => setCity(event.target.value);
+  const handleState = event => setState(event.target.value);
+  const handleZip = event => setZip(event.target.value);
   const handleMotherMaidenName = event => setMotherName(event.target.value);
   const handlePhoneNUmber = event => setPhoneNumber(event.target.value);
   const handleSex = event => setSex(event.target.value);
@@ -31,7 +37,14 @@ const Form = () => {
     event.preventDefault();
     const searchParams = { given_name: firstName, family_name: lastName,
     patient_dob: dateFns.format(selectedDate, 'yyyyMMdd')};
-    if (address) searchParams.address = address;
+    if (street) searchParams.street = street;
+    if (city) searchParams.city = city; 
+    if (state) searchParams.state = state;
+    if (zip) searchParams.zip = zip;
+    if (motherName) searchParams.motherName = motherName;
+    if (phoneNumber) searchParams.phoneNumber = phoneNumber;
+    if (sex) searchParams.sex = sex;
+
     fetch("search?" + new URLSearchParams(searchParams), {
       method: "GET",
       headers: {
@@ -88,10 +101,34 @@ const Form = () => {
       <TextField
         fullWidth
         variant="filled"
-        label="Address"
+        label="Street"
         InputLabelProps={{shrink: true}}
         InputProps={{disableUnderline: true}}
-        onChange={handleAddress}
+        onChange={handleStreet}
+        />
+              <TextField
+        fullWidth
+        variant="filled"
+        label="City"
+        InputLabelProps={{shrink: true}}
+        InputProps={{disableUnderline: true}}
+        onChange={handleCity}
+        />
+              <TextField
+        fullWidth
+        variant="filled"
+        label="State"
+        InputLabelProps={{shrink: true}}
+        InputProps={{disableUnderline: true}}
+        onChange={handleState}
+        />
+              <TextField
+        fullWidth
+        variant="filled"
+        label="Zip"
+        InputLabelProps={{shrink: true}}
+        InputProps={{disableUnderline: true}}
+        onChange={handleZip}
         />
         <TextField
         fullWidth

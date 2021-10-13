@@ -24,5 +24,6 @@ class PatientController < ApplicationController
   def search_params
     params.require(SearchParameters.required)
     params.permit(SearchParameters.all)
+    # byebug
   end
 end

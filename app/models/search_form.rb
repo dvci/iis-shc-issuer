@@ -12,6 +12,7 @@ class SearchForm
     @admin_sex = params[:sex] if ADMIN_SEX.include?(params[:sex])
     @address = hash_or_nil(params.slice(:street, :city, :state, :zip))
     @id = params[:id]
+    @mothers_name = params[:mothers_name]
   end
 
   def to_query
