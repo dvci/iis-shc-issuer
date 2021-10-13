@@ -4,6 +4,8 @@ class SearchForm
 
   attr_reader(*QueryParameters.all)
 
+  # Attribute name must match the key name expected by V2MessageBuilder as
+  # the hash is generated in to_query using attribute names
   def initialize(params)
     @patient_name = hash_or_nil(params.slice(:family_name, :given_name))
     @patient_dob = params[:patient_dob]
@@ -12,7 +14,7 @@ class SearchForm
     @admin_sex = params[:sex] if ADMIN_SEX.include?(params[:sex])
     @address = hash_or_nil(params.slice(:street, :city, :state, :zip))
     @id = params[:id]
-    @mothers_name = params[:mothers_name]
+    @mothers_maiden_name = params[:mothers_name]
   end
 
   def to_query

@@ -4,6 +4,7 @@ default: &default
       - given_name
       - family_name
     - patient_dob
+    - mothers_maiden_name
     - phone
     - sex
     - id
