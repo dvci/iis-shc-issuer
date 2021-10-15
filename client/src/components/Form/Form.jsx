@@ -30,7 +30,7 @@ const Form = () => {
   const handleState = event => setState(event.target.value);
   const handleZip = event => setZip(event.target.value);
   const handleMotherMaidenName = event => setMotherName(event.target.value);
-  const handlePhoneNUmber = event => setPhoneNumber(event.target.value);
+  const handlePhoneNumber = event => setPhoneNumber(event.target.value);
   const handleSex = event => setSex(event.target.value);
   const enableButton = firstName && lastName && selectedDate;
 
@@ -162,7 +162,7 @@ const Form = () => {
         label="Phone Number"
         InputLabelProps={{shrink: true}}
         InputProps={{disableUnderline: true}}
-        onChange={handlePhoneNUmber}
+        onChange={handlePhoneNumber}
         />
         <TextField
         fullWidth
