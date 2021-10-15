@@ -88,7 +88,8 @@ const HealthCard = (props) => {
           <Box display="flex" flexDirection="row" alignItems="center" className={styles.flexRow}>
             <Box display="flex" alignItems="flex-start" justifyContent="center" className={styles.group4}>
               <div className={styles.overlapGroup}>
-                <img
+                <Box
+                  component="img"
                   className={styles.bitmap}
                   src={issuer.logo}
                   alt="Issuer logo"
