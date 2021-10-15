@@ -12,7 +12,7 @@ import {
   ListItem,
 } from "@material-ui/core";
 import VisibilityIcon from "@material-ui/icons/Visibility";
-import logo from "../../../images/2020_01_MITRE_logos_Base.jpg";
+import logo from "../../../images/mitre-logo.svg";
 import QRCode from "qrcode";
 
 const HealthCard = (props) => {

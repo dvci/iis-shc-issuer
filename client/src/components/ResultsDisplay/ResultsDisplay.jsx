@@ -18,7 +18,6 @@ const ResultsDisplay = () => {
     html2canvas(targetComponent, {
       logging: false,
       useCORS: true,
-      allowTaint: true,
       scale: 1,
       scrollY: window.scrollTo({
         top: 0,
