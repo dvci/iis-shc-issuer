@@ -124,7 +124,7 @@ const Form = () => {
         InputProps={{disableUnderline: true}}
         onChange={handleStreet}
         />
-              <TextField
+      <TextField
         fullWidth
         variant="filled"
         label="City"
@@ -132,7 +132,7 @@ const Form = () => {
         InputProps={{disableUnderline: true}}
         onChange={handleCity}
         />
-              <TextField
+      <TextField
         fullWidth
         variant="filled"
         label="State"
@@ -140,7 +140,7 @@ const Form = () => {
         InputProps={{disableUnderline: true}}
         onChange={handleState}
         />
-              <TextField
+      <TextField
         fullWidth
         variant="filled"
         label="Zip"
@@ -148,7 +148,7 @@ const Form = () => {
         InputProps={{disableUnderline: true}}
         onChange={handleZip}
         />
-        <TextField
+      <TextField
         fullWidth
         variant="filled"
         label="Mother's Maiden Name"
@@ -156,7 +156,7 @@ const Form = () => {
         InputProps={{disableUnderline: true}}
         onChange={handleMotherMaidenName}
         />
-        <TextField
+      <TextField
         fullWidth
         variant="filled"
         label="Phone Number"
@@ -164,7 +164,7 @@ const Form = () => {
         InputProps={{disableUnderline: true}}
         onChange={handlePhoneNumber}
         />
-        <TextField
+      <TextField
         fullWidth
         variant="filled"
         label="Sex"
