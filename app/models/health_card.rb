@@ -1,5 +1,5 @@
 class HealthCard
-  attr_accessor :patient, :immunizations, :qr_codes
+  attr_accessor :patient, :immunizations, :qr_codes, :shc
 
   def initialize(bundle:, issuer:, vaccine_group: 'COVID-19')
     patient_entry = bundle.entry.find { |e| e.resource.is_a?(FHIR::Patient) }
@@ -13,6 +13,8 @@ class HealthCard
 
     qr_codes = HealthCards::Exporter.qr_codes(jws)
     @qr_codes = qr_codes.chunks.map { |chunk| chunk.qrcode.data }
+
+    @shc = HealthCards::Exporter.download([jws])
   end
 
   private

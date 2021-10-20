@@ -15,7 +15,7 @@ import VisibilityIcon from "@material-ui/icons/Visibility";
 import logo from "../../../images/mitre-logo.svg";
 import QRCode from "qrcode";
 
-function HealthCard(props) {
+const HealthCard = (props) => {
   const styles = useStyles();
   const {
     issuer = {
@@ -59,6 +59,7 @@ function HealthCard(props) {
       .then((response) => response.json())
       .then((responseJson) => {
         setHealthCard(responseJson);
+        props.setFileDownload(responseJson.shc);
 
         Promise.all(
           responseJson.qr_codes.map(async (item, i) => {
@@ -163,9 +164,9 @@ function HealthCard(props) {
       </Card>
     </Box>
   );
-}
+};
 
-function HealthCardVaccination(props) {
+const HealthCardVaccination = (props) => {
   const styles = useStyles();
   const { vaccine, lot_number, occurrence, vaccinator, index } = props;
 
@@ -212,6 +213,6 @@ function HealthCardVaccination(props) {
       </Grid>
     </Box>
   );
-}
+};
 
 export default HealthCard;
