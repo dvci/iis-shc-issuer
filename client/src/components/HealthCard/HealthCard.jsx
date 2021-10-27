@@ -15,14 +15,8 @@ import VisibilityIcon from "@material-ui/icons/Visibility";
 import logo from "../../../images/mitre-logo.svg";
 import QRCode from "qrcode";
 
-const HealthCard = (props) => {
+const HealthCard = ({issuer = { title: "IIS SMART Health Card Issuer", logo: logo}, setFileDownload, pdfView = false, callbackPdfView}) => {
   const styles = useStyles();
-  const {
-    issuer = {
-      title: "IIS SMART Health Card Issuer",
-      logo: logo,
-    },
-  } = props;
 
   const [healthCard, setHealthCard] = useState({
     patient: {
@@ -33,6 +27,7 @@ const HealthCard = (props) => {
     qr_codes: [],
   });
   const [showDateOfBirth, setShowDateOfBirth] = useState(false);
+  const [restoreShowDateOfBirth, setRestoreShowDateOfBirth] = useState(null);
   const [dateOfBirthDisplay, setDateOfBirthDisplay] = useState("**/**/****");
   const [qrCodesRendered, setQrCodesRendered] = useState([]);
 
@@ -59,7 +54,7 @@ const HealthCard = (props) => {
       .then((response) => response.json())
       .then((responseJson) => {
         setHealthCard(responseJson);
-        props.setFileDownload(responseJson.shc);
+        setFileDownload(responseJson.shc);
 
         Promise.all(
           responseJson.qr_codes.map(async (item, i) => {
@@ -72,13 +67,36 @@ const HealthCard = (props) => {
       .catch(console.log());
   }, []);
 
-  const handleClickShowDateOfBirth = () => {
-    setShowDateOfBirth(!showDateOfBirth);
+
+  useEffect(() => {
+    if (pdfView && showDateOfBirth) {
+      callbackPdfView();
+    }
+  }, [dateOfBirthDisplay]);
+
+  useEffect(() => {
+    if (pdfView) {
+      setRestoreShowDateOfBirth(showDateOfBirth);
+      if(showDateOfBirth){
+        callbackPdfView();
+      }
+      setShowDateOfBirth(true);
+    } else if (restoreShowDateOfBirth != null){
+      setShowDateOfBirth(restoreShowDateOfBirth);
+      setRestoreShowDateOfBirth(null);
+    }
+  }, [pdfView]);
+
+  useEffect(() => {
     if (!showDateOfBirth) {
       setDateOfBirthDisplay("**/**/****");
     } else {
       setDateOfBirthDisplay(healthCard.patient.birth_date);
     }
+  }, [showDateOfBirth]);
+
+  const toggleShowDateOfBirth = () => {
+    setShowDateOfBirth(!showDateOfBirth);
   };
 
   return (
@@ -119,7 +137,7 @@ const HealthCard = (props) => {
               <IconButton
                 className={styles.eyeOutline}
                 aria-label="toggle datofbirth visibility"
-                onClick={handleClickShowDateOfBirth}
+                onClick={toggleShowDateOfBirth}
               >
                 <VisibilityIcon />
               </IconButton>
@@ -167,9 +185,8 @@ const HealthCard = (props) => {
   );
 };
 
-const HealthCardVaccination = (props) => {
+const HealthCardVaccination = ({ vaccine, lot_number, occurrence, vaccinator, index }) => {
   const styles = useStyles();
-  const { vaccine, lot_number, occurrence, vaccinator, index } = props;
 
   return (
     <Box display="flex" flexDirection="column" alignItems="flex-start" className={styles.group8}>
