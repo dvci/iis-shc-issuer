@@ -15,7 +15,7 @@ import VisibilityIcon from "@material-ui/icons/Visibility";
 import logo from "../../../images/mitre-logo.svg";
 import QRCode from "qrcode";
 
-const HealthCard = ({issuer = { title: "IIS SMART Health Card Issuer", logo: logo}, setFileDownload, pdfView = false, callbackPdfView}) => {
+const HealthCard = ({issuer = { title: "IIS SMART Health Card Issuer", logo: logo}, setFileDownload}) => {
   const styles = useStyles();
 
   const [healthCard, setHealthCard] = useState({
@@ -27,8 +27,6 @@ const HealthCard = ({issuer = { title: "IIS SMART Health Card Issuer", logo: log
     qr_codes: [],
   });
   const [showDateOfBirth, setShowDateOfBirth] = useState(false);
-  const [restoreShowDateOfBirth, setRestoreShowDateOfBirth] = useState(null);
-  const [dateOfBirthDisplay, setDateOfBirthDisplay] = useState("**/**/****");
   const [qrCodesRendered, setQrCodesRendered] = useState([]);
 
   useEffect(() => {
@@ -67,34 +65,6 @@ const HealthCard = ({issuer = { title: "IIS SMART Health Card Issuer", logo: log
       .catch(console.log());
   }, []);
 
-
-  useEffect(() => {
-    if (pdfView && showDateOfBirth) {
-      callbackPdfView();
-    }
-  }, [dateOfBirthDisplay]);
-
-  useEffect(() => {
-    if (pdfView) {
-      setRestoreShowDateOfBirth(showDateOfBirth);
-      if(showDateOfBirth){
-        callbackPdfView();
-      }
-      setShowDateOfBirth(true);
-    } else if (restoreShowDateOfBirth != null){
-      setShowDateOfBirth(restoreShowDateOfBirth);
-      setRestoreShowDateOfBirth(null);
-    }
-  }, [pdfView]);
-
-  useEffect(() => {
-    if (!showDateOfBirth) {
-      setDateOfBirthDisplay("**/**/****");
-    } else {
-      setDateOfBirthDisplay(healthCard.patient.birth_date);
-    }
-  }, [showDateOfBirth]);
-
   const toggleShowDateOfBirth = () => {
     setShowDateOfBirth(!showDateOfBirth);
   };
@@ -130,8 +100,11 @@ const HealthCard = ({issuer = { title: "IIS SMART Health Card Issuer", logo: log
                 <Typography className={styles.dateOfBirthLabel}>
                   DATE OF BIRTH
                 </Typography>
-                <Typography className={styles.dateOfBirth}>
-                  {dateOfBirthDisplay}
+                <Typography className={styles.dateOfBirth} hidden={!showDateOfBirth} id="dateOfBirth">
+                  {healthCard.patient.birth_date}
+                </Typography>
+                <Typography className={styles.dateOfBirth} hidden={showDateOfBirth} data-html2canvas-ignore="true">
+                  {"**/**/****"}
                 </Typography>
               </Box>
               <IconButton

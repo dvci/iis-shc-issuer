@@ -9,22 +9,19 @@ import html2canvas from "html2canvas";
 
 const ResultsDisplay = () => {
   const [fileDownload, setFileDownload] = useState(null);
-  const [pdfView, setPdfView] = useState(false);
 
   const ref = React.useRef();
 
   const handlePdfDownload = () => {
-    setPdfView(true);
-  };
-
-  const callbackPdfDownload = () => {
-    setPdfView(false);
     const source = ref || this.ref;
     const targetComponent = source.current || source;
     html2canvas(targetComponent, {
       logging: false,
       useCORS: true,
-      scale: 1
+      scale: 1,
+      onclone: function (clonedDoc) {
+        clonedDoc.getElementById("dateOfBirth").style.display = 'block';
+      }
     }).then((canvas) => {
       const imgData = canvas.toDataURL("image/png");
       const pdf = new JsPdf();
@@ -67,7 +64,7 @@ const ResultsDisplay = () => {
         mt={20}
         mb={20}
       >
-        <HealthCard setFileDownload={setFileDownload} pdfView={pdfView} callbackPdfView={callbackPdfDownload} />
+        <HealthCard setFileDownload={setFileDownload}/>
       </Box>
       <Box display="flex" flexDirection="row" justifyContent="center" data-html2canvas-ignore="true">
         <DownloadButton disabled={!fileDownload} onClick={handleFileDownload}>Download SMART&reg; Health Card</DownloadButton>
