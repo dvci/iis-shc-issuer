@@ -16,5 +16,11 @@ export default makeStyles(theme => ({
     '&::placeholder': {
       color: '#979797',
     },
-  }
+  },
+  phoneInput: {
+    '&::placeholder': {
+      height: '56px',
+      color: '#979797'
+    },
+  },
 }));

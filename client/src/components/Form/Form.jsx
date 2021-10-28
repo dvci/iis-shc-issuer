@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import useStyles from './styles';
-import { Box, Button, TextField, Typography } from '@material-ui/core';
+import { Box, Button, TextField, Typography, Select, MenuItem, InputLabel } from '@material-ui/core';
 import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
 import Alert from '@material-ui/lab/Alert';
+import PhoneInput from 'react-phone-input-2';
 
 
 const Form = () => {
@@ -15,9 +16,9 @@ const Form = () => {
   const [selectedDate, handleDateChange] = useState(null);
   const [street, setStreet] = useState(null);
   const [city, setCity] = useState(null);
-  const [state, setState] = useState(null);
+  const [USstate, setUSState] = useState(null);
   const [zip, setZip] = useState(null);
-  const [mothers_maiden_name, setMotherName] = useState(null);
+  const [mothersName, setMotherName] = useState(null);
   const [phone, setPhoneNumber] = useState(null);
   const [sex, setSex] = useState(null);
   const [error, setError] = useState(null);
@@ -27,14 +28,28 @@ const Form = () => {
   const handleLastNameChange = event => setLastName(event.target.value);
   const handleStreet = event => setStreet(event.target.value);
   const handleCity = event => setCity(event.target.value);
-  const handleState = event => setState(event.target.value);
+  const handleUSState = event => setUSState(event.target.value);
   const handleZip = event => setZip(event.target.value);
   const handleMotherMaidenName = event => setMotherName(event.target.value);
-  const handlePhoneNumber = event => setPhoneNumber(event.target.value);
+  const handlePhoneNumber = event => setPhoneNumber(event);
   const handleSex = event => setSex(event.target.value);
   const enableButton = firstName && lastName && selectedDate;
 
   const dateFns = new DateFnsUtils();
+
+
+
+  const ITEM_HEIGHT = 48;
+  const ITEM_PADDING_TOP = 8;
+  const MenuProps = {
+    PaperProps: {
+      style: {
+        maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+        width: 100,
+      },
+    },
+  };
+
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -42,9 +57,9 @@ const Form = () => {
     patient_dob: dateFns.format(selectedDate, 'yyyyMMdd')};
     if (street) searchParams.street = street;
     if (city) searchParams.city = city; 
-    if (state) searchParams.state = state;
+    if (USstate) searchParams.state = USstate;
     if (zip) searchParams.zip = zip;
-    if (mothers_maiden_name) searchParams.mothers_maiden_name = mothers_maiden_name;
+    if (mothersName) searchParams.mothers_maiden_name = mothersName;
     if (phone) searchParams.phone = phone;
     if (sex) searchParams.sex = sex;
 
@@ -132,14 +147,76 @@ const Form = () => {
         InputProps={{disableUnderline: true}}
         onChange={handleCity}
         />
-      <TextField
-        fullWidth
-        variant="filled"
-        label="State"
-        InputLabelProps={{shrink: true}}
-        InputProps={{disableUnderline: true}}
-        onChange={handleState}
-        />
+      <InputLabel id="select">State
+        <Select
+            fullWidth
+            labelId="select"
+            label="State"
+            onChange={handleUSState}
+            MenuProps={MenuProps}
+          >
+          <MenuItem value="AL">Alabama</MenuItem>
+          <MenuItem value="AK">Alaska</MenuItem>
+          <MenuItem value="AS">American Samoa</MenuItem>
+          <MenuItem value="AZ">Arizona</MenuItem>
+          <MenuItem value="AR">Arkansas</MenuItem>
+          <MenuItem value="CA">California</MenuItem>
+          <MenuItem value="CO">Colorado</MenuItem>
+          <MenuItem value="CT">Connecticut</MenuItem>
+          <MenuItem value="DE">Delaware</MenuItem>
+          <MenuItem value="DC">District Of Columbia</MenuItem>
+          <MenuItem value="FM">Federated States Of Micronesia</MenuItem>
+          <MenuItem value="FL">Florida</MenuItem>
+          <MenuItem value="GA">Georgia</MenuItem>
+          <MenuItem value="GU">Guam</MenuItem>
+          <MenuItem value="HI">Hawaii</MenuItem>
+          <MenuItem value="ID">Idaho</MenuItem>
+          <MenuItem value="IL">Illinois</MenuItem>
+          <MenuItem value="IN">Indiana</MenuItem>
+          <MenuItem value="IA">Iowa</MenuItem>
+          <MenuItem value="KS">Kansas</MenuItem>
+          <MenuItem value="KY">Kentucky</MenuItem>
+          <MenuItem value="LA">Louisiana</MenuItem>
+          <MenuItem value="ME">Maine</MenuItem>
+          <MenuItem value="MH">Marshall Islands</MenuItem>
+          <MenuItem value="MD">Maryland</MenuItem>
+          <MenuItem value="MA">Massachusetts</MenuItem>
+          <MenuItem value="MI">Michigan</MenuItem>
+          <MenuItem value="MN">Minnesota</MenuItem>
+          <MenuItem value="MS">Mississippi</MenuItem>
+          <MenuItem value="MO">Missouri</MenuItem>
+          <MenuItem value="MT">Montana</MenuItem>
+          <MenuItem value="NE">Nebraska</MenuItem>
+          <MenuItem value="NV">Nevada</MenuItem>
+          <MenuItem value="NH">New Hampshire</MenuItem>
+          <MenuItem value="NJ">New Jersey</MenuItem>
+          <MenuItem value="NM">New Mexico</MenuItem>
+          <MenuItem value="NY">New York</MenuItem>
+          <MenuItem value="NC">North Carolina</MenuItem>
+          <MenuItem value="ND">North Dakota</MenuItem>
+          <MenuItem value="MP">Northern Mariana Islands</MenuItem>
+          <MenuItem value="OH">Ohio</MenuItem>
+          <MenuItem value="OK">Oklahoma</MenuItem>
+          <MenuItem value="OR">Oregon</MenuItem>
+          <MenuItem value="PW">Palau</MenuItem>
+          <MenuItem value="PA">Pennsylvania</MenuItem>
+          <MenuItem value="PR">Puerto Rico</MenuItem>
+          <MenuItem value="RI">Rhode Island</MenuItem>
+          <MenuItem value="SC">South Carolina</MenuItem>
+          <MenuItem value="SD">South Dakota</MenuItem>
+          <MenuItem value="TN">Tennessee</MenuItem>
+          <MenuItem value="TX">Texas</MenuItem>
+          <MenuItem value="UT">Utah</MenuItem>
+          <MenuItem value="VT">Vermont</MenuItem>
+          <MenuItem value="VI">Virgin Islands</MenuItem>
+          <MenuItem value="VA">Virginia</MenuItem>
+          <MenuItem value="WA">Washington</MenuItem>
+          <MenuItem value="WV">West Virginia</MenuItem>
+          <MenuItem value="WI">Wisconsin</MenuItem>
+          <MenuItem value="WY">Wyoming</MenuItem>
+      </Select>
+      </InputLabel>
+      <br></br>
       <TextField
         fullWidth
         variant="filled"
@@ -156,22 +233,32 @@ const Form = () => {
         InputProps={{disableUnderline: true}}
         onChange={handleMotherMaidenName}
         />
-      <TextField
+      <PhoneInput 
         fullWidth
         variant="filled"
         label="Phone Number"
-        InputLabelProps={{shrink: true}}
+        country={'us'}
+        size="large"
+        style={{width: "370px"}}
         InputProps={{disableUnderline: true}}
+        value={phone}
         onChange={handlePhoneNumber}
         />
-      <TextField
-        fullWidth
-        variant="filled"
-        label="Sex"
-        InputLabelProps={{shrink: true}}
-        InputProps={{disableUnderline: true}}
-        onChange={handleSex}
-        />
+        <br></br>
+        <InputLabel id="select">Gender</InputLabel>
+        <Select
+            labelId="select"
+            label="Sex"
+            onChange={handleSex}
+            MenuProps={MenuProps}
+          >
+            <MenuItem value={"A"}>A</MenuItem>
+            <MenuItem value={"F"}>F</MenuItem>
+            <MenuItem value={"M"}>M</MenuItem>
+            <MenuItem value={"N"}>N</MenuItem>
+            <MenuItem value={"O"}>O</MenuItem>
+            <MenuItem value={"U"}>U</MenuItem> 
+        </Select>
       <Box width="530px" display="flex" flexDirection="column" mt={2}>
       <Typography variant="caption" className={styles.buttonCaption}>
           * required fields
