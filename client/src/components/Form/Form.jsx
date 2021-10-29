@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import useStyles from './styles';
-import { Box, Button, TextField, Typography, Select, MenuItem, InputLabel } from '@material-ui/core';
+import { Box, Button, TextField, Typography, Select, MenuItem, InputLabel, InputAdornment } from '@material-ui/core';
 import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
 import Alert from '@material-ui/lab/Alert';
-import PhoneInput from 'react-phone-input-2';
 
 
 const Form = () => {
@@ -22,16 +21,14 @@ const Form = () => {
   const [phone, setPhoneNumber] = useState(null);
   const [sex, setSex] = useState(null);
   const [error, setError] = useState(null);
-
-
+  const [phoneError, setPhoneError] = useState(false);
+  const [zipError, setZipError] = useState(false)
   const handleFirstNameChange = event => setFirstName(event.target.value);
   const handleLastNameChange = event => setLastName(event.target.value);
   const handleStreet = event => setStreet(event.target.value);
   const handleCity = event => setCity(event.target.value);
   const handleUSState = event => setUSState(event.target.value);
-  const handleZip = event => setZip(event.target.value);
   const handleMotherMaidenName = event => setMotherName(event.target.value);
-  const handlePhoneNumber = event => setPhoneNumber(event);
   const handleSex = event => setSex(event.target.value);
   const enableButton = firstName && lastName && selectedDate;
 
@@ -220,10 +217,17 @@ const Form = () => {
       <TextField
         fullWidth
         variant="filled"
+        error={zipError}
+        value={zip}
         label="Zip"
         InputLabelProps={{shrink: true}}
         InputProps={{disableUnderline: true}}
-        onChange={handleZip}
+        onChange={(e) => {
+          setZip(e.target.value);
+          if (e.target.value.length > 5) {
+            setZipError(true);
+          }
+        }}
         />
       <TextField
         fullWidth
@@ -233,17 +237,25 @@ const Form = () => {
         InputProps={{disableUnderline: true}}
         onChange={handleMotherMaidenName}
         />
-      <PhoneInput 
+      <TextField
+        type="phone"
         fullWidth
         variant="filled"
-        label="Phone Number"
-        country={'us'}
-        size="large"
-        style={{width: "370px"}}
-        InputProps={{disableUnderline: true}}
+        error={phoneError}
         value={phone}
-        onChange={handlePhoneNumber}
-        />
+        label="Phone Number"
+        onChange={(e) => {
+          setPhoneNumber(e.target.value);
+          if (e.target.value.length > 10) {
+            setPhoneError(true);
+          }
+        }}
+        InputProps={{
+          startAdornment: <InputAdornment position="start">
+             +1
+             </InputAdornment>,
+        }}
+      />
         <br></br>
         <InputLabel id="select">Gender</InputLabel>
         <Select
