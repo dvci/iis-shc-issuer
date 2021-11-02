@@ -12,7 +12,7 @@ import {
   ListItem,
 } from "@material-ui/core";
 import VisibilityIcon from "@material-ui/icons/Visibility";
-import logo from "../../../images/mitre-logo.svg";
+import logo from "../../../images/mitre-logo.png";
 import QRCode from "qrcode";
 
 const HealthCard = ({issuer = { title: "IIS SMART Health Card Issuer", logo: logo}, setFileDownload}) => {
