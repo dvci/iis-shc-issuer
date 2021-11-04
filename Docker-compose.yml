@@ -1,0 +1,27 @@
+version: '3'
+services: 
+  app:
+    build: .
+    ports:
+      - "5000:5000"
+    command: bundle exec rails s -p 5000
+    depends_on:
+      - iis-sandbox
+      - v2-to-fhir
+    links:
+      - iis-sandbox
+      - v2-to-fhir
+    environment:
+      - "IIS_SANDBOX_USERNAME=${IIS_SANDBOX_USERNAME}"
+      - "IIS_SANDBOX_PASSWORD=${IIS_SANDBOX_PASSWORD}"
+      - "IIS_SANDBOX_FACILITY_ID=${IIS_SANDBOX_FACILITY_ID}"
+      - "IIS_SANDBOX_HOST=${IIS_SANDBOX_HOST}"
+      - "V2_TO_FHIR_HOST=${V2_TO_FHIR_HOST}"
+  iis-sandbox:
+    build: ./IIS-Sandbox
+    ports:
+      - "8081:8080"
+  v2-to-fhir: 
+    build: ./hl7v2-fhir-vaccine-credential-converter
+    ports:
+      - "3000:3000"
