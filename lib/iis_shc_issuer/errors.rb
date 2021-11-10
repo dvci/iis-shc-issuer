@@ -8,10 +8,10 @@ module IISSHCIssuer
   class V2ToFhirError < IISSHCIssuerError; end
 
   # Standard Errors
-
+  # Exception thrown when the client is missing or has invalid information
   class InvalidSearchError < StandardError
     def initialize(msg)
-      super ("Query was contained missing or invalid parameters: #{msg}")
+      super "Query contained missing or invalid parameters: #{msg}"
     end
   end
 

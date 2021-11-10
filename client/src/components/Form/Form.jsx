@@ -56,7 +56,10 @@ const Form = () => {
     if (city) searchParams.city = city; 
     if (USstate) searchParams.state = USstate;
     if (zip) searchParams.zip = zip;
-    if (mothersName) searchParams.mothers_maiden_name = mothersName;
+    if (mothersName) {
+      searchParams.mothers_maiden_name = mothersName;
+      searchParams.name_code = 'M';
+    }
     if (phone) searchParams.phone = phone;
     if (sex) searchParams.sex = sex;
 
@@ -226,6 +229,8 @@ const Form = () => {
           setZip(e.target.value);
           if (e.target.value.length > 5) {
             setZipError(true);
+          } else {
+            setZipError(false);
           }
         }}
         />
@@ -248,6 +253,8 @@ const Form = () => {
           setPhoneNumber(e.target.value);
           if (e.target.value.length > 10) {
             setPhoneError(true);
+          } else {
+            setPhoneError(false);
           }
         }}
         InputProps={{
@@ -257,19 +264,19 @@ const Form = () => {
         }}
       />
         <br></br>
-        <InputLabel id="select">Gender</InputLabel>
+        <InputLabel id="select">Sex</InputLabel>
         <Select
             labelId="select"
             label="Sex"
             onChange={handleSex}
             MenuProps={MenuProps}
           >
-            <MenuItem value={"A"}>A</MenuItem>
-            <MenuItem value={"F"}>F</MenuItem>
-            <MenuItem value={"M"}>M</MenuItem>
-            <MenuItem value={"N"}>N</MenuItem>
-            <MenuItem value={"O"}>O</MenuItem>
-            <MenuItem value={"U"}>U</MenuItem> 
+            <MenuItem value={"A"}>Ambiguous</MenuItem>
+            <MenuItem value={"F"}>Female</MenuItem>
+            <MenuItem value={"M"}>Male</MenuItem>
+            <MenuItem value={"N"}>Not Applicable</MenuItem>
+            <MenuItem value={"O"}>Other</MenuItem>
+            <MenuItem value={"U"}>Unknown</MenuItem> 
         </Select>
       <Box width="530px" display="flex" flexDirection="column" mt={2}>
       <Typography variant="caption" className={styles.buttonCaption}>

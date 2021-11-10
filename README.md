@@ -13,6 +13,11 @@ bundle exec rails s
 ```
 Then visit [http://localhost:3000](http://localhost:3000)
 
+## Configuration
+
+The search for a patient will require the first name, last name, and date of birth as the required fields. If there is a match between the initial patient and those fields, a SMART card will be returned. If there is are multiple patients with matching initial credentials, additional information will be required to help correctly retrieve the right patient. 
+
+Some sample data that can be used - FirstName: VallisAIRA, lastName: RogersAIRA, and DoB: 07/15/2016. Additional information can be filled out as well.
 
 ## License
 

@@ -15,7 +15,8 @@ class PatientController < ApplicationController
     render json: fhir_bundle
   rescue IISSHCIssuer::V2PatientNotFoundError
     head :not_found
-  rescue IISSHCIssuer::V2MultiplePatientsFoundError, IISSHCIssuer::InvalidSearchError, ActionController::ParameterMissing
+  rescue IISSHCIssuer::V2MultiplePatientsFoundError, IISSHCIssuer::InvalidSearchError,
+         ActionController::ParameterMissing
     head :unprocessable_entity
   end
 

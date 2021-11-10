@@ -11,7 +11,7 @@ module IISSHCIssuer
     extend self
     # Query a patient's Immunization history from the IIS Sandbox
     # @param patient_info [PatientQuery] Patient demographic info sent from the IIS Consumer Portal
-    # @param credentials [Hash] (optional) User Id, Password, and Facility Id for the IIS Sandbox login
+    # @param sandbox_credentials [Hash] (optional) User Id, Password, and Facility Id for the IIS Sandbox login
     # @return [HL7::Message] The HL7 V2 Response message from the IIS-Sandbox
     def query(patient_info,
               sandbox_credentials = { username: Rails.application.config.iis_username,
