@@ -132,6 +132,7 @@ const Form = () => {
       </MuiPickersUtilsProvider>
 
       <TextField
+        required={city || zip || USstate}
         fullWidth
         variant="filled"
         label="Street"
@@ -140,6 +141,7 @@ const Form = () => {
         onChange={handleStreet}
         />
       <TextField
+        required={street || zip || USstate}
         fullWidth
         variant="filled"
         label="City"
@@ -149,6 +151,7 @@ const Form = () => {
         />
       <InputLabel id="select">State
         <Select
+            required={street || zip || city}
             fullWidth
             labelId="select"
             label="State"
@@ -218,6 +221,7 @@ const Form = () => {
       </InputLabel>
       <br></br>
       <TextField
+        required={street || city || USstate}
         fullWidth
         variant="filled"
         error={zipError}
