@@ -18,12 +18,22 @@ const ResultsDisplay = () => {
     html2canvas(targetComponent, {
       logging: false,
       useCORS: true,
+      scrollX: 0,
       scale: 1,
       onclone: function (clonedDoc) {
         clonedDoc.getElementById("dateOfBirth").style.display = 'block';
       }
     }).then((canvas) => {
-      const imgData = canvas.toDataURL("image/png");
+      const newCanvas = document.createElement('canvas');
+      const context = newCanvas.getContext('2d');
+      newCanvas.width = canvas.width;
+      newCanvas.height = (canvas.height/(canvas.width-200))*canvas.width;
+      context.drawImage(canvas, 100, 0, 
+        canvas.width-200, canvas.height, 
+        0, 0, 
+        canvas.width, (canvas.height/(canvas.width-200))*canvas.width);
+            
+      const imgData = newCanvas.toDataURL("image/png");
       const pdf = new JsPdf();
       const imgProps = pdf.getImageProperties(imgData);
       const pdfWidth = pdf.internal.pageSize.getWidth();
