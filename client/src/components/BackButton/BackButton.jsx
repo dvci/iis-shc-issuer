@@ -12,8 +12,9 @@ const BackButton = () => {
           startIcon={ <ChevronLeft /> }
           component={ Link }
           to="/"
+          data-html2canvas-ignore="true"
         >
-          <Typography variant="h6">
+          <Typography variant="h6" data-html2canvas-ignore="true">
             BACK TO SEARCH
           </Typography>
         </Button>

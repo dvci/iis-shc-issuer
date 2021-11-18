@@ -122,7 +122,6 @@ export default makeStyles((theme) => ({
     marginTop: "10px",
     minHeight: "230px",
     position: "relative",
-    width: "428px",
   },
   //.group-12
   group12: {
