@@ -1,7 +1,7 @@
 const formConfig = {
   fields: {
     firstName: {
-      display: true,
+      display: false,
       required: true,
     },
     lastName: {
@@ -10,7 +10,7 @@ const formConfig = {
     },
     selectedDate: {
       display: true,
-      required: true,
+      required: false,
     },
     street: {
       display: true,
@@ -21,11 +21,11 @@ const formConfig = {
       required: true,
     },
     USstate: {
-      display: true,
+      display: false,
       required: true,
     },
     zip: {
-      display: true,
+      display: false,
       required: true,
     },
     motherName: {
@@ -34,11 +34,11 @@ const formConfig = {
     },
     phone: {
       display: true,
-      required: true,
+      required: false,
     },
     sex: {
       display: true,
-      required: true,
+      required: false,
     },
   },
 };
