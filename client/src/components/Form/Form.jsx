@@ -5,7 +5,7 @@ import { Box, Button, TextField, Typography, Select, MenuItem, InputLabel, Input
 import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
 import Alert from '@material-ui/lab/Alert';
-import allFields from './form_config.json';
+import allFields from './formConfig';
 
 
 const Form = () => {
