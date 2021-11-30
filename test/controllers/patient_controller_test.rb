@@ -62,11 +62,14 @@ class PatientControllerTest < ActionDispatch::IntegrationTest
     assert_response :ok
 
     bundle = FHIR.from_contents(session[:fhir_bundle])
-    assert bundle.is_a?(FHIR::Bundle)
+    assert bundle.is_a?(FHIR::Bundle) 
     resources = bundle.entry.map(&:resource)
     assert_equal 3, resources.length
 
+    # puts (bundle.to_json)
     patient = resources[0]
+    # puts (patient.to_json)
+
     assert patient.is_a?(FHIR::Patient)
     name = patient.name.first
     address = patient.address

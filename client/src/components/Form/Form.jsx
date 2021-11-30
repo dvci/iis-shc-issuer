@@ -5,6 +5,7 @@ import { Box, Button, TextField, Typography, Select, MenuItem, InputLabel, Input
 import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
 import Alert from '@material-ui/lab/Alert';
+import allFields from './form_config.json';
 
 
 const Form = () => {
@@ -46,7 +47,6 @@ const Form = () => {
       },
     },
   };
-
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -94,8 +94,9 @@ const Form = () => {
   return (
     <form onSubmit={handleSubmit}>
       {error && ( <Alert severity="error"> <div> {error}</div> </Alert> )}
+      {allFields.fields.firstName.display && 
       <TextField
-        required
+        required={allFields.fields.firstName.required}
         fullWidth
         variant="filled"
         label="First Name"
@@ -103,8 +104,10 @@ const Form = () => {
         InputProps={{disableUnderline: true}}
         onChange={handleFirstNameChange}
       />
+      }
+      {allFields.fields.lastName.display && 
       <TextField
-        required
+        required={allFields.fields.lastName.required}
         fullWidth
         variant="filled"
         label="Last Name"
@@ -112,9 +115,11 @@ const Form = () => {
         InputProps={{disableUnderline: true}}
         onChange={handleLastNameChange}
       />
+      }
+      {allFields.fields.selectedDate.display && 
       <MuiPickersUtilsProvider utils={DateFnsUtils}>
         <KeyboardDatePicker
-          required
+          required={allFields.fields.selectedDate.required}
           fullWidth
           variant="inline"
           label="Date of Birth"
@@ -130,9 +135,11 @@ const Form = () => {
           onChange={handleDateChange}
         />
       </MuiPickersUtilsProvider>
+      }
 
+      {allFields.fields.street.display &&
       <TextField
-        required={city || zip || USstate}
+        required={allFields.fields.street.required}
         fullWidth
         variant="filled"
         label="Street"
@@ -140,8 +147,11 @@ const Form = () => {
         InputProps={{disableUnderline: true}}
         onChange={handleStreet}
         />
+      }
+
+      {allFields.fields.city.display &&
       <TextField
-        required={street || zip || USstate}
+        required={allFields.fields.city.required}
         fullWidth
         variant="filled"
         label="City"
@@ -149,9 +159,11 @@ const Form = () => {
         InputProps={{disableUnderline: true}}
         onChange={handleCity}
         />
-      <InputLabel id="select">State
+      }
+
+      {allFields.fields.USstate.display && 
+      <InputLabel id="select">State 
         <Select
-            required={street || zip || city}
             fullWidth
             labelId="select"
             label="State"
@@ -219,9 +231,12 @@ const Form = () => {
           <MenuItem value="WY">Wyoming</MenuItem>
       </Select>
       </InputLabel>
+      }
+
       <br></br>
+      {allFields.fields.zip.display && 
       <TextField
-        required={street || city || USstate}
+        required={allFields.fields.zip.required}
         fullWidth
         variant="filled"
         error={zipError}
@@ -238,7 +253,11 @@ const Form = () => {
           }
         }}
         />
+      }
+
+      {allFields.fields.motherName.display && 
       <TextField
+        required = {allFields.fields.motherName.required}
         fullWidth
         variant="filled"
         label="Mother's Maiden Name"
@@ -246,7 +265,11 @@ const Form = () => {
         InputProps={{disableUnderline: true}}
         onChange={handleMotherMaidenName}
         />
+      }
+
+      {allFields.fields.phone.display && 
       <TextField
+        required = {allFields.fields.phone.required}
         type="phone"
         fullWidth
         variant="filled"
@@ -267,9 +290,13 @@ const Form = () => {
              </InputAdornment>,
         }}
       />
+      }
+      
         <br></br>
-        <InputLabel id="select">Sex</InputLabel>
+        {allFields.fields.sex.display &&
+        <InputLabel id="select">Sex
         <Select
+            fullWidth
             labelId="select"
             label="Sex"
             onChange={handleSex}
@@ -282,6 +309,8 @@ const Form = () => {
             <MenuItem value={"O"}>Other</MenuItem>
             <MenuItem value={"U"}>Unknown</MenuItem> 
         </Select>
+        </InputLabel>
+      }
       <Box width="530px" display="flex" flexDirection="column" mt={2}>
       <Typography variant="caption" className={styles.buttonCaption}>
           * required fields

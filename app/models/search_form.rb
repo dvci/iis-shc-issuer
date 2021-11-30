@@ -14,7 +14,7 @@ class SearchForm
     @address = hash_or_nil(params.slice(:street, :city, :state, :zip))
     @id = params[:id]
     # @mothers_maiden_n = params[:mothers_maiden_name]
-    @mothers_maiden_n = hash_or_nil(params.slice(:mothers_maiden_name, :given_name, :name_code))
+    @mothers_maiden_n = hash_or_nil(params.slice(:mothers_maiden_name, :name_given, :name_code))
   end
 
   def to_query

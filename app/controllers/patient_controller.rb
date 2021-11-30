@@ -8,7 +8,9 @@ class PatientController < ApplicationController
   end
 
   def search
+    puts(search_params)
     form = SearchForm.new(search_params)
+    puts (form.to_json)
     v2_response = IISSHCIssuer::QBPClient.query(form.to_query)
     fhir_bundle = IISSHCIssuer::V2ToFHIR.translate_to_fhir(v2_response)
     session[:fhir_bundle] = fhir_bundle
