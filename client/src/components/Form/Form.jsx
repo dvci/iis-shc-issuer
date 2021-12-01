@@ -58,7 +58,7 @@ const Form = () => {
     if (zip) searchParams.zip = zip;
     if (mothersName) {
       searchParams.mothers_maiden_name = mothersName;
-      searchParams.name_code = 'M';
+      searchParams.name_type_code = 'M';
     }
     if (phone) searchParams.phone = phone;
     if (sex) searchParams.sex = sex;
