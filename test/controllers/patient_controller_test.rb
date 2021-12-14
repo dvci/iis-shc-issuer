@@ -62,7 +62,7 @@ class PatientControllerTest < ActionDispatch::IntegrationTest
     assert_response :ok
 
     bundle = FHIR.from_contents(session[:fhir_bundle])
-    assert bundle.is_a?(FHIR::Bundle) 
+    assert bundle.is_a?(FHIR::Bundle)
     resources = bundle.entry.map(&:resource)
     assert_equal 3, resources.length
 
