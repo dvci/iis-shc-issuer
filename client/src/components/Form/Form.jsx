@@ -57,10 +57,13 @@ const Form = () => {
     if (USstate) searchParams.state = USstate;
     if (zip) searchParams.zip = zip;
     if (mothersName) {
-      searchParams.mothers_maiden_name = mothersName;
+      searchParams.maiden_name = mothersName;
       searchParams.name_type_code = 'M';
     }
-    if (phone) searchParams.phone = phone;
+    if (phone) {
+      searchParams.area_code = phone.substring(0,3);
+      searchParams.local_number = phone.substring(3,9);
+    }
     if (sex) searchParams.sex = sex;
 
     fetch("search?" + new URLSearchParams(searchParams), {

@@ -4,8 +4,13 @@ default: &default
       - given_name
       - family_name
     - patient_dob
-    - mothers_maiden_name
-    - phone
+    - mothers_maiden_name: 
+      - maiden_name
+      - name_given
+      - name_type_code
+    - phone: 
+      - area_code
+      - local_number
     - sex
     - id
     - address:
