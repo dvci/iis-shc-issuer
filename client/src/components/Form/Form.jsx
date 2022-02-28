@@ -16,9 +16,9 @@ const Form = () => {
   const [street, setStreet] = useState(null);
   const [city, setCity] = useState(null);
   const [USstate, setUSState] = useState(null);
-  const [zip, setZip] = useState(null);
+  const [zip, setZip] = useState("");
   const [mothersName, setMotherName] = useState(null);
-  const [phone, setPhoneNumber] = useState(null);
+  const [phone, setPhoneNumber] = useState("");
   const [sex, setSex] = useState(null);
   const [error, setError] = useState(null);
   const [phoneError, setPhoneError] = useState(false);
@@ -170,6 +170,7 @@ const Form = () => {
             label="State"
             onChange={handleUSState}
             MenuProps={MenuProps}
+            defaultValue=""
           >
           <MenuItem value="AL">Alabama</MenuItem>
           <MenuItem value="AK">Alaska</MenuItem>
@@ -302,6 +303,7 @@ const Form = () => {
               label="Sex"
               onChange={handleSex}
               MenuProps={MenuProps}
+              defaultValue=""
             >
               <MenuItem value={"A"}>Ambiguous</MenuItem>
               <MenuItem value={"F"}>Female</MenuItem>
