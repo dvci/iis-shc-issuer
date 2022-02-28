@@ -12,17 +12,11 @@ import {
   ListItem,
 } from "@material-ui/core";
 import VisibilityIcon from "@material-ui/icons/Visibility";
-import logo from "../../../images/mitre-logo.svg";
+import logo from "../../../images/mitre-logo.png";
 import QRCode from "qrcode";
 
-function HealthCard(props) {
+const HealthCard = ({issuer = { title: "IIS SMART Health Card Issuer", logo: logo}, setFileDownload}) => {
   const styles = useStyles();
-  const {
-    issuer = {
-      title: "IIS SMART Health Card Issuer",
-      logo: logo,
-    },
-  } = props;
 
   const [healthCard, setHealthCard] = useState({
     patient: {
@@ -33,7 +27,6 @@ function HealthCard(props) {
     qr_codes: [],
   });
   const [showDateOfBirth, setShowDateOfBirth] = useState(false);
-  const [dateOfBirthDisplay, setDateOfBirthDisplay] = useState("**/**/****");
   const [qrCodesRendered, setQrCodesRendered] = useState([]);
 
   useEffect(() => {
@@ -59,6 +52,7 @@ function HealthCard(props) {
       .then((response) => response.json())
       .then((responseJson) => {
         setHealthCard(responseJson);
+        setFileDownload(responseJson.shc);
 
         Promise.all(
           responseJson.qr_codes.map(async (item, i) => {
@@ -71,13 +65,8 @@ function HealthCard(props) {
       .catch(console.log());
   }, []);
 
-  const handleClickShowDateOfBirth = () => {
+  const toggleShowDateOfBirth = () => {
     setShowDateOfBirth(!showDateOfBirth);
-    if (!showDateOfBirth) {
-      setDateOfBirthDisplay("**/**/****");
-    } else {
-      setDateOfBirthDisplay(healthCard.patient.birth_date);
-    }
   };
 
   return (
@@ -87,7 +76,8 @@ function HealthCard(props) {
           <Box display="flex" flexDirection="row" alignItems="center" className={styles.flexRow}>
             <Box display="flex" alignItems="flex-start" justifyContent="center" className={styles.group4}>
               <div className={styles.overlapGroup}>
-                <img
+                <Box
+                  component="img"
                   className={styles.bitmap}
                   src={issuer.logo}
                   alt="Issuer logo"
@@ -110,14 +100,17 @@ function HealthCard(props) {
                 <Typography className={styles.dateOfBirthLabel}>
                   DATE OF BIRTH
                 </Typography>
-                <Typography className={styles.dateOfBirth}>
-                  {dateOfBirthDisplay}
+                <Typography className={styles.dateOfBirth} hidden={!showDateOfBirth} id="dateOfBirth">
+                  {healthCard.patient.birth_date}
+                </Typography>
+                <Typography className={styles.dateOfBirth} hidden={showDateOfBirth} data-html2canvas-ignore="true">
+                  {"**/**/****"}
                 </Typography>
               </Box>
               <IconButton
                 className={styles.eyeOutline}
                 aria-label="toggle datofbirth visibility"
-                onClick={handleClickShowDateOfBirth}
+                onClick={toggleShowDateOfBirth}
               >
                 <VisibilityIcon />
               </IconButton>
@@ -163,11 +156,10 @@ function HealthCard(props) {
       </Card>
     </Box>
   );
-}
+};
 
-function HealthCardVaccination(props) {
+const HealthCardVaccination = ({ vaccine, lot_number, occurrence, vaccinator, index }) => {
   const styles = useStyles();
-  const { vaccine, lot_number, occurrence, vaccinator, index } = props;
 
   return (
     <Box display="flex" flexDirection="column" alignItems="flex-start" className={styles.group8}>
@@ -212,6 +204,6 @@ function HealthCardVaccination(props) {
       </Grid>
     </Box>
   );
-}
+};
 
 export default HealthCard;

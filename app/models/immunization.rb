@@ -26,16 +26,16 @@ class Immunization
   def lookup_vaccine_display(cvx)
     return unless cvx
 
-    display_name = TRADENAMES.at_xpath(
+    display_name = TRADENAMES.xpath(
       "//productnames/prodInfo[Value[3]=concat('#{cvx}', ' ')]/Value[1]/text()"
     )
-    if display_name.is_a? Nokogiri::XML::Text
+    if !display_name.empty? && (display_name.length == 1)
       # use CDC product name if single match
       display_name.to_s
     else
-      # else use short description
-      display_name = TRADENAMES.at_xpath(
-        "(//productnames/prodInfo[Value[3]=concat('#{cvx}', ' ')]/Value[2]/text())[1]"
+      # if multiple or no match in tradenames, use first CVX short description from vaccine groups
+      display_name = GROUPS.at_xpath(
+        "(//VGCodes/CVXVGInfo[Value[2]=concat('#{cvx}', ' ')]/Value[1]/text())[1]"
       )
       display_name.nil? ? "CVX #{cvx}" : display_name.to_s
     end

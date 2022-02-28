@@ -8,10 +8,19 @@ yarn install
 ```
 
 ## Run
+
+#### Development Mode
 ```
 bundle exec rails s
 ```
-Then visit [http://localhost:3000](http://localhost:3000)
+#### Docker
+Clones submodules needed for dependant services. Creates Docker images for Issuer and services and starts them in containers.
+```
+git submodule update --init --recursive
+docker-compose up -d
+```
+
+Then visit [http://localhost:5000](http://localhost:5000)
 
 ## Configuration
 
