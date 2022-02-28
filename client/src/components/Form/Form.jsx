@@ -7,7 +7,6 @@ import DateFnsUtils from '@date-io/date-fns';
 import Alert from '@material-ui/lab/Alert';
 import allFields from './formConfig';
 
-
 const Form = () => {
   const styles = useStyles();
   const history = useHistory();
@@ -34,9 +33,6 @@ const Form = () => {
   const enableButton = firstName && lastName && selectedDate;
 
   const dateFns = new DateFnsUtils();
-
-
-
   const ITEM_HEIGHT = 48;
   const ITEM_PADDING_TOP = 8;
   const MenuProps = {
@@ -108,6 +104,7 @@ const Form = () => {
         onChange={handleFirstNameChange}
       />
       }
+
       {allFields.fields.lastName.display && 
       <TextField
         required={allFields.fields.lastName.required}
@@ -119,6 +116,7 @@ const Form = () => {
         onChange={handleLastNameChange}
       />
       }
+
       {allFields.fields.selectedDate.display && 
       <MuiPickersUtilsProvider utils={DateFnsUtils}>
         <KeyboardDatePicker
@@ -294,28 +292,29 @@ const Form = () => {
         }}
       />
       }
-      
+
         <br></br>
-        {allFields.fields.sex.display &&
+      {allFields.fields.sex.display &&
         <InputLabel id="select">Sex
-        <Select
-            fullWidth
-            labelId="select"
-            label="Sex"
-            onChange={handleSex}
-            MenuProps={MenuProps}
-          >
-            <MenuItem value={"A"}>Ambiguous</MenuItem>
-            <MenuItem value={"F"}>Female</MenuItem>
-            <MenuItem value={"M"}>Male</MenuItem>
-            <MenuItem value={"N"}>Not Applicable</MenuItem>
-            <MenuItem value={"O"}>Other</MenuItem>
-            <MenuItem value={"U"}>Unknown</MenuItem> 
-        </Select>
+          <Select
+              fullWidth
+              labelId="select"
+              label="Sex"
+              onChange={handleSex}
+              MenuProps={MenuProps}
+            >
+              <MenuItem value={"A"}>Ambiguous</MenuItem>
+              <MenuItem value={"F"}>Female</MenuItem>
+              <MenuItem value={"M"}>Male</MenuItem>
+              <MenuItem value={"N"}>Not Applicable</MenuItem>
+              <MenuItem value={"O"}>Other</MenuItem>
+              <MenuItem value={"U"}>Unknown</MenuItem> 
+          </Select>
         </InputLabel>
       }
+
       <Box width="530px" display="flex" flexDirection="column" mt={2}>
-      <Typography variant="caption" className={styles.buttonCaption}>
+        <Typography variant="caption" className={styles.buttonCaption}>
           * required fields
         </Typography>
         <Button
