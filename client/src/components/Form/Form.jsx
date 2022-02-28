@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import useStyles from './styles';
-import { Box, Button, TextField, Typography, Select, MenuItem, InputLabel, InputAdornment } from '@material-ui/core';
+import { Box, Button, TextField, Typography, MenuItem, InputAdornment } from '@material-ui/core';
 import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
 import Alert from '@material-ui/lab/Alert';
@@ -33,16 +33,6 @@ const Form = () => {
   const enableButton = firstName && lastName && selectedDate;
 
   const dateFns = new DateFnsUtils();
-  const ITEM_HEIGHT = 48;
-  const ITEM_PADDING_TOP = 8;
-  const MenuProps = {
-    PaperProps: {
-      style: {
-        maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-        width: 100,
-      },
-    },
-  };
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -93,6 +83,8 @@ const Form = () => {
   return (
     <form onSubmit={handleSubmit}>
       {error && ( <Alert severity="error"> <div> {error}</div> </Alert> )}
+      <br></br>
+
       {allFields.fields.firstName.display && 
       <TextField
         required={allFields.fields.firstName.required}
@@ -163,79 +155,79 @@ const Form = () => {
       }
 
       {allFields.fields.USstate.display && 
-      <InputLabel id="select">State 
-        <Select
-            fullWidth
-            labelId="select"
-            label="State"
-            onChange={handleUSState}
-            MenuProps={MenuProps}
-            defaultValue=""
-          >
-          <MenuItem value="AL">Alabama</MenuItem>
-          <MenuItem value="AK">Alaska</MenuItem>
-          <MenuItem value="AS">American Samoa</MenuItem>
-          <MenuItem value="AZ">Arizona</MenuItem>
-          <MenuItem value="AR">Arkansas</MenuItem>
-          <MenuItem value="CA">California</MenuItem>
-          <MenuItem value="CO">Colorado</MenuItem>
-          <MenuItem value="CT">Connecticut</MenuItem>
-          <MenuItem value="DE">Delaware</MenuItem>
-          <MenuItem value="DC">District Of Columbia</MenuItem>
-          <MenuItem value="FM">Federated States Of Micronesia</MenuItem>
-          <MenuItem value="FL">Florida</MenuItem>
-          <MenuItem value="GA">Georgia</MenuItem>
-          <MenuItem value="GU">Guam</MenuItem>
-          <MenuItem value="HI">Hawaii</MenuItem>
-          <MenuItem value="ID">Idaho</MenuItem>
-          <MenuItem value="IL">Illinois</MenuItem>
-          <MenuItem value="IN">Indiana</MenuItem>
-          <MenuItem value="IA">Iowa</MenuItem>
-          <MenuItem value="KS">Kansas</MenuItem>
-          <MenuItem value="KY">Kentucky</MenuItem>
-          <MenuItem value="LA">Louisiana</MenuItem>
-          <MenuItem value="ME">Maine</MenuItem>
-          <MenuItem value="MH">Marshall Islands</MenuItem>
-          <MenuItem value="MD">Maryland</MenuItem>
-          <MenuItem value="MA">Massachusetts</MenuItem>
-          <MenuItem value="MI">Michigan</MenuItem>
-          <MenuItem value="MN">Minnesota</MenuItem>
-          <MenuItem value="MS">Mississippi</MenuItem>
-          <MenuItem value="MO">Missouri</MenuItem>
-          <MenuItem value="MT">Montana</MenuItem>
-          <MenuItem value="NE">Nebraska</MenuItem>
-          <MenuItem value="NV">Nevada</MenuItem>
-          <MenuItem value="NH">New Hampshire</MenuItem>
-          <MenuItem value="NJ">New Jersey</MenuItem>
-          <MenuItem value="NM">New Mexico</MenuItem>
-          <MenuItem value="NY">New York</MenuItem>
-          <MenuItem value="NC">North Carolina</MenuItem>
-          <MenuItem value="ND">North Dakota</MenuItem>
-          <MenuItem value="MP">Northern Mariana Islands</MenuItem>
-          <MenuItem value="OH">Ohio</MenuItem>
-          <MenuItem value="OK">Oklahoma</MenuItem>
-          <MenuItem value="OR">Oregon</MenuItem>
-          <MenuItem value="PW">Palau</MenuItem>
-          <MenuItem value="PA">Pennsylvania</MenuItem>
-          <MenuItem value="PR">Puerto Rico</MenuItem>
-          <MenuItem value="RI">Rhode Island</MenuItem>
-          <MenuItem value="SC">South Carolina</MenuItem>
-          <MenuItem value="SD">South Dakota</MenuItem>
-          <MenuItem value="TN">Tennessee</MenuItem>
-          <MenuItem value="TX">Texas</MenuItem>
-          <MenuItem value="UT">Utah</MenuItem>
-          <MenuItem value="VT">Vermont</MenuItem>
-          <MenuItem value="VI">Virgin Islands</MenuItem>
-          <MenuItem value="VA">Virginia</MenuItem>
-          <MenuItem value="WA">Washington</MenuItem>
-          <MenuItem value="WV">West Virginia</MenuItem>
-          <MenuItem value="WI">Wisconsin</MenuItem>
-          <MenuItem value="WY">Wyoming</MenuItem>
-      </Select>
-      </InputLabel>
+      <TextField
+        required = {allFields.fields.USstate.required}
+        fullWidth
+        variant="filled"
+        label="State"
+        InputLabelProps={{shrink: true}}
+        InputProps={{disableUnderline: true}}
+        onChange={handleUSState}
+        defaultValue=""
+        select
+      >
+        <MenuItem value="AL">Alabama</MenuItem>
+        <MenuItem value="AK">Alaska</MenuItem>
+        <MenuItem value="AS">American Samoa</MenuItem>
+        <MenuItem value="AZ">Arizona</MenuItem>
+        <MenuItem value="AR">Arkansas</MenuItem>
+        <MenuItem value="CA">California</MenuItem>
+        <MenuItem value="CO">Colorado</MenuItem>
+        <MenuItem value="CT">Connecticut</MenuItem>
+        <MenuItem value="DE">Delaware</MenuItem>
+        <MenuItem value="DC">District Of Columbia</MenuItem>
+        <MenuItem value="FM">Federated States Of Micronesia</MenuItem>
+        <MenuItem value="FL">Florida</MenuItem>
+        <MenuItem value="GA">Georgia</MenuItem>
+        <MenuItem value="GU">Guam</MenuItem>
+        <MenuItem value="HI">Hawaii</MenuItem>
+        <MenuItem value="ID">Idaho</MenuItem>
+        <MenuItem value="IL">Illinois</MenuItem>
+        <MenuItem value="IN">Indiana</MenuItem>
+        <MenuItem value="IA">Iowa</MenuItem>
+        <MenuItem value="KS">Kansas</MenuItem>
+        <MenuItem value="KY">Kentucky</MenuItem>
+        <MenuItem value="LA">Louisiana</MenuItem>
+        <MenuItem value="ME">Maine</MenuItem>
+        <MenuItem value="MH">Marshall Islands</MenuItem>
+        <MenuItem value="MD">Maryland</MenuItem>
+        <MenuItem value="MA">Massachusetts</MenuItem>
+        <MenuItem value="MI">Michigan</MenuItem>
+        <MenuItem value="MN">Minnesota</MenuItem>
+        <MenuItem value="MS">Mississippi</MenuItem>
+        <MenuItem value="MO">Missouri</MenuItem>
+        <MenuItem value="MT">Montana</MenuItem>
+        <MenuItem value="NE">Nebraska</MenuItem>
+        <MenuItem value="NV">Nevada</MenuItem>
+        <MenuItem value="NH">New Hampshire</MenuItem>
+        <MenuItem value="NJ">New Jersey</MenuItem>
+        <MenuItem value="NM">New Mexico</MenuItem>
+        <MenuItem value="NY">New York</MenuItem>
+        <MenuItem value="NC">North Carolina</MenuItem>
+        <MenuItem value="ND">North Dakota</MenuItem>
+        <MenuItem value="MP">Northern Mariana Islands</MenuItem>
+        <MenuItem value="OH">Ohio</MenuItem>
+        <MenuItem value="OK">Oklahoma</MenuItem>
+        <MenuItem value="OR">Oregon</MenuItem>
+        <MenuItem value="PW">Palau</MenuItem>
+        <MenuItem value="PA">Pennsylvania</MenuItem>
+        <MenuItem value="PR">Puerto Rico</MenuItem>
+        <MenuItem value="RI">Rhode Island</MenuItem>
+        <MenuItem value="SC">South Carolina</MenuItem>
+        <MenuItem value="SD">South Dakota</MenuItem>
+        <MenuItem value="TN">Tennessee</MenuItem>
+        <MenuItem value="TX">Texas</MenuItem>
+        <MenuItem value="UT">Utah</MenuItem>
+        <MenuItem value="VT">Vermont</MenuItem>
+        <MenuItem value="VI">Virgin Islands</MenuItem>
+        <MenuItem value="VA">Virginia</MenuItem>
+        <MenuItem value="WA">Washington</MenuItem>
+        <MenuItem value="WV">West Virginia</MenuItem>
+        <MenuItem value="WI">Wisconsin</MenuItem>
+        <MenuItem value="WY">Wyoming</MenuItem>
+      </TextField>
       }
 
-      <br></br>
       {allFields.fields.zip.display && 
       <TextField
         required={allFields.fields.zip.required}
@@ -294,25 +286,25 @@ const Form = () => {
       />
       }
 
-        <br></br>
-      {allFields.fields.sex.display &&
-        <InputLabel id="select">Sex
-          <Select
-              fullWidth
-              labelId="select"
-              label="Sex"
-              onChange={handleSex}
-              MenuProps={MenuProps}
-              defaultValue=""
-            >
-              <MenuItem value={"A"}>Ambiguous</MenuItem>
-              <MenuItem value={"F"}>Female</MenuItem>
-              <MenuItem value={"M"}>Male</MenuItem>
-              <MenuItem value={"N"}>Not Applicable</MenuItem>
-              <MenuItem value={"O"}>Other</MenuItem>
-              <MenuItem value={"U"}>Unknown</MenuItem> 
-          </Select>
-        </InputLabel>
+      {allFields.fields.sex.display && 
+      <TextField
+        required = {allFields.fields.sex.required}
+        fullWidth
+        variant="filled"
+        label="Sex"
+        InputLabelProps={{shrink: true}}
+        InputProps={{disableUnderline: true}}
+        onChange={handleSex}
+        defaultValue=""
+        select
+      >
+        <MenuItem value={"A"}>Ambiguous</MenuItem>
+        <MenuItem value={"F"}>Female</MenuItem>
+        <MenuItem value={"M"}>Male</MenuItem>
+        <MenuItem value={"N"}>Not Applicable</MenuItem>
+        <MenuItem value={"O"}>Other</MenuItem>
+        <MenuItem value={"U"}>Unknown</MenuItem> 
+      </TextField>
       }
 
       <Box width="530px" display="flex" flexDirection="column" mt={2}>
@@ -330,6 +322,7 @@ const Form = () => {
           SEARCH
         </Button>
       </Box>
+      <br></br>
     </form>
   );
 };
