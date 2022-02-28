@@ -13,32 +13,32 @@ const formConfig = {
       required: true,
     },
     street: {
-      display: true,
-      required: true,
+      display: false,
+      required: false,
     },
     city: {
-      display: true,
-      required: true,
+      display: false,
+      required: false,
     },
     USstate: {
-      display: true,
-      required: true,
+      display: false,
+      required: false,
     },
     zip: {
-      display: true,
-      required: true,
+      display: false,
+      required: false,
     },
     motherName: {
-      display: true,
-      required: true,
+      display: false,
+      required: false,
     },
     phone: {
-      display: true,
-      required: true,
+      display: false,
+      required: false,
     },
     sex: {
-      display: true,
-      required: true,
+      display: false,
+      required: false,
     },
   },
 };
