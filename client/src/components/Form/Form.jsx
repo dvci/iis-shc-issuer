@@ -264,7 +264,7 @@ const Form = () => {
       {allFields.fields.phone.display && 
       <TextField
         required = {allFields.fields.phone.required}
-        type="phone"
+        type="tel"
         fullWidth
         variant="filled"
         error={phoneError}
@@ -279,9 +279,7 @@ const Form = () => {
           }
         }}
         InputProps={{
-          startAdornment: <InputAdornment position="start">
-             +1
-             </InputAdornment>,
+          startAdornment: <InputAdornment position="end">+1</InputAdornment>,
         }}
       />
       }
