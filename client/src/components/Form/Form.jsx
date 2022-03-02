@@ -17,7 +17,7 @@ const Form = () => {
   const [city, setCity] = useState(null);
   const [USState, setUSState] = useState(null);
   const [zip, setZip] = useState("");
-  const [mothersName, setMotherName] = useState(null);
+  const [mothersMaidenName, setMothersMaidenName] = useState(null);
   const [phone, setPhoneNumber] = useState("");
   const [sex, setSex] = useState(null);
   const [error, setError] = useState(null);
@@ -28,7 +28,7 @@ const Form = () => {
   const handleStreet = event => setStreet(event.target.value);
   const handleCity = event => setCity(event.target.value);
   const handleUSState = event => setUSState(event.target.value);
-  const handleMotherMaidenName = event => setMotherName(event.target.value);
+  const handleMothersMaidenName = event => setMothersMaidenName(event.target.value);
   const handleSex = event => setSex(event.target.value);
   const enableButton = firstName && lastName && selectedDate;
 
@@ -42,8 +42,8 @@ const Form = () => {
     if (city) searchParams.city = city; 
     if (USState) searchParams.state = USState;
     if (zip) searchParams.zip = zip;
-    if (mothersName) {
-      searchParams.maiden_name = mothersName;
+    if (mothersMaidenName) {
+      searchParams.maiden_name = mothersMaidenName;
       searchParams.name_type_code = 'M';
     }
     if (phone) {
@@ -249,15 +249,15 @@ const Form = () => {
         />
       }
 
-      {allFields.fields.motherName.display && 
+      {allFields.fields.mothersMaidenName.display && 
       <TextField
-        required = {allFields.fields.motherName.required}
+        required = {allFields.fields.mothersMaidenName.required}
         fullWidth
         variant="filled"
         label="Mother's Maiden Name"
         InputLabelProps={{shrink: true}}
         InputProps={{disableUnderline: true}}
-        onChange={handleMotherMaidenName}
+        onChange={handleMothersMaidenName}
         />
       }
 
