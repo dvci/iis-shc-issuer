@@ -15,7 +15,7 @@ const Form = () => {
   const [selectedDate, handleDateChange] = useState(null);
   const [street, setStreet] = useState(null);
   const [city, setCity] = useState(null);
-  const [USstate, setUSState] = useState(null);
+  const [USState, setUSState] = useState(null);
   const [zip, setZip] = useState("");
   const [mothersName, setMotherName] = useState(null);
   const [phone, setPhoneNumber] = useState("");
@@ -40,7 +40,7 @@ const Form = () => {
     patient_dob: dateFns.format(selectedDate, 'yyyyMMdd')};
     if (street) searchParams.street = street;
     if (city) searchParams.city = city; 
-    if (USstate) searchParams.state = USstate;
+    if (USState) searchParams.state = USState;
     if (zip) searchParams.zip = zip;
     if (mothersName) {
       searchParams.maiden_name = mothersName;
@@ -154,9 +154,9 @@ const Form = () => {
         />
       }
 
-      {allFields.fields.USstate.display && 
+      {allFields.fields.USState.display && 
       <TextField
-        required = {allFields.fields.USstate.required}
+        required = {allFields.fields.USState.required}
         fullWidth
         variant="filled"
         label="State"
