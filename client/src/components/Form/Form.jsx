@@ -234,13 +234,14 @@ const Form = () => {
         fullWidth
         variant="filled"
         error={zipError}
+        helperText="Zip Code must contain exactly 5 numerical digits."
         value={zip}
         label="Zip"
         InputLabelProps={{shrink: true}}
         InputProps={{disableUnderline: true}}
         onChange={(e) => {
           setZip(e.target.value);
-          if (e.target.value.length > 5) {
+          if (e.target.value.length > 5 || isNaN(e.target.value)) {
             setZipError(true);
           } else {
             setZipError(false);
@@ -268,11 +269,12 @@ const Form = () => {
         fullWidth
         variant="filled"
         error={phoneError}
+        helperText="Phone Number must contain exactly 10 numerical digits (ex. 1111111111)."
         value={phone}
         label="Phone Number"
         onChange={(e) => {
           setPhoneNumber(e.target.value);
-          if (e.target.value.length > 10) {
+          if (e.target.value.length > 10 || isNaN(e.target.value)) {
             setPhoneError(true);
           } else {
             setPhoneError(false);
