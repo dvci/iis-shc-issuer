@@ -20,7 +20,7 @@ const formConfig = {
       display: false,
       required: false,
     },
-    USstate: {
+    USState: {
       display: false,
       required: false,
     },
@@ -28,7 +28,7 @@ const formConfig = {
       display: false,
       required: false,
     },
-    motherName: {
+    mothersMaidenName: {
       display: false,
       required: false,
     },
