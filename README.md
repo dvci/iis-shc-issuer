@@ -22,6 +22,11 @@ docker-compose up -d
 
 Then visit [http://localhost:5000](http://localhost:5000)
 
+## Configuration
+
+The search for a patient will always require a first name, last name, and date of birth. If those fields lead to an exact match with a patient in the IIS, a [SMART Health Card](https://smarthealth.cards) will be returned. If there are multiple patients who match the initial credentials, additional information will be required to help correctly retrieve the exact patient. 
+
+Displayed fields and required fields can be toggled using the `formConfig` object in `client/src/components/Form/formConfig.js`. `firstName`, `lastName`, and `selectedDate` must be displayed and requuired for the a patient to be returned by the IIS.
 
 ## License
 

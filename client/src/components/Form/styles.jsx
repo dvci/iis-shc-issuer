@@ -16,5 +16,5 @@ export default makeStyles(theme => ({
     '&::placeholder': {
       color: '#979797',
     },
-  }
+  },
 }));
